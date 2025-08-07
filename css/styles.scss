@@ -115,9 +115,45 @@ header {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: 1rem;
-  height: 280px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) transparent;
+  height: auto; // прибираємо фіксовану висоту, щоб адаптувалось по контенту
+}
+
+.review {
+  flex: 0 0 320px; // ширина блока
+  display: flex;
+  flex-direction: column; // картинка зверху, текст знизу
+  background-color: var(--white);
+  border-radius: 8px;
+  scroll-snap-align: start;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-height: 350px; // приблизна висота для 5 рядків тексту
+}
+
+.review img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background-color: var(--dark);
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.review-text {
+  background-color: var(--dark);
+  padding: 1rem;
+  flex: 1;
+  color: var(--gray);
+  font-size: 1rem;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+  white-space: normal;
+  /* задаємо мінімальну висоту для ~5 рядків тексту */
+  min-height: calc(1.4em * 5 + 1rem); // line-height * 5 + padding
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .reviews-wrapper::-webkit-scrollbar {
@@ -141,10 +177,16 @@ header {
 }
 
 .review img {
-  width: 25%;
-  height: auto;
-  object-fit: contain;
+  display: block;
+  margin: 0 auto; // по центру по ширині
+  width: auto; // ширина за замовчуванням (автоматична)
+  max-width: 100%; // не виходить за межі блоку
+  height: 180px; // фіксована висота
+  object-fit: contain; // масштабування без обрізання
+  background-color: var(--dark);
   padding: 0.5rem;
+  border-bottom: none; // прибрати лінію під картинкою
+  border-radius: 15px;
 }
 
 .review-text {
@@ -155,6 +197,7 @@ header {
   overflow-y: auto; // вертикальний скрол
   max-height: 260px; // висота блока (трохи менше за 280px висоти ревью)
   flex: 1;
+  text-align: justify;
 }
 
 .review-text p {
