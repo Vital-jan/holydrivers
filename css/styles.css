@@ -222,15 +222,13 @@ footer {
     margin-top: 30px;
   }
 }
-footer p.motto {
-  margin: 0 0 calc(1rem * var(--font-scale)) 0;
-}
 footer .contacts {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: calc(1rem * var(--font-scale));
   font-weight: normal;
+  padding-bottom: 40px;
 }
 footer .contacts a {
   color: var(--dark);
@@ -246,20 +244,9 @@ footer .contacts a:hover, footer .contacts a:focus {
   color: #222222;
   text-decoration: underline;
 }
-footer .contacts a.phone svg {
-  width: 18px;
-  height: 18px;
-  fill: var(--dark);
-}
-footer .contacts a.viber-img img {
-  width: 20px;
-  height: 20px;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-footer .contacts a.fb-img img {
-  width: 30px;
-  height: 30px;
+footer .contacts a.contacts-img img {
+  width: 40px;
+  height: 40px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -275,4 +262,11 @@ footer .contacts a.fb-img img {
     width: 100%;
     padding-right: 0;
   }
+}
+footer .partners {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }/*# sourceMappingURL=styles.css.map */

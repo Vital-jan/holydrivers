@@ -268,9 +268,6 @@ footer {
   @media (max-width: 768px) {
     margin-top: 30px;
   }
-  p.motto {
-    margin: 0 0 calc(1rem * var(--font-scale)) 0;
-  }
 
   .contacts {
     display: inline-flex;
@@ -278,6 +275,7 @@ footer {
     justify-content: center;
     gap: calc(1rem * var(--font-scale));
     font-weight: normal;
+    padding-bottom: 40px;
 
     a {
       color: var(--dark);
@@ -295,25 +293,10 @@ footer {
         text-decoration: underline;
       }
 
-      &.phone {
-        svg {
-          width: 18px;
-          height: 18px;
-          fill: var(--dark);
-        }
-      }
-
-      &.viber-img {
+      &.contacts-img {
         img {
-          width: 20px;
-          height: 20px;
-          object-fit: contain;
-        }
-      }
-      &.fb-img {
-        img {
-          width: 30px;
-          height: 30px;
+          width: 40px;
+          height: 40px;
           object-fit: contain;
         }
       }
@@ -330,5 +313,12 @@ footer {
         padding-right: 0;
       }
     }
+  }
+  .partners {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 }
