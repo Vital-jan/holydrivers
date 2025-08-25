@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 // Основний маршрут API
-app.get("api", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({ message: "Привіт! API на Express працює на порту 3000" });
 });
 

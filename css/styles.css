@@ -1,11 +1,4 @@
 @charset "UTF-8";
-:root {
-  --primary: #ffd700;
-  --dark: #111111;
-  --gray: #f0f0f0;
-  --font-scale: 1.3;
-}
-
 html {
   min-width: 500px;
 }
@@ -13,26 +6,26 @@ html {
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: var(--dark);
-  color: var(--gray);
+  background-color: #111111;
+  color: #f0f0f0;
   line-height: 1.6;
 }
 
 a {
-  color: var(--primary);
+  color: #ffd700;
 }
 
 header {
-  background-color: var(--primary);
-  color: var(--dark);
-  padding: calc(1.5rem * var(--font-scale)) calc(1rem * var(--font-scale));
+  background-color: #ffd700;
+  color: #111111;
+  padding: 1.95rem 1.3rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: calc(1rem * var(--font-scale));
+  gap: 1.3rem;
 }
 header .logo {
-  height: calc(90px * var(--font-scale));
+  height: 117px;
   width: auto;
 }
 header h1 {
@@ -49,33 +42,41 @@ header h1 {
 
 .bold {
   font-weight: bold;
-  color: var(--primary);
+  color: #ffd700;
+}
+
+.partners {
+  text-align: center;
+}
+.partners img {
+  border-radius: 10px;
+}
+
+.section-title {
+  color: #ffd700;
+  margin-bottom: 0.65rem;
+  font-size: 2em;
 }
 
 .section {
-  padding: calc(1rem * var(--font-scale)) calc(1rem * var(--font-scale));
+  padding: 1.3rem 1.3rem;
   max-width: 1000px;
   margin: auto;
 }
-.section h2 {
-  color: var(--primary);
-  margin-bottom: calc(0.5rem * var(--font-scale));
-  font-size: 2em;
-}
 .section ul {
-  padding-left: calc(1.2rem * var(--font-scale));
+  padding-left: 1.56rem;
 }
 .section ul li {
-  margin-bottom: calc(0.7rem * var(--font-scale));
+  margin-bottom: 0.91rem;
   font-size: 1.5em;
 }
 .section p {
-  margin-bottom: calc(1rem * var(--font-scale));
+  margin-bottom: 1.3rem;
   font-size: 1.5em;
 }
 
 .image-section {
-  margin: calc(1rem * var(--font-scale)) 0;
+  margin: 1.3rem 0;
   display: flex;
   justify-content: center;
 }
@@ -91,22 +92,17 @@ header h1 {
     width: 100%;
   }
 }
+/* Відгуки */
 .reviews {
-  padding: calc(2rem * var(--font-scale)) calc(1rem * var(--font-scale));
+  padding: 2.6rem 1.3rem;
   max-width: 1000px;
   margin: auto;
-  background-color: var(--dark);
-  color: var(--gray);
-}
-@media (max-width: 768px) {
-  .reviews {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
+  background-color: #111111;
+  color: #f0f0f0;
 }
 .reviews h2 {
-  color: var(--primary);
-  margin-bottom: calc(1rem * var(--font-scale));
+  color: #ffd700;
+  margin-bottom: 1.3rem;
   font-size: 2em;
 }
 
@@ -124,15 +120,15 @@ header h1 {
 }
 
 .reviews-wrapper::-webkit-scrollbar-thumb {
-  background-color: var(--primary);
+  background-color: #ffd700;
   border-radius: 4px;
 }
 
 .review {
   flex: 0 0 500px;
   display: flex;
-  background-color: var(--dark);
-  border: 1px solid var(--primary);
+  background-color: #111111;
+  border: 1px solid #ffd700;
   border-radius: 8px;
   scroll-snap-align: start;
   overflow: hidden;
@@ -164,14 +160,13 @@ header h1 {
   height: 180px;
   -o-object-fit: contain;
      object-fit: contain;
-  background-color: var(--dark);
+  background-color: #111111;
   padding: 0.5rem;
-  border-bottom: none;
   border-radius: 15px;
 }
 
 .review-text {
-  background-color: var(--dark);
+  background-color: #111111;
   padding: 1rem;
   display: flex;
   align-items: flex-start;
@@ -189,12 +184,10 @@ header h1 {
 }
 @media (max-width: 448px) {
   .review-text p {
-    text-align: left;
     font-size: 1.4rem;
   }
 }
 
-/* Адаптив */
 @media (max-width: 768px) {
   .review {
     flex-direction: column;
@@ -209,29 +202,107 @@ header h1 {
     padding: 1rem;
   }
 }
-footer {
-  background-color: var(--primary);
-  color: var(--dark);
+.form-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.form-section h2 {
+  width: 100%;
+}
+.form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+  background-color: #111111;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   text-align: center;
-  padding: calc(1.5rem * var(--font-scale));
-  font-size: calc(1.3rem * var(--font-scale));
+}
+.form-section form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  color: #f0f0f0;
+}
+.form-section form label input {
+  padding: 0.7rem;
+  border-radius: 10px;
+  border: 1px solid #ffd700;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  background-color: #222;
+  color: #f0f0f0;
+}
+.form-section form button {
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffd700;
+  color: #111111;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.form-section form button:hover {
+  background-color: #ccac00;
+}
+.form-section .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+.form-section .modal-content {
+  background: #f0f0f0;
+  color: #111111;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+}
+.form-section .modal-content button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #ffd700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   font-weight: bold;
 }
-@media (max-width: 768px) {
-  footer {
-    margin-top: 30px;
-  }
+.form-section .modal-content button:hover {
+  background: #ccac00;
+}
+
+footer {
+  background-color: #ffd700;
+  color: #111111;
+  margin-top: 80px;
+  text-align: center;
+  padding: 1.95rem;
+  font-size: 1.69rem;
+  font-weight: bold;
 }
 footer .contacts {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: calc(1rem * var(--font-scale));
+  gap: 1.3rem;
   font-weight: normal;
   padding-bottom: 40px;
 }
 footer .contacts a {
-  color: var(--dark);
+  color: #111111;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -254,19 +325,12 @@ footer .contacts a.contacts-img img {
   footer .contacts {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* вирівнюємо зліва */
+    align-items: flex-start;
     padding-top: 30px;
   }
   footer .contacts a {
-    flex-direction: row; /* або column, якщо хочеш, щоб іконка і текст теж вертикально */
+    flex-direction: row;
     width: 100%;
     padding-right: 0;
   }
-}
-footer .partners {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
 }/*# sourceMappingURL=styles.css.map */
