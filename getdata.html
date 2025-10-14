@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-store, no-cache, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>Автоінструктор Теремки, Голосієво – Уроки водіння АКПП</title>
+    <meta
+      name="description"
+      content="Індивідуальні уроки водіння з автоінструктором у Києві (Теремки, Голосієво, ВДНГ). АКПП, гнучкий графік, підготовка до іспиту. Записатися онлайн."
+    />
+    <link rel="stylesheet" href="css/styles.css?v=1.65" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div id="scheduleContainer">Завантаження...</div>
+  </body>
+</html>
+<script>
+  async function loadSchedule(month, user) {
+    // ⚙️ URL твого VPS-проксі
+    const url = `https://holydrivers.com.ua/api/proxy.php?month=${encodeURIComponent(
+      month
+    )}&user=${encodeURIComponent(user)}`;
+
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      renderSchedule(data);
+    } catch (err) {
+      document.getElementById(
+        "scheduleContainer"
+      ).innerHTML = `<div style="color:red;">Помилка: ${err.message}</div>`;
+    }
+  }
+
+  function getCellClass(value) {
+    if (!value) return "";
+    const val = value.toString().toLowerCase();
+    if (val === "вільно") return "free";
+    if (val === "іспит") return "exam";
+    return "";
+  }
+
+  function renderSchedule(data) {
+    if (data.error) {
+      document.getElementById(
+        "scheduleContainer"
+      ).innerHTML = `<div style="color:red;">${data.error}</div>`;
+      return;
+    }
+
+    let html = `
+        <div class="schedule">
+          <div class="left">
+            <table>
+              <tbody>
+                ${data.leftCol.map((v) => `<tr><td>${v}</td></tr>`).join("")}
+              </tbody>
+            </table>
+          </div>
+          <div class="right">
+            <table>
+              <tbody>
+                ${data.rightCols
+                  .map(
+                    (row) =>
+                      `<tr>${row
+                        .map(
+                          (cell) =>
+                            `<td class="${getCellClass(cell)}">${cell}</td>`
+                        )
+                        .join("")}</tr>`
+                  )
+                  .join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+
+    document.getElementById("scheduleContainer").innerHTML = html;
+  }
+
+  // 🚀 Виклик при завантаженні сторінки
+  loadSchedule("Жовтень", "");
+</script>

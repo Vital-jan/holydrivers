@@ -309,6 +309,51 @@ header {
   }
 }
 
+.schedule {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  .left {
+    min-width: 120px;
+    font-weight: bold;
+  }
+  .right {
+    overflow-x: auto;
+    padding-left: 10px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td,
+  th {
+    border: 1px solid #ccc;
+    padding: 4px;
+    white-space: nowrap;
+    height: 25px;
+    max-height: 25px;
+    overflow: hidden;
+  }
+  .free {
+    background-color: green;
+  }
+
+  /* фіксована висота перших двох рядків */
+  tr:nth-child(1) td,
+  tr:nth-child(2) td {
+    text-align: center;
+    font-weight: bold;
+  }
+  tr:nth-child(5) td,
+  tr:nth-child(8) td,
+  tr:nth-child(11) td,
+  tr:nth-child(14) td {
+    height: 10px;
+    background-color: rgb(238, 225, 161);
+  }
+}
+
 footer {
   background-color: $primary;
   color: $dark;
