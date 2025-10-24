@@ -15,7 +15,7 @@
       name="description"
       content="Індивідуальні уроки водіння з автоінструктором у Києві (Теремки, Голосієво, ВДНГ). АКПП, гнучкий графік, підготовка до іспиту. Записатися онлайн."
     />
-    <link rel="stylesheet" href="css/styles.css?v=1.8" />
+    <link rel="stylesheet" href="css/styles.css?v=1.85" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   </head>
 
@@ -41,6 +41,12 @@
         </a>
       </div>
     </header>
+
+    <section id="userBar" class="section" style="display: none">
+      <span id="userLabel"></span>
+      <button id="logoutBtn" type="button">Вийти</button>
+    </section>
+
     <section class="section" id="userCodeForm">
       <label for="userCodeInput"
         >Для перегляду Вашого персонального календаря введіть код авторизації,
@@ -57,7 +63,7 @@
       </div>
       <div id="userCodeErr"></div>
     </section>
-    <h3>
+    <h3 id="for_new_user">
       Якщо Ви хочете розпочати заняття, але не знаходите вільних слотів —
       зв'яжіться з інструктором, для Вас буде виділено додатковий час.
     </h3>
@@ -98,6 +104,44 @@
 </html>
 
 <script>
+  function updateUserBar(fullname) {
+    const bar = document.getElementById("userBar");
+    const label = document.getElementById("userLabel");
+    if (fullname && String(fullname).trim() !== "") {
+      if (label) label.textContent = `Користувач: ${fullname}`;
+      if (bar) bar.style.display = "";
+      document.getElementById("for_new_user").style.display = "none";
+    } else {
+      if (bar) bar.style.display = "none";
+      document.getElementById("for_new_user").style.display = "";
+    }
+  }
+
+  function attachLogout() {
+    const btn = document.getElementById("logoutBtn");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      try {
+        localStorage.removeItem("user");
+      } catch (_) {}
+      // Приберемо ?user з адресного рядка (без перезавантаження)
+      try {
+        const url = new URL(location.href);
+        url.searchParams.delete("user");
+        history.replaceState({}, "", url.toString());
+      } catch (_) {}
+      updateUserBar("");
+      // Якщо у тебе є форма введення коду — можна її показати тут
+      const form = document.getElementById("userCodeForm");
+      if (form) form.style.display = "";
+      // Перечитати розклад без user
+      loadSchedules();
+    });
+  }
+
+  // Викличи attachLogout один раз після завантаження DOM
+  document.addEventListener("DOMContentLoaded", attachLogout);
+
   const LS_KEY = "user";
 
   // Якщо код прийшов у URL — просто збережемо як є (без перевірок)
@@ -247,6 +291,7 @@
       const res = await fetch(url.toString(), { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json(); // очікуємо: { current: {...}|null, next: {...}|null }
+      updateUserBar(data.user_fullname);
       console.log("res:", data);
       const html =
         renderMonthBlock("Поточний місяць", data.current) +
