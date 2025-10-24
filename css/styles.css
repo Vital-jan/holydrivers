@@ -1,10 +1,19 @@
 @charset "UTF-8";
 html {
-  min-width: 500px;
+  width: 100%;
+  overflow-x: hidden;
+  min-width: 275px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  width: 100%;
   font-family: Arial, sans-serif;
   background-color: #111111;
   color: #f0f0f0;
@@ -15,25 +24,77 @@ a {
   color: #ffd700;
 }
 
+h3 {
+  padding: 20px;
+}
+
 header {
+  width: 100%;
   background-color: #ffd700;
   color: #111111;
-  padding: 1.95rem 1.3rem;
   display: flex;
+  padding: 20px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 1.3rem;
+}
+@media (max-width: 530px) {
+  header {
+    font-size: 0.8rem;
+    gap: 5px;
+    padding: 5px;
+  }
+}
+@media (max-width: 530px) {
+  header {
+    font-size: 0.7rem;
+  }
 }
 header .logo {
   height: 117px;
-  width: auto;
+  width: 20%;
+  max-width: 100px;
+  height: auto;
 }
 header h1 {
   margin: 0;
   width: 100%;
   text-align: center;
-  font-size: 2.5rem;
-  line-height: 1.2;
+  line-height: 1;
+}
+header h1 span {
+  font-size: 0.8em;
+}
+header .home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+header .home img {
+  max-width: 30px;
+  min-width: 20px;
+  height: auto;
+}
+header .home a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #111111;
+  text-decoration: none;
+  font-weight: bold;
+  gap: 6px;
+}
+@media (max-width: 768px) {
+  header .home span {
+    display: none;
+  }
+}
+@media (max-width: 330px) {
+  header .home-schedule {
+    display: none;
+  }
 }
 
 .strong {
@@ -45,14 +106,8 @@ header h1 {
   color: #ffd700;
 }
 
-.partners {
-  text-align: center;
-}
-.partners img {
-  border-radius: 10px;
-}
-
 .section-title {
+  width: 100%;
   color: #ffd700;
   margin-bottom: 0.65rem;
   font-size: 2em;
@@ -60,8 +115,8 @@ header h1 {
 
 .section {
   padding: 1.3rem 1.3rem;
-  max-width: 1000px;
-  margin: auto;
+  width: 100%;
+  margin: 0 auto;
 }
 .section ul {
   padding-left: 1.56rem;
@@ -74,9 +129,21 @@ header h1 {
   margin-bottom: 1.3rem;
   font-size: 1.5em;
 }
+.section img {
+  max-width: 10%;
+}
+
+.partners {
+  text-align: center;
+}
+.partners img {
+  border-radius: 10px;
+  max-width: 100%;
+}
 
 .image-section {
   margin: 1.3rem 0;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
 }
@@ -288,6 +355,10 @@ header h1 {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   /* фіксована висота перших двох рядків */
 }
 .schedule .left {
@@ -309,6 +380,8 @@ header h1 {
   white-space: nowrap;
   height: 25px;
   max-height: 25px;
+  line-height: 25px;
+  vertical-align: middle;
   overflow: hidden;
 }
 .schedule .free {
@@ -323,16 +396,20 @@ header h1 {
 .schedule tr:nth-child(8) td,
 .schedule tr:nth-child(11) td,
 .schedule tr:nth-child(14) td {
-  height: 10px;
+  height: 10px !important;
+  max-height: 10px;
+  line-height: 10px;
   background-color: rgb(238, 225, 161);
+  overflow: hidden;
 }
 
 footer {
   background-color: #ffd700;
   color: #111111;
+  width: 100%;
+  padding: 20px;
   margin-top: 80px;
   text-align: center;
-  padding: 1.95rem;
   font-size: 1.69rem;
   font-weight: bold;
 }

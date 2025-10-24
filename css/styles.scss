@@ -4,11 +4,20 @@ $gray: #f0f0f0;
 $font-scale: 1.3;
 
 html {
-  min-width: 500px;
+  width: 100%;
+  overflow-x: hidden;
+  min-width: 275px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  width: 100%;
   font-family: Arial, sans-serif;
   background-color: $dark;
   color: $gray;
@@ -19,26 +28,76 @@ a {
   color: $primary;
 }
 
+h3 {
+  padding: 20px;
+}
+
 header {
+  width: 100%;
   background-color: $primary;
   color: $dark;
-  padding: calc(1.5rem * $font-scale) calc(1rem * $font-scale);
   display: flex;
+  padding: 20px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: calc(1rem * $font-scale);
+
+  @media (max-width: 530px) {
+    font-size: 0.8rem;
+    gap: 5px;
+    padding: 5px;
+  }
+  @media (max-width: 530px) {
+    font-size: 0.7rem;
+  }
 
   .logo {
     height: calc(90px * $font-scale);
-    width: auto;
+    width: 20%;
+    max-width: 100px;
+    height: auto;
   }
 
   h1 {
     margin: 0;
     width: 100%;
     text-align: center;
-    font-size: 2.5rem;
-    line-height: 1.2;
+    line-height: 1;
+    span {
+      font-size: 0.8em;
+    }
+  }
+  .home {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    img {
+      max-width: 30px;
+      min-width: 20px;
+      height: auto;
+    }
+    a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: $dark;
+      text-decoration: none;
+      font-weight: bold;
+      gap: 6px;
+    }
+
+    span {
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+  .home-schedule {
+    @media (max-width: 330px) {
+      display: none;
+    }
   }
 }
 
@@ -51,14 +110,8 @@ header {
   color: $primary;
 }
 
-.partners {
-  text-align: center;
-  img {
-    border-radius: 10px;
-  }
-}
-
 .section-title {
+  width: 100%;
   color: $primary;
   margin-bottom: calc(0.5rem * $font-scale);
   font-size: 2em;
@@ -66,8 +119,8 @@ header {
 
 .section {
   padding: calc(1rem * $font-scale) calc(1rem * $font-scale);
-  max-width: 1000px;
-  margin: auto;
+  width: 100%;
+  margin: 0 auto;
 
   ul {
     padding-left: calc(1.2rem * $font-scale);
@@ -82,10 +135,22 @@ header {
     margin-bottom: calc(1rem * $font-scale);
     font-size: 1.5em;
   }
+  img {
+    max-width: 10%;
+  }
+}
+
+.partners {
+  text-align: center;
+  img {
+    border-radius: 10px;
+    max-width: 100%;
+  }
 }
 
 .image-section {
   margin: calc(1rem * $font-scale) 0;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
 
@@ -313,7 +378,10 @@ header {
   display: flex;
   flex-direction: row;
   gap: 10px;
-
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   .left {
     min-width: 120px;
     font-weight: bold;
@@ -333,6 +401,8 @@ header {
     white-space: nowrap;
     height: 25px;
     max-height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
     overflow: hidden;
   }
   .free {
@@ -349,17 +419,21 @@ header {
   tr:nth-child(8) td,
   tr:nth-child(11) td,
   tr:nth-child(14) td {
-    height: 10px;
+    height: 10px !important;
+    max-height: 10px;
+    line-height: 10px;
     background-color: rgb(238, 225, 161);
+    overflow: hidden;
   }
 }
 
 footer {
   background-color: $primary;
   color: $dark;
+  width: 100%;
+  padding: 20px;
   margin-top: 80px;
   text-align: center;
-  padding: calc(1.5rem * $font-scale);
   font-size: calc(1.3rem * $font-scale);
   font-weight: bold;
 
@@ -409,12 +483,4 @@ footer {
       }
     }
   }
-
-  // .partners {
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   align-items: center;
-  //   width: 100%;
-  // }
 }

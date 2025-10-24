@@ -15,80 +15,249 @@
       name="description"
       content="Індивідуальні уроки водіння з автоінструктором у Києві (Теремки, Голосієво, ВДНГ). АКПП, гнучкий графік, підготовка до іспиту. Записатися онлайн."
     />
-    <link rel="stylesheet" href="css/styles.css?v=1.65" />
+    <link rel="stylesheet" href="css/styles.css?v=1.8" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   </head>
+
   <body>
+    <header>
+      <img
+        src="img/holydrivers_logo.png"
+        alt="Логотип HolyDrivers"
+        class="logo"
+      />
+      <h1>
+        Приватний автоінструктор <br /><span style="font-size: 0.6em"
+          >автоматична коробка передач</span
+        >
+      </h1>
+      <div class="home">
+        <a href="/">
+          <img
+            src="img/home.png"
+            alt="На головну сторінку приватний автоінсруктор теремки"
+          />
+          <span>На головну</span>
+        </a>
+      </div>
+    </header>
+    <section class="section" id="userCodeForm">
+      <label for="userCodeInput"
+        >Для перегляду Вашого персонального календаря введіть код авторизації,
+        наданий Вам адміністратором сайту</label
+      >
+      <div>
+        <input
+          id="userCodeInput"
+          type="text"
+          autocomplete="off"
+          placeholder="Код авторизації"
+        />
+        <button id="userCodeBtn" type="button">Ок</button>
+      </div>
+      <div id="userCodeErr"></div>
+    </section>
+    <h3>
+      Якщо Ви хочете розпочати заняття, але не знаходите вільних слотів —
+      зв'яжіться з інструктором, для Вас буде виділено додатковий час.
+    </h3>
+
+    <!-- Контейнер для двох місячних таблиць -->
     <div id="scheduleContainer">Завантаження...</div>
+
+    <footer id="contacts">
+      <p>Зв'язатись з автоінструктором:</p>
+      <div class="contacts">
+        <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
+          <img src="img/phone.png" alt="" />
+          +38 063 2209770
+        </a>
+
+        <a
+          href="viber://chat?number=%2B380632209770"
+          title="Написати у Viber"
+          class="contacts-img"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="img/viber.png" alt="" />
+          Viber
+        </a>
+        <a
+          href="https://fb.com/holydrivers"
+          title="Ми на facebook"
+          class="contacts-img"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="img/fb.png" alt="Ми на facebook" /> Facebook
+        </a>
+      </div>
+    </footer>
   </body>
 </html>
-<script>
-  async function loadSchedule(month, user) {
-    // ⚙️ URL твого VPS-проксі
-    const url = `https://holydrivers.com.ua/api/proxy.php?month=${encodeURIComponent(
-      month
-    )}&user=${encodeURIComponent(user)}`;
 
+<script>
+  const LS_KEY = "user";
+
+  // Якщо код прийшов у URL — просто збережемо як є (без перевірок)
+  (function bootstrapUserFromURL() {
+    const u = new URLSearchParams(location.search).get("user");
+    if (u != null) {
+      try {
+        localStorage.setItem(LS_KEY, u);
+      } catch (_) {}
+    }
+  })();
+
+  function getUserId() {
     try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-      renderSchedule(data);
-    } catch (err) {
-      document.getElementById(
-        "scheduleContainer"
-      ).innerHTML = `<div style="color:red;">Помилка: ${err.message}</div>`;
+      return localStorage.getItem(LS_KEY);
+    } catch (_) {
+      return null;
     }
   }
 
+  function setUserId(u) {
+    try {
+      localStorage.setItem(LS_KEY, String(u));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function toggleUserForm(show) {
+    const form = document.getElementById("userCodeForm");
+    if (form) form.style.display = show ? "" : "none";
+  }
+
+  function initUserForm() {
+    const input = document.getElementById("userCodeInput");
+    const btn = document.getElementById("userCodeBtn");
+    const err = document.getElementById("userCodeErr");
+
+    function submit() {
+      const val = input ? input.value : "";
+      err.textContent = "";
+      if (setUserId(val)) {
+        toggleUserForm(false);
+        if (typeof loadSchedules === "function") loadSchedules(val);
+      } else {
+        err.textContent = "Не вдалося зберегти код у браузері.";
+      }
+    }
+
+    if (btn) btn.addEventListener("click", submit);
+    if (input)
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") submit();
+      });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initUserForm();
+    const u = getUserId();
+    if (u !== null) {
+      toggleUserForm(false);
+      if (typeof loadSchedules === "function") loadSchedules(u);
+    } else {
+      toggleUserForm(true);
+    }
+  });
+
+  // 🔧 Вкажи свій проксі/бекенд, який повертає { current, next }
+  // Якщо на VPS є proxy.php, який просто прокидає запит до Apps Script:
+  // достатньо лише параметра user (month не потрібен)
+  const API_URL = "https://holydrivers.com.ua/api/proxy.php";
+
   function getCellClass(value) {
-    if (!value) return "";
-    const val = value.toString().toLowerCase();
-    if (val === "вільно") return "free";
-    if (val === "іспит") return "exam";
+    if (value == null) return "";
+    const v = value.toString().trim().toLowerCase();
+    if (v === "вільно") return "free";
+    if (v === "іспит") return "exam";
     return "";
   }
 
-  function renderSchedule(data) {
-    if (data.error) {
-      document.getElementById(
-        "scheduleContainer"
-      ).innerHTML = `<div style="color:red;">${data.error}</div>`;
-      return;
-    }
-
-    let html = `
+  // Рендер одного місяця (або повідомлення, якщо даних немає)
+  function renderMonthBlock(label, payload) {
+    if (!payload) {
+      return `
+        <h3 class="section-title" style="margin-top:1rem;">${label}</h3>
         <div class="schedule">
-          <div class="left">
-            <table>
-              <tbody>
-                ${data.leftCol.map((v) => `<tr><td>${v}</td></tr>`).join("")}
-              </tbody>
-            </table>
-          </div>
-          <div class="right">
-            <table>
-              <tbody>
-                ${data.rightCols
-                  .map(
-                    (row) =>
-                      `<tr>${row
-                        .map(
-                          (cell) =>
-                            `<td class="${getCellClass(cell)}">${cell}</td>`
-                        )
-                        .join("")}</tr>`
-                  )
-                  .join("")}
-              </tbody>
-            </table>
+          <div style="width:100%;text-align:center;color:#ccc;padding:8px 0;">
+            Дані недоступні (аркуш місяця відсутній)
           </div>
         </div>
       `;
+    }
 
-    document.getElementById("scheduleContainer").innerHTML = html;
+    // Ліва колонка
+    const leftHtml = (payload.leftCol || [])
+      .map((v) => {
+        const value = v != null && v.toString().trim() !== "" ? v : "&nbsp;";
+        return `<tr><td>${value}</td></tr>`;
+      })
+      .join("");
+
+    // Права таблиця
+    const rightHtml = (payload.rightCols || [])
+      .map((row) => {
+        const tds = row
+          .map((cell) => {
+            const value =
+              cell != null && cell.toString().trim() !== "" ? cell : "&nbsp;";
+            return `<td class="${getCellClass(cell)}">${value}</td>`;
+          })
+          .join("");
+        return `<tr>${tds}</tr>`;
+      })
+      .join("");
+
+    return `
+      <h3 class="section-title" style="margin-top:1rem;">${payload.month}</h3>
+      <div class="schedule">
+        <div class="left">
+          <table><tbody>${leftHtml}</tbody></table>
+        </div>
+        <div class="right">
+          <table><tbody>${rightHtml}</tbody></table>
+        </div>
+      </div>
+    `;
   }
 
-  // 🚀 Виклик при завантаженні сторінки
-  loadSchedule("Жовтень", "");
+  // Основне завантаження: тягнемо JSON { current, next } і рендеримо 2 таблиці
+  async function loadSchedules() {
+    let user = "";
+    try {
+      const u = localStorage.getItem("user");
+      if (u && u !== "null" && u !== "undefined" && u.trim() !== "") {
+        user = u.trim();
+      }
+    } catch (_) {}
+
+    const container = document.getElementById("scheduleContainer");
+    container.innerHTML = "Завантаження…";
+
+    try {
+      const url = new URL(API_URL);
+      if (user) url.searchParams.set("user", user);
+
+      const res = await fetch(url.toString(), { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json(); // очікуємо: { current: {...}|null, next: {...}|null }
+      console.log("res:", data);
+      const html =
+        renderMonthBlock("Поточний місяць", data.current) +
+        renderMonthBlock("Наступний місяць", data.next);
+
+      container.innerHTML = html;
+    } catch (err) {
+      container.innerHTML = `<div style="color:red;">Помилка: ${err.message}</div>`;
+    }
+  }
+
+  // 🚀 Старт (передай ім'я користувача за потреби)
+  loadSchedules();
 </script>

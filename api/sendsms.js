@@ -1,7 +1,7 @@
 function transformAndSortSchedule() {
   const TURBOSMS_TOKEN = ""; // заміни своїм
-  const TURBOSMS_SENDER = "TastyRoute"; // підключений відправник у TurboSMS
-  const TESTMODE = true; // true = всі SMS йдуть тільки на myPhone
+  const TURBOSMS_SENDER = "Holydrivers"; // підключений відправник у TurboSMS
+  const TESTMODE = false; // true = всі SMS йдуть тільки на myPhone
   const myPhone = "+380632209770"; // тестовий номер для відладки
   const myEmail = "vitaljan@gmail.com"; // куди відправляти звіт
 

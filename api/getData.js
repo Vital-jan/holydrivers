@@ -1,116 +1,137 @@
 function doGet(e) {
-  const MONTH_SHEET = e.parameter.month || "";
-  const USER = e.parameter.user || "";
+  var params = e && e.parameter ? e.parameter : {};
+  var USER_ID = String(
+    params.user || params.user_id || params.USER || params.USER_ID || ""
+  ).trim();
+
+  const MONTH_NAMES = [
+    "Січень",
+    "Лютий",
+    "Березень",
+    "Квітень",
+    "Травень",
+    "Червень",
+    "Липень",
+    "Серпень",
+    "Вересень",
+    "Жовтень",
+    "Листопад",
+    "Грудень",
+  ];
+
+  const now = new Date();
+  const currentIdx = now.getMonth();
+  const currentYear = now.getFullYear();
+  const nextIdx = (currentIdx + 1) % 12;
+  const nextYear = currentIdx === 11 ? currentYear + 1 : currentYear;
 
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName(MONTH_SHEET);
-  if (!sheet) {
-    return HtmlService.createHtmlOutput(`Аркуш '${MONTH_SHEET}' не знайдено`);
-  }
 
-  const values = sheet.getDataRange().getValues();
-
-  function formatValue(val) {
+  function fmt(val) {
     if (val instanceof Date) {
-      const d = val.getDate().toString().padStart(2, "0");
-      const m = (val.getMonth() + 1).toString().padStart(2, "0");
+      const d = String(val.getDate()).padStart(2, "0");
+      const m = String(val.getMonth() + 1).padStart(2, "0");
       return `${d}.${m}`;
     }
     return val;
   }
 
-  // Перша колонка — години
-  const leftCol = values.map((row) => formatValue(row[0]));
+  // нормалізація заголовків
+  function norm(s) {
+    return String(s || "")
+      .toLowerCase()
+      .replace(/\s+/g, "")
+      .replace(/_/g, "");
+  }
 
-  // Інші колонки — фільтруємо значення
-  const rightCols = values.map((row, rowIndex) => {
-    return row.slice(1).map((cell) => {
-      const val = formatValue(cell);
-      // Перші два рядки — без змін
-      if (rowIndex < 2) return val;
-      // Дозволені значення
-      const allowed = ["вільно", "іспит", USER];
-      if (
-        allowed.some(
-          (a) => val && val.toString().toLowerCase() === a.toLowerCase()
-        )
-      ) {
-        return val;
+  // шукаємо ПІБ у "Група" (A="Зарезервовано", B="User_ID")
+  function findFullNameByUserId(userId) {
+    if (!userId) return "";
+    const sh = ss.getSheetByName("Група");
+    if (!sh) return "";
+
+    const values = sh.getDataRange().getValues();
+    if (!values.length) return "";
+
+    const header = values[0].map(norm);
+    // шукаємо індекси колонок за заголовками
+    let idxName = header.indexOf("зарезервовано");
+    let idxId = header.indexOf("user_id");
+
+    // fallback, якщо заголовків нема/інші
+    if (idxName === -1) idxName = 0; // A
+    if (idxId === -1) idxId = 1; // B
+
+    // припускаємо, що перший рядок — заголовки; якщо їх нема — просто теж почнемо з 1, це безпечно
+    for (let r = 1; r < values.length; r++) {
+      const row = values[r];
+      const idCell = row[idxId] != null ? String(row[idxId]).trim() : "";
+      if (idCell && idCell.toLowerCase() === userId.toLowerCase()) {
+        const nameCell =
+          row[idxName] != null ? String(row[idxName]).trim() : "";
+        // приберемо подвійні/кінцеві пробіли всередині ПІБ
+        return nameCell.replace(/\s+/g, " ").trim();
       }
-      return ""; // решта — порожньо
-    });
-  });
-
-  // Формуємо HTML
-  let html = `
-  <html>
-    <head>
-      <meta charset="UTF-8">
-      <style>
-        .container { display: flex; flex-direction: row; gap: 10px; }
-        .left { min-width: 120px; }
-        .right { overflow-x: auto; padding-left: 10px; }
-        table { border-collapse: collapse; width: 100%; }
-        td, th { border: 1px solid #ccc; padding: 4px; white-space: nowrap; }
-
-        /*фіксована висота усіх рядків*/
-        tr td{
-          height: 25px;
-          max-height: 25px;
-          overflow: hidden;
-        }
-        /* центрування перших двох рядків */
-        tr:nth-child(1) td, tr:nth-child(2) td {
-         text-align: center;
-        }
-        /* фіксована висота рядків годин перерви */
-        tr:nth-child(5) td, tr:nth-child(8) td,  tr:nth-child(11) td, tr:nth-child(14) td {
-         height: 10px;
-        }
-
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="left">
-          <table>
-            <tbody>
-  `;
-
-  // Ліва таблиця (години)
-  for (let i = 0; i < leftCol.length; i++) {
-    html += `<tr><td>${leftCol[i]}</td></tr>`;
-  }
-
-  html += `
-            </tbody>
-          </table>
-        </div>
-        <div class="right">
-          <table>
-            <tbody>
-  `;
-
-  // Права таблиця (інші колонки)
-  for (let i = 0; i < rightCols.length; i++) {
-    html += "<tr>";
-    for (let j = 0; j < rightCols[i].length; j++) {
-      html += `<td>${rightCols[i][j]}</td>`;
     }
-    html += "</tr>";
+    return "";
   }
 
-  html += `
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </body>
-  </html>
-  `;
+  function buildMonthPayload(sheetName, year, userFullName) {
+    const sheet = ss.getSheetByName(sheetName);
+    if (!sheet) return null;
 
-  return HtmlService.createHtmlOutput(html)
-    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
-    .setTitle("Розклад")
-    .setSandboxMode(HtmlService.SandboxMode.IFRAME);
+    const values = sheet.getDataRange().getValues();
+    const leftCol = values.map((row) => fmt(row[0]));
+
+    const rightCols = values.map((row, rowIndex) =>
+      row.slice(1).map((cell) => {
+        const val = fmt(cell);
+        if (rowIndex < 2) return val; // перші 2 рядки як є (дні тижня/дати)
+        const allow = ["вільно", "іспит", "звіт"];
+        if (userFullName) allow.push(userFullName);
+        const v =
+          val != null
+            ? String(val).replace(/\s+/g, " ").trim().toLowerCase()
+            : "";
+        return allow.some((a) => v === String(a).toLowerCase()) ? val : "";
+      })
+    );
+
+    return {
+      month: sheetName,
+      year,
+      user_id: USER_ID,
+      user_fullname: userFullName,
+      leftCol,
+      rightCols,
+    };
+  }
+
+  const userFullName = findFullNameByUserId(USER_ID);
+  const currentData = buildMonthPayload(
+    MONTH_NAMES[currentIdx],
+    currentYear,
+    userFullName
+  );
+  const nextData = buildMonthPayload(
+    MONTH_NAMES[nextIdx],
+    nextYear,
+    userFullName
+  );
+
+  const out = {
+    user_id: USER_ID,
+    user_fullname: userFullName,
+    current: currentData,
+    next: nextData,
+  };
+
+  // діагностика за запитом ?debug=1
+  if (String(params.debug || "") === "1") {
+    out.receivedParams = params;
+  }
+
+  return ContentService.createTextOutput(JSON.stringify(out)).setMimeType(
+    ContentService.MimeType.JSON
+  );
 }
