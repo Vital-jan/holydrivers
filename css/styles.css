@@ -386,6 +386,7 @@ header .home a {
   line-height: 25px;
   vertical-align: middle;
   overflow: hidden;
+  text-align: center;
 }
 .schedule .free {
   background-color: green;

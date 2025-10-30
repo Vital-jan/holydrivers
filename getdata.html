@@ -15,7 +15,7 @@
       name="description"
       content="Індивідуальні уроки водіння з автоінструктором у Києві (Теремки, Голосієво, ВДНГ). АКПП, гнучкий графік, підготовка до іспиту. Записатися онлайн."
     />
-    <link rel="stylesheet" href="css/styles.css?v=1.85" />
+    <link rel="stylesheet" href="css/styles.css?v=1.90" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   </head>
 
@@ -250,7 +250,7 @@
         const tds = row
           .map((cell) => {
             const value =
-              cell != null && cell.toString().trim() !== "" ? cell : "&nbsp;";
+              cell != null && cell.toString().trim() !== "" ? cell : "";
             return `<td class="${getCellClass(cell)}">${value}</td>`;
           })
           .join("");

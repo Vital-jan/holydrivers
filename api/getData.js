@@ -60,7 +60,7 @@ function doGet(e) {
 
     // fallback, якщо заголовків нема/інші
     if (idxName === -1) idxName = 0; // A
-    if (idxId === -1) idxId = 1; // B
+    if (idxId === -1) idxId = 2; // B
 
     // припускаємо, що перший рядок — заголовки; якщо їх нема — просто теж почнемо з 1, це безпечно
     for (let r = 1; r < values.length; r++) {
@@ -81,21 +81,50 @@ function doGet(e) {
     if (!sheet) return null;
 
     const values = sheet.getDataRange().getValues();
+
+    // Ліва колонка (часи/слоти)
     const leftCol = values.map((row) => fmt(row[0]));
 
-    const rightCols = values.map((row, rowIndex) =>
-      row.slice(1).map((cell) => {
-        const val = fmt(cell);
-        if (rowIndex < 2) return val; // перші 2 рядки як є (дні тижня/дати)
-        const allow = ["вільно", "іспит", "звіт"];
-        if (userFullName) allow.push(userFullName);
-        const v =
-          val != null
-            ? String(val).replace(/\s+/g, " ").trim().toLowerCase()
-            : "";
-        return allow.some((a) => v === String(a).toLowerCase()) ? val : "";
-      })
-    );
+    // Права частина (сітка розкладу)
+    const rightCols = values.map((row, rowIndex) => {
+      return row.slice(1).map((cell) => {
+        const valRaw = fmt(cell); // вихідне значення з таблиці
+        const text = valRaw != null ? String(valRaw).trim() : "";
+
+        // Перші два рядки — дні тижня і дати — віддаємо як є
+        if (rowIndex < 2) {
+          return valRaw;
+        }
+
+        // Порожня клітинка лишається порожньою
+        if (text === "") {
+          return "";
+        }
+
+        // "вільно" або "іспит" показуємо як є
+        if (
+          text === "вільно" ||
+          text === "Вільно" ||
+          text === "іспит" ||
+          text === "Іспит"
+        ) {
+          return text;
+        }
+
+        // "звіт" -> спецсимвол
+        if (text === "звіт" || text === "Звіт") {
+          return "&#9940;"; // ⛔
+        }
+
+        // якщо це ПІБ поточного авторизованого користувача — показуємо як є
+        if (userFullName && text === userFullName) {
+          return text;
+        }
+
+        // усе інше непорожнє -> спецсимвол
+        return "&#9940;"; // ⛔
+      });
+    });
 
     return {
       month: sheetName,
