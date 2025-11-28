@@ -119,6 +119,11 @@ header {
 
 .section {
   padding: calc(1rem * $font-scale) calc(1rem * $font-scale);
+  padding-left: 20%;
+  padding-right: 20%;
+  @media (max-width: 768px) {
+    padding: calc(1rem * $font-scale) calc(1rem * $font-scale);
+  }
   width: 100%;
   margin: 0 auto;
 

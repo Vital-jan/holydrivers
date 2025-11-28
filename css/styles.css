@@ -115,8 +115,15 @@ header .home a {
 
 .section {
   padding: 1.3rem 1.3rem;
+  padding-left: 20%;
+  padding-right: 20%;
   width: 100%;
   margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .section {
+    padding: 1.3rem 1.3rem;
+  }
 }
 .section button {
   cursor: pointer;
