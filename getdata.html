@@ -15,7 +15,7 @@
       name="description"
       content="Індивідуальні уроки водіння з автоінструктором у Києві (Теремки, Голосієво, ВДНГ). АКПП, гнучкий графік, підготовка до іспиту. Записатися онлайн."
     />
-    <link rel="stylesheet" href="css/styles.css?v=1.90" />
+    <link rel="stylesheet" href="css/styles.css?v=1.95" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   </head>
 
@@ -55,28 +55,34 @@
       <div>
         <input
           id="userCodeInput"
-          type="text"
+          type="password"
           autocomplete="off"
           placeholder="Код авторизації"
         />
         <button id="userCodeBtn" type="button">Ок</button>
       </div>
-      <div id="userCodeErr"></div>
+      <div id="userCodeErr" style="display: none">Помилка авторизації</div>
     </section>
     <h3 id="for_new_user">
       <p>
-        Обирайте зручний вам слот, у якому зазначено "Вільно", пишіть у вайбер
-        автоінструктору.
+        Обиріть зручний вам вільний слот, повідомте автоінструктору про бажання
+        записатись на цей час.
       </p>
       <p>
         Дочекайтесь, поки автоінструктор підтвердить ваш запис та приходьте на
         заняття у зазначений день та час. За день до занять вам надійде SMS із
         нагадуванням.
       </p>
+      <div class="list">
+        <p>&#128994; - слот вільний</p>
+        <p>&#9940; - слот зайнятий (проводяться заняття)</p>
+        <p>&#9728;&#65039; - неробочі години</p>
+        <p>&#127891; - практичні іспити в сервісному центрі МВС</p>
+      </div>
       <p>
-        Якщо ви хочете розпочати заняття, але не знаходите зручних вільних
-        слотів — зв'яжіться з автоінструктором, для вас буде виділено додатковий
-        час.
+        Якщо ви не знаходите зручних вільних слотів — зв'яжіться з
+        автоінструктором, для вас буде виділено додатковий час за рахунок годин,
+        що позначені, як неробочі.
       </p>
     </h3>
 
@@ -116,15 +122,25 @@
 </html>
 
 <script>
-  function updateUserBar(fullname) {
+  function updateUserBar(fullname, id) {
     const bar = document.getElementById("userBar");
     const label = document.getElementById("userLabel");
+    const error = document.getElementById("userCodeErr");
+    const codeForm = document.getElementById("userCodeForm");
+
     if (fullname && String(fullname).trim() !== "") {
+      console.log("ok");
       if (label) label.textContent = `Користувач: ${fullname}`;
       if (bar) bar.style.display = "";
-      document.getElementById("for_new_user").style.display = "none";
+      // document.getElementById("for_new_user").style.display = "none";
     } else {
+      console.log("error");
+      console.log(id);
       if (bar) bar.style.display = "none";
+      if (id && String(id).trim() !== "") {
+        if (error) error.style.display = "";
+      } // якщо user_id повернувся, а user_fullname - ні, то вважаємо, що авторизація не пройшла
+      if (codeForm) codeForm.style.display = "";
       document.getElementById("for_new_user").style.display = "";
     }
   }
@@ -195,12 +211,14 @@
 
     function submit() {
       const val = input ? input.value : "";
-      err.textContent = "";
+      if (input) input.value = "";
+
+      // err.textContent = "";
       if (setUserId(val)) {
         toggleUserForm(false);
         if (typeof loadSchedules === "function") loadSchedules(val);
       } else {
-        err.textContent = "Не вдалося зберегти код у браузері.";
+        // err.textContent = "Не вдалося зберегти код у браузері.";
       }
     }
 
@@ -230,8 +248,7 @@
   function getCellClass(value) {
     if (value == null) return "";
     const v = value.toString().trim().toLowerCase();
-    if (v === "вільно") return "free";
-    if (v === "іспит") return "exam";
+    if (v === "&#127891;") return "exam";
     return "";
   }
 
@@ -242,7 +259,7 @@
         <h3 class="section-title" style="margin-top:1rem;">${label}</h3>
         <div class="schedule">
           <div style="width:100%;text-align:center;color:#ccc;padding:8px 0;">
-            Дані недоступні (аркуш місяця відсутній)
+            Запис на цей місяць не розпочато
           </div>
         </div>
       `;
@@ -251,7 +268,7 @@
     // Ліва колонка
     const leftHtml = (payload.leftCol || [])
       .map((v) => {
-        const value = v != null && v.toString().trim() !== "" ? v : "&nbsp;";
+        const value = v != null && v.toString().trim() !== "" ? v : "";
         return `<tr><td>${value}</td></tr>`;
       })
       .join("");
@@ -263,7 +280,9 @@
           .map((cell) => {
             const value =
               cell != null && cell.toString().trim() !== "" ? cell : "";
-            return `<td class="${getCellClass(cell)}">${value}</td>`;
+            return `<td><span class="${getCellClass(
+              cell
+            )}">${value}</span></td>`;
           })
           .join("");
         return `<tr>${tds}</tr>`;
@@ -303,7 +322,7 @@
       const res = await fetch(url.toString(), { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json(); // очікуємо: { current: {...}|null, next: {...}|null }
-      updateUserBar(data.user_fullname);
+      updateUserBar(data.user_fullname, data.user_id);
       console.log("res:", data);
       const html =
         renderMonthBlock("Поточний місяць", data.current) +

@@ -1,23 +1,43 @@
+const MONTH_NAMES = [
+  "Січень",
+  "Лютий",
+  "Березень",
+  "Квітень",
+  "Травень",
+  "Червень",
+  "Липень",
+  "Серпень",
+  "Вересень",
+  "Жовтень",
+  "Листопад",
+  "Грудень",
+];
+
+function onEdit(e) {
+  const sheet = e.source.getActiveSheet();
+  const LAST_UPDATED_CELL = "A1"; // ← куди писати час останнього оновлення
+  const now = new Date();
+  const currentIdx = now.getMonth();
+  const nextIdx = (currentIdx + 1) % 12;
+
+  const refreshTime = Utilities.formatDate(
+    new Date(),
+    Session.getScriptTimeZone(),
+    "yyyy-MM-dd HH:mm:ss"
+  );
+
+  if (
+    sheet.getName() == MONTH_NAMES[currentIdx] ||
+    sheet.getName() == MONTH_NAMES[nextIdx]
+  )
+    sheet.getRange(LAST_UPDATED_CELL).setValue(refreshTime);
+}
+
 function doGet(e) {
   var params = e && e.parameter ? e.parameter : {};
   var USER_ID = String(
     params.user || params.user_id || params.USER || params.USER_ID || ""
   ).trim();
-
-  const MONTH_NAMES = [
-    "Січень",
-    "Лютий",
-    "Березень",
-    "Квітень",
-    "Травень",
-    "Червень",
-    "Липень",
-    "Серпень",
-    "Вересень",
-    "Жовтень",
-    "Листопад",
-    "Грудень",
-  ];
 
   const now = new Date();
   const currentIdx = now.getMonth();
@@ -101,19 +121,24 @@ function doGet(e) {
           return "";
         }
 
-        // "вільно" або "іспит" показуємо як є
-        if (
-          text === "вільно" ||
-          text === "Вільно" ||
-          text === "іспит" ||
-          text === "Іспит"
-        ) {
-          return text;
+        // "вільно" -> спецсимвол
+        if (text === "вільно" || text === "Вільно") {
+          return "&#128994;"; // 🟢
+        }
+
+        // "іспит" -> спецсимвол
+        if (text === "іспит" || text === "Іспит") {
+          return "&#127891;"; // 🎓
         }
 
         // "звіт" -> спецсимвол
         if (text === "звіт" || text === "Звіт") {
           return "&#9940;"; // ⛔
+        }
+
+        // "зарезервовано" -> спецсимвол
+        if (text === "зарезервовано" || text === "Зарезервовано") {
+          return "&#9728;&#65039;"; // ☀️
         }
 
         // якщо це ПІБ поточного авторизованого користувача — показуємо як є

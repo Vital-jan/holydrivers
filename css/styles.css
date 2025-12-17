@@ -113,6 +113,10 @@ header .home a {
   font-size: 2em;
 }
 
+.list {
+  padding: 20px;
+}
+
 .section {
   padding: 1.3rem 1.3rem;
   padding-left: 20%;
@@ -141,6 +145,14 @@ header .home a {
 }
 .section img {
   max-width: 10%;
+}
+
+.exam {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 20px;
+  background-color: #fef4d5; /* м’який фон */
 }
 
 .partners {
@@ -388,8 +400,8 @@ header .home a {
   border: 1px solid #ccc;
   padding: 4px;
   white-space: nowrap;
-  height: 25px;
-  max-height: 25px;
+  height: 40px;
+  max-height: 40px;
   line-height: 25px;
   vertical-align: middle;
   overflow: hidden;

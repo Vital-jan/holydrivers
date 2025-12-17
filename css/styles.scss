@@ -117,6 +117,10 @@ header {
   font-size: 2em;
 }
 
+.list {
+  padding: 20px;
+}
+
 .section {
   padding: calc(1rem * $font-scale) calc(1rem * $font-scale);
   padding-left: 20%;
@@ -147,6 +151,15 @@ header {
   img {
     max-width: 10%;
   }
+}
+
+.exam {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 20px;
+  background-color: #fef4d5; /* м’який фон */
+  // border: 2px solid #f0ad4e; /* жовто-чорний стиль HolyDrivers */
 }
 
 .partners {
@@ -408,8 +421,8 @@ header {
     border: 1px solid #ccc;
     padding: 4px;
     white-space: nowrap;
-    height: 25px;
-    max-height: 25px;
+    height: 40px;
+    max-height: 40px;
     line-height: 25px;
     vertical-align: middle;
     overflow: hidden;
