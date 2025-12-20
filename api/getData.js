@@ -15,22 +15,22 @@ const MONTH_NAMES = [
 
 function onEdit(e) {
   const sheet = e.source.getActiveSheet();
-  const LAST_UPDATED_CELL = "A1"; // ← куди писати час останнього оновлення
+  const LAST_UPDATED_CELL = "A1";
   const now = new Date();
   const currentIdx = now.getMonth();
   const nextIdx = (currentIdx + 1) % 12;
 
-  const refreshTime = Utilities.formatDate(
-    new Date(),
-    Session.getScriptTimeZone(),
-    "yyyy-MM-dd HH:mm:ss"
-  );
-
   if (
     sheet.getName() == MONTH_NAMES[currentIdx] ||
     sheet.getName() == MONTH_NAMES[nextIdx]
-  )
+  ) {
+    const refreshTime = Utilities.formatDate(
+      now,
+      Session.getScriptTimeZone(),
+      "yyyy-MM-dd HH:mm:ss"
+    );
     sheet.getRange(LAST_UPDATED_CELL).setValue(refreshTime);
+  }
 }
 
 function doGet(e) {
@@ -40,7 +40,6 @@ function doGet(e) {
     params.user || params.user_id || params.USER || params.USER_ID || ""
   ).trim();
 
-  // новий параметр, наприклад: ?mode=getdata або ?mode=getlastupdate
   // mode == "getdata" або null - повертаємо дані таблиці;
   // mode == "getlastupdate" - повертаємо час останнього редагування таблиці
   var mode = (params.mode || "getdata").toLowerCase();
@@ -53,35 +52,28 @@ function doGet(e) {
 
   const ss = SpreadsheetApp.getActiveSpreadsheet();
 
+  // ---- ШВИДКИЙ РЕЖИМ: тільки lastUpdate ----
   if (mode === "getlastupdate") {
     const LAST_UPDATED_CELL = "A1";
-
     let values = [];
 
-    // поточний місяць
     const curSheet = ss.getSheetByName(MONTH_NAMES[currentIdx]);
     if (curSheet) {
       const v = curSheet.getRange(LAST_UPDATED_CELL).getValue();
       if (v) values.push(v);
     }
 
-    // наступний місяць
     const nextSheet = ss.getSheetByName(MONTH_NAMES[nextIdx]);
     if (nextSheet) {
       const v = nextSheet.getRange(LAST_UPDATED_CELL).getValue();
       if (v) values.push(v);
     }
 
-    // якщо нічого немає — повертаємо null
     let maxDate = null;
-
     if (values.length > 0) {
-      // перетворюємо в Date (onEdit пише рядок "yyyy-MM-dd HH:mm:ss", але на всяк випадок обробимо й Date)
       const dates = values
         .map(function (val) {
-          if (val instanceof Date) {
-            return val;
-          }
+          if (val instanceof Date) return val;
           const d = new Date(val);
           return isNaN(d) ? null : d;
         })
@@ -91,7 +83,7 @@ function doGet(e) {
 
       if (dates.length > 0) {
         maxDate = dates.reduce(function (a, b) {
-          return a > b ? a : b;
+          return a > b ? a : b; // найсвіжіша
         });
       }
     }
@@ -111,6 +103,8 @@ function doGet(e) {
     );
   }
 
+  // ---- Далі – звичайний режим getdata ----
+
   function fmt(val) {
     if (val instanceof Date) {
       const d = String(val.getDate()).padStart(2, "0");
@@ -120,7 +114,6 @@ function doGet(e) {
     return val;
   }
 
-  // нормалізація заголовків
   function norm(s) {
     return String(s || "")
       .toLowerCase()
@@ -128,33 +121,45 @@ function doGet(e) {
       .replace(/_/g, "");
   }
 
-  // шукаємо ПІБ у "Група" (A="Зарезервовано", B="User_ID")
+  // 🚀 Оптимізований пошук ПІБ по "Група" з кешем
   function findFullNameByUserId(userId) {
     if (!userId) return "";
+
+    const cache = CacheService.getScriptCache();
+    const cacheKey = "user_fullname_" + userId.toLowerCase();
+    const cached = cache.get(cacheKey);
+    if (cached) {
+      return cached; // миттєво, без доступу до таблиці
+    }
+
     const sh = ss.getSheetByName("Група");
     if (!sh) return "";
 
-    const values = sh.getDataRange().getValues();
+    const lastRow = sh.getLastRow();
+    const lastCol = sh.getLastColumn();
+    if (lastRow < 1 || lastCol < 1) return "";
+
+    const values = sh.getRange(1, 1, lastRow, lastCol).getValues();
     if (!values.length) return "";
 
     const header = values[0].map(norm);
-    // шукаємо індекси колонок за заголовками
+
     let idxName = header.indexOf("зарезервовано");
     let idxId = header.indexOf("user_id");
+    if (idxName === -1) idxName = 0;
+    if (idxId === -1) idxId = 2;
 
-    // fallback, якщо заголовків нема/інші
-    if (idxName === -1) idxName = 0; // A
-    if (idxId === -1) idxId = 2; // B
-
-    // припускаємо, що перший рядок — заголовки; якщо їх нема — просто теж почнемо з 1, це безпечно
     for (let r = 1; r < values.length; r++) {
       const row = values[r];
       const idCell = row[idxId] != null ? String(row[idxId]).trim() : "";
       if (idCell && idCell.toLowerCase() === userId.toLowerCase()) {
         const nameCell =
           row[idxName] != null ? String(row[idxName]).trim() : "";
-        // приберемо подвійні/кінцеві пробіли всередині ПІБ
-        return nameCell.replace(/\s+/g, " ").trim();
+        const fullName = nameCell.replace(/\s+/g, " ").trim();
+        if (fullName) {
+          cache.put(cacheKey, fullName, 300); // кешуємо на 5 хвилин
+        }
+        return fullName;
       }
     }
     return "";
@@ -164,53 +169,48 @@ function doGet(e) {
     const sheet = ss.getSheetByName(sheetName);
     if (!sheet) return null;
 
-    const values = sheet.getDataRange().getValues();
+    const lastRow = sheet.getLastRow();
+    const lastCol = sheet.getLastColumn();
+    if (lastRow === 0 || lastCol === 0) return null;
 
-    // Ліва колонка (часи/слоти)
+    // беремо тільки заповнений діапазон, а не весь лист
+    const values = sheet.getRange(1, 1, lastRow, lastCol).getValues();
+
     const leftCol = values.map((row) => fmt(row[0]));
 
-    // Права частина (сітка розкладу)
     const rightCols = values.map((row, rowIndex) => {
       return row.slice(1).map((cell) => {
-        const valRaw = fmt(cell); // вихідне значення з таблиці
+        const valRaw = fmt(cell);
         const text = valRaw != null ? String(valRaw).trim() : "";
 
-        // Перші два рядки — дні тижня і дати — віддаємо як є
         if (rowIndex < 2) {
           return valRaw;
         }
 
-        // Порожня клітинка лишається порожньою
         if (text === "") {
           return "";
         }
 
-        // "вільно" -> спецсимвол
         if (text === "вільно" || text === "Вільно") {
           return "&#128994;"; // 🟢
         }
 
-        // "іспит" -> спецсимвол
         if (text === "іспит" || text === "Іспит") {
           return "&#127891;"; // 🎓
         }
 
-        // "звіт" -> спецсимвол
         if (text === "звіт" || text === "Звіт") {
           return "&#9940;"; // ⛔
         }
 
-        // "зарезервовано" -> спецсимвол
         if (text === "зарезервовано" || text === "Зарезервовано") {
           return "&#9728;&#65039;"; // ☀️
         }
 
-        // якщо це ПІБ поточного авторизованого користувача — показуємо як є
         if (userFullName && text === userFullName) {
           return text;
         }
 
-        // усе інше непорожнє -> спецсимвол
         return "&#9940;"; // ⛔
       });
     });
@@ -244,7 +244,6 @@ function doGet(e) {
     next: nextData,
   };
 
-  // діагностика за запитом ?debug=1
   if (String(params.debug || "") === "1") {
     out.receivedParams = params;
   }
