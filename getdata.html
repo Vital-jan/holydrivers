@@ -15,7 +15,7 @@
       name="description"
       content="Індивідуальні уроки водіння з автоінструктором у Києві (Теремки, Голосієво, ВДНГ). АКПП, гнучкий графік, підготовка до іспиту. Записатися онлайн."
     />
-    <link rel="stylesheet" href="css/styles.css?v=1.95" />
+    <link rel="stylesheet" href="css/styles.css?v=2.0" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   </head>
 
@@ -122,6 +122,41 @@
 </html>
 
 <script>
+  const API_URL = "https://holydrivers.com.ua/api/proxy.php";
+  const LS_KEY = "user";
+  let lastUpdate = null; // останній відомий час оновлення розкладу
+
+  async function checkForScheduleUpdate() {
+    try {
+      const url = new URL(API_URL);
+      url.searchParams.set("mode", "getlastupdate");
+
+      const res = await fetch(url.toString(), { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const data = await res.json(); // очікуємо: { lastUpdate: "2025-12-20 19:12:34" } або null
+      if (!data || !data.lastUpdate) {
+        // нічого не змінюємо, якщо Apps Script ще нічого не записав
+        return;
+      }
+
+      // якщо перший раз — просто запам'ятали і нічого не перезавантажуємо
+      if (lastUpdate === null) {
+        lastUpdate = data.lastUpdate;
+        return;
+      }
+
+      // якщо час змінився — оновлюємо розклад
+      if (data.lastUpdate !== lastUpdate) {
+        console.log("Schedule updated at", data.lastUpdate);
+        lastUpdate = data.lastUpdate;
+        await loadSchedules(); // перетягуємо нові дані й перерисовуємо таблицю
+      }
+    } catch (err) {
+      console.error("Не вдалося перевірити оновлення розкладу:", err);
+    }
+  }
+
   function updateUserBar(fullname, id) {
     const bar = document.getElementById("userBar");
     const label = document.getElementById("userLabel");
@@ -169,8 +204,6 @@
 
   // Викличи attachLogout один раз після завантаження DOM
   document.addEventListener("DOMContentLoaded", attachLogout);
-
-  const LS_KEY = "user";
 
   // Якщо код прийшов у URL — просто збережемо як є (без перевірок)
   (function bootstrapUserFromURL() {
@@ -240,10 +273,17 @@
     }
   });
 
+  // стартуємо відкладено, щоб не грузити одразу
+  setTimeout(() => {
+    // перша перевірка
+    checkForScheduleUpdate();
+    // далі — раз на 60 секунд
+    setInterval(checkForScheduleUpdate, 300000);
+  }, 5000);
+
   // 🔧 Вкажи свій проксі/бекенд, який повертає { current, next }
   // Якщо на VPS є proxy.php, який просто прокидає запит до Apps Script:
   // достатньо лише параметра user (month не потрібен)
-  const API_URL = "https://holydrivers.com.ua/api/proxy.php";
 
   function getCellClass(value) {
     if (value == null) return "";

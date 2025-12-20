@@ -34,10 +34,16 @@ function onEdit(e) {
 }
 
 function doGet(e) {
-  var params = e && e.parameter ? e.parameter : {};
+  e = e || {};
+  var params = e.parameter || {};
   var USER_ID = String(
     params.user || params.user_id || params.USER || params.USER_ID || ""
   ).trim();
+
+  // новий параметр, наприклад: ?mode=getdata або ?mode=getlastupdate
+  // mode == "getdata" або null - повертаємо дані таблиці;
+  // mode == "getlastupdate" - повертаємо час останнього редагування таблиці
+  var mode = (params.mode || "getdata").toLowerCase();
 
   const now = new Date();
   const currentIdx = now.getMonth();
@@ -46,6 +52,64 @@ function doGet(e) {
   const nextYear = currentIdx === 11 ? currentYear + 1 : currentYear;
 
   const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  if (mode === "getlastupdate") {
+    const LAST_UPDATED_CELL = "A1";
+
+    let values = [];
+
+    // поточний місяць
+    const curSheet = ss.getSheetByName(MONTH_NAMES[currentIdx]);
+    if (curSheet) {
+      const v = curSheet.getRange(LAST_UPDATED_CELL).getValue();
+      if (v) values.push(v);
+    }
+
+    // наступний місяць
+    const nextSheet = ss.getSheetByName(MONTH_NAMES[nextIdx]);
+    if (nextSheet) {
+      const v = nextSheet.getRange(LAST_UPDATED_CELL).getValue();
+      if (v) values.push(v);
+    }
+
+    // якщо нічого немає — повертаємо null
+    let maxDate = null;
+
+    if (values.length > 0) {
+      // перетворюємо в Date (onEdit пише рядок "yyyy-MM-dd HH:mm:ss", але на всяк випадок обробимо й Date)
+      const dates = values
+        .map(function (val) {
+          if (val instanceof Date) {
+            return val;
+          }
+          const d = new Date(val);
+          return isNaN(d) ? null : d;
+        })
+        .filter(function (d) {
+          return d !== null;
+        });
+
+      if (dates.length > 0) {
+        maxDate = dates.reduce(function (a, b) {
+          return a > b ? a : b;
+        });
+      }
+    }
+
+    const payload = {
+      lastUpdate: maxDate
+        ? Utilities.formatDate(
+            maxDate,
+            Session.getScriptTimeZone(),
+            "yyyy-MM-dd HH:mm:ss"
+          )
+        : null,
+    };
+
+    return ContentService.createTextOutput(JSON.stringify(payload)).setMimeType(
+      ContentService.MimeType.JSON
+    );
+  }
 
   function fmt(val) {
     if (val instanceof Date) {
