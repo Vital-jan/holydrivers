@@ -307,17 +307,25 @@
     }
   });
 
+  let scheduleInterval = null;
+
+  function startScheduleWatcher() {
+    if (scheduleInterval !== null) return; // вже запущений
+    scheduleInterval = setInterval(checkForScheduleUpdate, 20000);
+  }
+
+  function stopScheduleWatcher() {
+    if (scheduleInterval !== null) {
+      clearInterval(scheduleInterval);
+      scheduleInterval = null;
+    }
+  }
+
   // стартуємо відкладено, щоб не грузити одразу
   setTimeout(() => {
-    // перша перевірка
-    checkForScheduleUpdate();
-    // далі — раз на 60 секунд
-    setInterval(checkForScheduleUpdate, 10000);
+    checkForScheduleUpdate(); // перша перевірка
+    startScheduleWatcher(); // далі — з повтором
   }, 5000);
-
-  // 🔧 Вкажи свій проксі/бекенд, який повертає { current, next }
-  // Якщо на VPS є proxy.php, який просто прокидає запит до Apps Script:
-  // достатньо лише параметра user (month не потрібен)
 
   function getCellClass(value) {
     if (value == null) return "";
@@ -325,6 +333,15 @@
     if (v === "&#127891;") return "exam";
     return "";
   }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopScheduleWatcher(); // вкладка неактивна
+    } else {
+      checkForScheduleUpdate(); // одразу перевірити
+      startScheduleWatcher(); // і знову інтервал
+    }
+  });
 
   const getTitle = (value) => {
     // title для слотів
