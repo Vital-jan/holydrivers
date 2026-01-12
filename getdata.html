@@ -15,7 +15,7 @@
       name="description"
       content="Індивідуальні уроки водіння з автоінструктором у Києві (Теремки, Голосієво, ВДНГ). АКПП, гнучкий графік, підготовка до іспиту. Записатися онлайн."
     />
-    <link rel="stylesheet" href="css/styles.css?v=2.0" />
+    <link rel="stylesheet" href="css/styles.css?v=2.2" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
   </head>
 
@@ -45,6 +45,12 @@
     <section id="userBar" class="section" style="display: none">
       <span id="userLabel"></span>
       <button id="logoutBtn" type="button">Вийти</button>
+      <div class="progress-ring" id="user_hours" style="--total: 0; --max: 0">
+        <div class="progress-ring__inner">
+          <div class="progress-ring__value" id="user_hours_value">0</div>
+          <div class="progress-ring-static">годин</div>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="userCodeForm">
@@ -78,6 +84,7 @@
         <p>&#9940; - слот зайнятий (проводяться заняття)</p>
         <p>&#9728;&#65039; - неробочі години</p>
         <p>&#127891; - практичні іспити в сервісному центрі МВС</p>
+        <p>&#128736;&#65039; - технічне обслуговування автомобіля</p>
       </div>
       <p>
         Якщо ви не знаходите зручних вільних слотів — зв'яжіться з
@@ -86,8 +93,18 @@
       </p>
     </h3>
 
+    <div class="scheduleContainerPreloader" id="scheduleContainerPreloader">
+      <div>Завантаження...</div>
+      <div>
+        <img
+          src="img/giphy.gif"
+          alt="завантаження графіку занять автоінструктора"
+        />
+      </div>
+    </div>
+
     <!-- Контейнер для двох місячних таблиць -->
-    <div id="scheduleContainer">Завантаження...</div>
+    <div id="scheduleContainer"></div>
 
     <footer id="contacts">
       <p>Зв'язатись з автоінструктором:</p>
@@ -157,16 +174,32 @@
     }
   }
 
-  function updateUserBar(fullname, id) {
+  function updateUserBar(fullname, id, totalHours, maxHours) {
     const bar = document.getElementById("userBar");
     const label = document.getElementById("userLabel");
     const error = document.getElementById("userCodeErr");
     const codeForm = document.getElementById("userCodeForm");
+    const ring = document.getElementById("user_hours");
+    const ringValue = document.getElementById("user_hours_value");
+    const total = Number(totalHours) || 0;
+    const max = Number(maxHours) || 0;
 
     if (fullname && String(fullname).trim() !== "") {
       console.log("ok");
       if (label) label.textContent = `Користувач: ${fullname}`;
       if (bar) bar.style.display = "";
+
+      if (ring) {
+        ring.style.display = "";
+        ring.style.setProperty("--total", total);
+        ring.style.setProperty("--max", max);
+        if (ringValue) ringValue.textContent = String(total);
+        // якщо max == 0 / порожнє / не задано => 100%
+        if (ring) {
+          if (!max) ring.style.display = "none";
+          else ring.style.display = "flex";
+        }
+      }
       // document.getElementById("for_new_user").style.display = "none";
     } else {
       console.log("error");
@@ -305,22 +338,43 @@
       `;
     }
 
+    const getTitle = (value) => {
+      // title для слотів
+      const v = String(value).trim();
+
+      switch (v) {
+        case "&#128994;":
+          return "вільно";
+        case "&#127891;":
+          return "іспит";
+        case "&#9940;":
+          return "зайнято";
+        case "&#9728;&#65039;":
+          return "вихідний";
+        case "&#128736;&#65039;":
+          return "техобслуговування";
+        default:
+          return "";
+      }
+    };
+
     // Ліва колонка
     const leftHtml = (payload.leftCol || [])
       .map((v) => {
         const value = v != null && v.toString().trim() !== "" ? v : "";
-        return `<tr><td>${value}</td></tr>`;
+        return `<tr><td >${value}</td></tr>`;
       })
       .join("");
 
     // Права таблиця
+
     const rightHtml = (payload.rightCols || [])
       .map((row) => {
         const tds = row
           .map((cell) => {
             const value =
               cell != null && cell.toString().trim() !== "" ? cell : "";
-            return `<td><span class="${getCellClass(
+            return `<td><span title=${getTitle(value)} class="${getCellClass(
               cell
             )}">${value}</span></td>`;
           })
@@ -353,7 +407,8 @@
     } catch (_) {}
 
     const container = document.getElementById("scheduleContainer");
-    container.innerHTML = "Завантаження…";
+    const preloader = document.getElementById("scheduleContainerPreloader");
+    if (preloader) preloader.style.display = "flex";
 
     try {
       const url = new URL(API_URL);
@@ -362,13 +417,19 @@
       const res = await fetch(url.toString(), { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json(); // очікуємо: { current: {...}|null, next: {...}|null }
-      updateUserBar(data.user_fullname, data.user_id);
+      updateUserBar(
+        data.user_fullname,
+        data.user_id,
+        data.total_hours,
+        data.user_maxhours
+      );
       console.log("res:", data);
       const html =
         renderMonthBlock("Поточний місяць", data.current) +
         renderMonthBlock("Наступний місяць", data.next);
 
       container.innerHTML = html;
+      if (preloader) preloader.style.display = "none";
     } catch (err) {
       container.innerHTML = `<div style="color:red;">Помилка: ${err.message}</div>`;
     }

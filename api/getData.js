@@ -13,6 +13,44 @@ const MONTH_NAMES = [
   "Грудень",
 ];
 
+function getTotalHoursByUser(userFullName) {
+  // підрахунок загальної кількості годин
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sh = ss.getSheetByName("Заняття");
+  if (!sh) throw new Error('Аркуш "Заняття" не знайдено');
+
+  const COL_NAME = 1; // A: ПІБ
+  const COL_HOURS = 3; // C: Годин
+  const HEADER_ROWS = 1;
+
+  // останній заповнений рядок саме по колонці ПІБ
+  const lastRow = sh
+    .getRange(sh.getMaxRows(), COL_NAME)
+    .getNextDataCell(SpreadsheetApp.Direction.UP)
+    .getRow();
+
+  if (lastRow <= HEADER_ROWS) return 0;
+
+  const numRows = lastRow - HEADER_ROWS;
+  const data = sh
+    .getRange(HEADER_ROWS + 1, 1, numRows, Math.max(COL_NAME, COL_HOURS))
+    .getValues();
+
+  let sum = 0;
+  for (const row of data) {
+    const name = String(row[COL_NAME - 1] || "").trim();
+    if (name === userFullName) {
+      const hours = row[COL_HOURS - 1];
+      const val =
+        typeof hours === "number"
+          ? hours
+          : parseFloat(String(hours).replace(",", ".")); // на випадок "2,00" як текст
+      if (!isNaN(val)) sum += val;
+    }
+  }
+  return sum;
+}
+
 function onEdit(e) {
   const sheet = e.source.getActiveSheet();
   const LAST_UPDATED_CELL = "A1";
@@ -121,48 +159,60 @@ function doGet(e) {
       .replace(/_/g, "");
   }
 
-  // 🚀 Оптимізований пошук ПІБ по "Група" з кешем
-  function findFullNameByUserId(userId) {
-    if (!userId) return "";
+  // 🚀 Оптимізований пошук ПІБ + maxHours по "Група" з кешем
+  // 🚀 Пошук ПІБ + maxHours по "Група" з кешем
+  function findUserMetaByUserId(userId) {
+    if (!userId) return { fullName: "", maxHours: 0 };
 
     const cache = CacheService.getScriptCache();
-    const cacheKey = "user_fullname_" + userId.toLowerCase();
+    const cacheKey = "user_meta_" + String(userId).toLowerCase();
     const cached = cache.get(cacheKey);
-    if (cached) {
-      return cached; // миттєво, без доступу до таблиці
-    }
+    if (cached) return JSON.parse(cached);
 
     const sh = ss.getSheetByName("Група");
-    if (!sh) return "";
+    if (!sh) return { fullName: "", maxHours: 0 };
 
     const lastRow = sh.getLastRow();
-    const lastCol = sh.getLastColumn();
-    if (lastRow < 1 || lastCol < 1) return "";
+    if (lastRow < 2) return { fullName: "", maxHours: 0 };
 
-    const values = sh.getRange(1, 1, lastRow, lastCol).getValues();
-    if (!values.length) return "";
+    // беремо тільки потрібні колонки A:J
+    const values = sh.getRange(1, 1, lastRow, 10).getValues(); // A..J
+    const header = values[0].map((v) =>
+      String(v || "")
+        .trim()
+        .toLowerCase()
+    );
 
-    const header = values[0].map(norm);
+    const idxUserId = header.indexOf("user_id"); // має бути 2
+    const idxMax = header.indexOf("maxhours"); // має бути 9
 
-    let idxName = header.indexOf("зарезервовано");
-    let idxId = header.indexOf("user_id");
-    if (idxName === -1) idxName = 0;
-    if (idxId === -1) idxId = 2;
+    const IDX_NAME = 0; // A = ПІБ
 
     for (let r = 1; r < values.length; r++) {
       const row = values[r];
-      const idCell = row[idxId] != null ? String(row[idxId]).trim() : "";
-      if (idCell && idCell.toLowerCase() === userId.toLowerCase()) {
-        const nameCell =
-          row[idxName] != null ? String(row[idxName]).trim() : "";
-        const fullName = nameCell.replace(/\s+/g, " ").trim();
-        if (fullName) {
-          cache.put(cacheKey, fullName, 300); // кешуємо на 5 хвилин
-        }
-        return fullName;
+
+      const idCell =
+        row[idxUserId] != null
+          ? String(row[idxUserId]).trim().toLowerCase()
+          : "";
+      if (idCell && idCell === String(userId).trim().toLowerCase()) {
+        const fullName =
+          row[IDX_NAME] != null
+            ? String(row[IDX_NAME]).replace(/\s+/g, " ").trim()
+            : "";
+
+        const rawMax = idxMax !== -1 ? row[idxMax] : 0;
+        const maxHours =
+          Number(String(rawMax).replace(",", ".").replace(/\s/g, "")) || 0;
+
+        const result = { fullName, maxHours };
+        cache.put(cacheKey, JSON.stringify(result), 300); // 5 хв
+
+        return result;
       }
     }
-    return "";
+
+    return { fullName: "", maxHours: 0 };
   }
 
   function buildMonthPayload(sheetName, year, userFullName) {
@@ -207,6 +257,10 @@ function doGet(e) {
           return "&#9728;&#65039;"; // ☀️
         }
 
+        if (text === "ТО") {
+          return "&#128736;&#65039;"; // 🛠️
+        }
+
         if (userFullName && text === userFullName) {
           return text;
         }
@@ -225,7 +279,8 @@ function doGet(e) {
     };
   }
 
-  const userFullName = findFullNameByUserId(USER_ID);
+  const userFullName = findUserMetaByUserId(USER_ID).fullName;
+  const userMaxHours = findUserMetaByUserId(USER_ID).maxHours;
   const currentData = buildMonthPayload(
     MONTH_NAMES[currentIdx],
     currentYear,
@@ -236,10 +291,13 @@ function doGet(e) {
     nextYear,
     userFullName
   );
+  const totalHoursByUser = getTotalHoursByUser(userFullName);
 
   const out = {
     user_id: USER_ID,
     user_fullname: userFullName,
+    user_maxhours: userMaxHours,
+    total_hours: totalHoursByUser,
     current: currentData,
     next: nextData,
   };
