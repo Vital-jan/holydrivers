@@ -53,6 +53,16 @@
       </div>
     </section>
 
+    <div class="scheduleContainerPreloader" id="scheduleContainerPreloader">
+      <div>Завантаження...</div>
+      <div>
+        <img
+          src="img/giphy.gif"
+          alt="завантаження графіку занять автоінструктора"
+        />
+      </div>
+    </div>
+
     <section class="section" id="userCodeForm">
       <label for="userCodeInput"
         >Для перегляду вашого персонального календаря занять введіть код
@@ -92,16 +102,6 @@
         що позначені, як неробочі.
       </p>
     </h3>
-
-    <div class="scheduleContainerPreloader" id="scheduleContainerPreloader">
-      <div>Завантаження...</div>
-      <div>
-        <img
-          src="img/giphy.gif"
-          alt="завантаження графіку занять автоінструктора"
-        />
-      </div>
-    </div>
 
     <!-- Контейнер для двох місячних таблиць -->
     <div id="scheduleContainer"></div>
@@ -167,7 +167,7 @@
       if (data.lastUpdate !== lastUpdate) {
         console.log("Schedule updated at", data.lastUpdate);
         lastUpdate = data.lastUpdate;
-        await loadSchedules(); // перетягуємо нові дані й перерисовуємо таблицю
+        await loadSchedules({ silent: true }); // перетягуємо нові дані й перерисовуємо таблицю
       }
     } catch (err) {
       console.error("Не вдалося перевірити оновлення розкладу:", err);
@@ -184,26 +184,25 @@
     const total = Number(totalHours) || 0;
     const max = Number(maxHours) || 0;
 
+    if (error) error.style.display = "none";
+
     if (fullname && String(fullname).trim() !== "") {
       console.log("ok");
       if (label) label.textContent = `Користувач: ${fullname}`;
       if (bar) bar.style.display = "";
+      if (codeForm) codeForm.style.display = "none";
 
       if (ring) {
-        ring.style.display = "";
         ring.style.setProperty("--total", total);
-        ring.style.setProperty("--max", max);
+        ring.style.setProperty("--max", max || 1);
         if (ringValue) ringValue.textContent = String(total);
         // якщо max == 0 / порожнє / не задано => 100%
-        if (ring) {
-          if (!max) ring.style.display = "none";
-          else ring.style.display = "flex";
-        }
+        ring.style.display = max ? "flex" : "none";
       }
       // document.getElementById("for_new_user").style.display = "none";
     } else {
-      console.log("error");
-      console.log(id);
+      // console.log("error");
+      // console.log(id);
       if (bar) bar.style.display = "none";
       if (id && String(id).trim() !== "") {
         if (error) error.style.display = "";
@@ -231,7 +230,7 @@
       const form = document.getElementById("userCodeForm");
       if (form) form.style.display = "";
       // Перечитати розклад без user
-      loadSchedules();
+      loadSchedules({ silent: false });
     });
   }
 
@@ -276,13 +275,15 @@
     const err = document.getElementById("userCodeErr");
 
     function submit() {
+      if (err) err.style.display = "none"; // ✅ сховати помилку при новій спробі
       const val = input ? input.value : "";
       if (input) input.value = "";
 
       // err.textContent = "";
       if (setUserId(val)) {
         toggleUserForm(false);
-        if (typeof loadSchedules === "function") loadSchedules(val);
+        if (typeof loadSchedules === "function")
+          loadSchedules({ silent: false });
       } else {
         // err.textContent = "Не вдалося зберегти код у браузері.";
       }
@@ -297,12 +298,12 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     initUserForm();
+
     const u = getUserId();
-    if (u !== null) {
-      toggleUserForm(false);
-      if (typeof loadSchedules === "function") loadSchedules(u);
-    } else {
-      toggleUserForm(true);
+    toggleUserForm(u === null);
+
+    if (typeof loadSchedules === "function") {
+      loadSchedules({ silent: false });
     }
   });
 
@@ -311,7 +312,7 @@
     // перша перевірка
     checkForScheduleUpdate();
     // далі — раз на 60 секунд
-    setInterval(checkForScheduleUpdate, 300000);
+    setInterval(checkForScheduleUpdate, 10000);
   }, 5000);
 
   // 🔧 Вкажи свій проксі/бекенд, який повертає { current, next }
@@ -320,10 +321,30 @@
 
   function getCellClass(value) {
     if (value == null) return "";
-    const v = value.toString().trim().toLowerCase();
+    const v = value.toString().trim();
     if (v === "&#127891;") return "exam";
     return "";
   }
+
+  const getTitle = (value) => {
+    // title для слотів
+    const v = String(value).trim();
+
+    switch (v) {
+      case "&#128994;":
+        return "вільно";
+      case "&#127891;":
+        return "іспит";
+      case "&#9940;":
+        return "зайнято";
+      case "&#9728;&#65039;":
+        return "вихідний";
+      case "&#128736;&#65039;":
+        return "техобслуговування";
+      default:
+        return "";
+    }
+  };
 
   // Рендер одного місяця (або повідомлення, якщо даних немає)
   function renderMonthBlock(label, payload) {
@@ -337,26 +358,6 @@
         </div>
       `;
     }
-
-    const getTitle = (value) => {
-      // title для слотів
-      const v = String(value).trim();
-
-      switch (v) {
-        case "&#128994;":
-          return "вільно";
-        case "&#127891;":
-          return "іспит";
-        case "&#9940;":
-          return "зайнято";
-        case "&#9728;&#65039;":
-          return "вихідний";
-        case "&#128736;&#65039;":
-          return "техобслуговування";
-        default:
-          return "";
-      }
-    };
 
     // Ліва колонка
     const leftHtml = (payload.leftCol || [])
@@ -374,7 +375,10 @@
           .map((cell) => {
             const value =
               cell != null && cell.toString().trim() !== "" ? cell : "";
-            return `<td><span title=${getTitle(value)} class="${getCellClass(
+            const title = getTitle(value);
+            const titleAttr = title ? ` title="${title}"` : "";
+
+            return `<td><span ${titleAttr} class="${getCellClass(
               cell
             )}">${value}</span></td>`;
           })
@@ -397,7 +401,11 @@
   }
 
   // Основне завантаження: тягнемо JSON { current, next } і рендеримо 2 таблиці
-  async function loadSchedules() {
+  async function loadSchedules({ silent = false } = {}) {
+    const container = document.getElementById("scheduleContainer");
+    const preloader = document.getElementById("scheduleContainerPreloader");
+    const form = document.getElementById("userCodeForm");
+
     let user = "";
     try {
       const u = localStorage.getItem("user");
@@ -406,9 +414,10 @@
       }
     } catch (_) {}
 
-    const container = document.getElementById("scheduleContainer");
-    const preloader = document.getElementById("scheduleContainerPreloader");
-    if (preloader) preloader.style.display = "flex";
+    if (!silent && preloader) {
+      if (preloader) preloader.style.display = "";
+      if (form) form.style.display = "none";
+    }
 
     try {
       const url = new URL(API_URL);
@@ -430,11 +439,14 @@
 
       container.innerHTML = html;
       if (preloader) preloader.style.display = "none";
+      // if (form) form.style.display = "";
     } catch (err) {
       container.innerHTML = `<div style="color:red;">Помилка: ${err.message}</div>`;
+      if (form) form.style.display = "";
+      if (preloader) preloader.style.display = "none";
     }
   }
 
-  // 🚀 Старт (передай ім'я користувача за потреби)
-  loadSchedules();
+  //  Старт (передай ім'я користувача за потреби)
+  // loadSchedules()
 </script>
