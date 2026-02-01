@@ -1,0 +1,31 @@
+{
+  "folders": [
+	{
+		"path": "../react_bike"
+	},
+	{
+		"path": "../react_bike_api"
+	},
+	{
+		"path": "../vital"
+	},
+	{
+		"path": "../cv"
+	},
+	{
+		"path": "../itop1000"
+	},
+	{
+		"path": "../igy6"
+	},
+	{
+		"path": "."
+	},
+	{
+		"path": "../hd"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "holydrivers"
+  }
+}

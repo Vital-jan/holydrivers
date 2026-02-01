@@ -24,10 +24,17 @@ body {
 
 a {
   color: $primary;
+  text-decoration: none;
 }
 
 h3 {
   padding: 20px;
+}
+
+.bold-text {
+  font-weight: bold;
+  background-color: $gray;
+  color: $dark;
 }
 
 header {
@@ -590,4 +597,67 @@ footer {
   .progress-ring__value {
     font-size: 2rem;
   }
+}
+
+/* ===== READ MORE (ADVANCED) ===== */
+
+.read-more {
+  margin-bottom: 24px;
+  text-align: center;
+  position: relative;
+}
+
+/* ховаємо чекбокс */
+.read-more__toggle {
+  display: none;
+}
+
+/* прихований контент */
+.read-more__content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    max-height 0.5s ease,
+    opacity 0.4s ease,
+    transform 0.4s ease;
+
+  text-align: left;
+}
+
+/* розкритий стан */
+.read-more__toggle:checked ~ .read-more__content {
+  max-height: 2000px; // запас по висоті
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* кнопка */
+.read-more__button {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 24px;
+  background-color: $primary;
+  color: $dark;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  user-select: none;
+}
+
+/* hover */
+.read-more__button:hover {
+  background-color: color.scale($primary, $lightness: -15%);
+}
+
+/* текст кнопки (за замовчуванням) */
+.read-more__button::before {
+  content: attr(data-open) " ▼";
+}
+
+/* текст кнопки при відкритті */
+.read-more__toggle:checked ~ .read-more__button::before {
+  content: "Згорнути ▲";
 }

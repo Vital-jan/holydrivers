@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
@@ -44,6 +44,8 @@
 
     <section id="userBar" class="section" style="display: none">
       <span id="userLabel"></span>
+      <div id="period_finish" style="display: none"></div>
+
       <button id="logoutBtn" type="button">Вийти</button>
       <div class="progress-ring" id="user_hours" style="--total: 0; --max: 0">
         <div class="progress-ring__inner">
@@ -81,8 +83,8 @@
     </section>
     <h3 id="for_new_user">
       <p>
-        Обиріть зручний вам вільний слот, повідомте автоінструктору про бажання
-        записатись на цей час.
+        Обиріть зручний вам вільний слот, повідомте автоінструктора про ваш
+        намір записатись на цей час.
       </p>
       <p>
         Дочекайтесь, поки автоінструктор підтвердить ваш запис та приходьте на
@@ -174,13 +176,14 @@
     }
   }
 
-  function updateUserBar(fullname, id, totalHours, maxHours) {
+  function updateUserBar(fullname, id, totalHours, maxHours, finishDate) {
     const bar = document.getElementById("userBar");
     const label = document.getElementById("userLabel");
     const error = document.getElementById("userCodeErr");
     const codeForm = document.getElementById("userCodeForm");
     const ring = document.getElementById("user_hours");
     const ringValue = document.getElementById("user_hours_value");
+    const periodFinish = document.getElementById("period_finish");
     const total = Number(totalHours) || 0;
     const max = Number(maxHours) || 0;
 
@@ -189,6 +192,13 @@
     if (fullname && String(fullname).trim() !== "") {
       console.log("ok");
       if (label) label.textContent = `Користувач: ${fullname}`;
+      if (periodFinish) {
+        const f = finishDate ? String(finishDate).trim() : "";
+        periodFinish.innerHTML = `Практичні заняття Вам слід закінчити не пізніше <b>${f}</b>`;
+        if (f) {
+          periodFinish.style.display = "";
+        } else periodFinish.style.display = "none";
+      }
       if (bar) bar.style.display = "";
       if (codeForm) codeForm.style.display = "none";
 
@@ -203,6 +213,7 @@
     } else {
       // console.log("error");
       // console.log(id);
+      if (periodFinish) periodFinish.style.display = "none";
       if (bar) bar.style.display = "none";
       if (id && String(id).trim() !== "") {
         if (error) error.style.display = "";
@@ -396,7 +407,7 @@
             const titleAttr = title ? ` title="${title}"` : "";
 
             return `<td><span ${titleAttr} class="${getCellClass(
-              cell
+              cell,
             )}">${value}</span></td>`;
           })
           .join("");
@@ -447,7 +458,8 @@
         data.user_fullname,
         data.user_id,
         data.total_hours,
-        data.user_maxhours
+        data.user_maxhours,
+        data.finishDate,
       );
       console.log("res:", data);
       const html =

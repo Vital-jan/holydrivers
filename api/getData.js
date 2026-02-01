@@ -65,7 +65,7 @@ function onEdit(e) {
     const refreshTime = Utilities.formatDate(
       now,
       Session.getScriptTimeZone(),
-      "yyyy-MM-dd HH:mm:ss"
+      "yyyy-MM-dd HH:mm:ss",
     );
     sheet.getRange(LAST_UPDATED_CELL).setValue(refreshTime);
   }
@@ -75,7 +75,7 @@ function doGet(e) {
   e = e || {};
   var params = e.parameter || {};
   var USER_ID = String(
-    params.user || params.user_id || params.USER || params.USER_ID || ""
+    params.user || params.user_id || params.USER || params.USER_ID || "",
   ).trim();
 
   // mode == "getdata" або null - повертаємо дані таблиці;
@@ -131,13 +131,13 @@ function doGet(e) {
         ? Utilities.formatDate(
             maxDate,
             Session.getScriptTimeZone(),
-            "yyyy-MM-dd HH:mm:ss"
+            "yyyy-MM-dd HH:mm:ss",
           )
         : null,
     };
 
     return ContentService.createTextOutput(JSON.stringify(payload)).setMimeType(
-      ContentService.MimeType.JSON
+      ContentService.MimeType.JSON,
     );
   }
 
@@ -162,29 +162,37 @@ function doGet(e) {
   // 🚀 Оптимізований пошук ПІБ + maxHours по "Група" з кешем
   // 🚀 Пошук ПІБ + maxHours по "Група" з кешем
   function findUserMetaByUserId(userId) {
-    if (!userId) return { fullName: "", maxHours: 0 };
+    if (!userId)
+      return { fullName: "", maxHours: 0, start: null, finish: null };
 
     const cache = CacheService.getScriptCache();
     const cacheKey = "user_meta_" + String(userId).toLowerCase();
     const cached = cache.get(cacheKey);
-    if (cached) return JSON.parse(cached);
+    if (cached) {
+      const obj = JSON.parse(cached);
+      obj.start = obj.start ? new Date(obj.start) : null;
+      obj.finish = obj.finish ? new Date(obj.finish) : null;
+      return obj;
+    }
 
     const sh = ss.getSheetByName("Група");
-    if (!sh) return { fullName: "", maxHours: 0 };
+    if (!sh) return { fullName: "", maxHours: 0, start: null, finish: null };
 
     const lastRow = sh.getLastRow();
-    if (lastRow < 2) return { fullName: "", maxHours: 0 };
+    if (lastRow < 2)
+      return { fullName: "", maxHours: 0, start: null, finish: null };
 
     // беремо тільки потрібні колонки A:J
     const values = sh.getRange(1, 1, lastRow, 10).getValues(); // A..J
     const header = values[0].map((v) =>
       String(v || "")
         .trim()
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     const idxUserId = header.indexOf("user_id"); // має бути 2
     const idxMax = header.indexOf("maxhours"); // має бути 9
+    const idxStart = header.indexOf("початок");
 
     const IDX_NAME = 0; // A = ПІБ
 
@@ -205,14 +213,41 @@ function doGet(e) {
         const maxHours =
           Number(String(rawMax).replace(",", ".").replace(/\s/g, "")) || 0;
 
-        const result = { fullName, maxHours };
+        let start = null;
+
+        if (idxStart !== -1) {
+          const rawStart = row[idxStart];
+
+          if (rawStart instanceof Date) {
+            start = rawStart;
+          } else if (rawStart != null && String(rawStart).trim() !== "") {
+            const d = new Date(rawStart);
+            start = isNaN(d) ? null : d;
+          }
+        }
+
+        let finish = null;
+
+        if (start) {
+          finish = new Date(start.getTime());
+
+          const day = finish.getDate();
+          finish.setMonth(finish.getMonth() + 6);
+
+          // захист від 31 → короткий місяць (лютий, квітень тощо)
+          if (finish.getDate() < day) {
+            finish.setDate(0); // останній день попереднього місяця
+          }
+        }
+
+        const result = { fullName, maxHours, start, finish };
         cache.put(cacheKey, JSON.stringify(result), 300); // 5 хв
 
         return result;
       }
     }
 
-    return { fullName: "", maxHours: 0 };
+    return { fullName: "", maxHours: 0, start: null, finish: null };
   }
 
   function buildMonthPayload(sheetName, year, userFullName) {
@@ -279,19 +314,32 @@ function doGet(e) {
     };
   }
 
-  const userFullName = findUserMetaByUserId(USER_ID).fullName;
-  const userMaxHours = findUserMetaByUserId(USER_ID).maxHours;
+  const userMeta = findUserMetaByUserId(USER_ID);
+  const userFullName = userMeta.fullName;
+  const userMaxHours = userMeta.maxHours;
   const currentData = buildMonthPayload(
     MONTH_NAMES[currentIdx],
     currentYear,
-    userFullName
+    userFullName,
   );
   const nextData = buildMonthPayload(
     MONTH_NAMES[nextIdx],
     nextYear,
-    userFullName
+    userFullName,
   );
   const totalHoursByUser = getTotalHoursByUser(userFullName);
+  const startDate = userMeta.start;
+  const finishDate = userMeta.finish;
+
+  const tz = Session.getScriptTimeZone();
+
+  const start = startDate
+    ? Utilities.formatDate(startDate, tz, "yyyy-MM-dd")
+    : null;
+
+  const finish = finishDate
+    ? Utilities.formatDate(finishDate, tz, "yyyy-MM-dd")
+    : null;
 
   const out = {
     user_id: USER_ID,
@@ -300,6 +348,8 @@ function doGet(e) {
     total_hours: totalHoursByUser,
     current: currentData,
     next: nextData,
+    startDate: start,
+    finishDate: finish,
   };
 
   if (String(params.debug || "") === "1") {
@@ -307,6 +357,6 @@ function doGet(e) {
   }
 
   return ContentService.createTextOutput(JSON.stringify(out)).setMimeType(
-    ContentService.MimeType.JSON
+    ContentService.MimeType.JSON,
   );
 }
