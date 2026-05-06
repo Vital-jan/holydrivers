@@ -17,7 +17,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #111111;
   color: #f0f0f0;
-  line-height: 1.6;
+  line-height: 1.2;
 }
 
 a {
@@ -143,7 +143,7 @@ header .home a {
   padding-left: 1.56rem;
 }
 .section ul li {
-  margin-bottom: 0.91rem;
+  margin-bottom: 0.52rem;
   font-size: 1.5em;
 }
 .section p {
@@ -388,7 +388,6 @@ header .home a {
   margin-bottom: 30px;
   padding-left: 20px;
   padding-right: 20px;
-  /* фіксована висота перших двох рядків */
 }
 .schedule .left {
   min-width: 120px;
@@ -417,6 +416,9 @@ header .home a {
 }
 .schedule .free {
   background-color: green;
+}
+.schedule {
+  /* фіксована висота перших двох рядків */
 }
 .schedule tr:nth-child(1) td,
 .schedule tr:nth-child(2) td {
@@ -461,6 +463,7 @@ footer .contacts a {
   font-weight: bold;
   transition: color 0.3s ease;
   padding-right: 20px;
+  text-align: left;
 }
 footer .contacts a:hover, footer .contacts a:focus {
   color: #222222;
