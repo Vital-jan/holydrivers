@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="uk">
+  <div class="overlay" id="overlay"></div>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -661,6 +662,8 @@
   const sections = document.querySelectorAll("section[id]");
   const links = document.querySelectorAll("nav a");
 
+  const overlay = document.getElementById("overlay");
+
   // const headerOffset = 120; // 🔥 підстав свою висоту
   const header = document.querySelector("header");
   const headerOffset = header.getBoundingClientRect().height; // висота хедера
@@ -692,6 +695,7 @@
   burger.addEventListener("click", () => {
     burger.classList.toggle("active");
     nav.classList.toggle("active");
+    overlay.classList.toggle("active");
   });
 
   // закриття при кліку на пункт
@@ -699,6 +703,7 @@
     link.addEventListener("click", () => {
       burger.classList.remove("active");
       nav.classList.remove("active");
+      overlay.classList.remove("active");
     });
   });
 </script>
