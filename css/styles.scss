@@ -44,6 +44,7 @@ h3 {
 
 header {
   width: 100%;
+  z-index: 1000;
   background-color: $primary;
   color: $dark;
   display: flex;
@@ -86,10 +87,14 @@ header {
   }
   nav {
     width: 100%;
+    text-align: right;
     a {
       color: $dark;
+      text-decoration: none;
+      border-radius: 5px;
+      padding: 2px;
       &:hover {
-        text-decoration: underline;
+        background: $gray;
       }
       &::before {
         content: "●";

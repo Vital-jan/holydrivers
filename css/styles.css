@@ -42,6 +42,7 @@ h3 {
 
 header {
   width: 100%;
+  z-index: 1000;
   background-color: #ffd700;
   color: #111111;
   display: flex;
@@ -85,12 +86,16 @@ header .header-top h1 span {
 }
 header nav {
   width: 100%;
+  text-align: right;
 }
 header nav a {
   color: #111111;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 2px;
 }
 header nav a:hover {
-  text-decoration: underline;
+  background: #f0f0f0;
 }
 header nav a::before {
   content: "●";
