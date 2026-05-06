@@ -4,7 +4,12 @@ html {
   overflow-x: hidden;
   min-width: 275px;
   scroll-behavior: smooth;
-  font-size: 12px;
+  font-size: 13.5px;
+}
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
 }
 
 *,
@@ -85,7 +90,6 @@ header {
     font-size: 0.8rem;
     gap: 5px;
     padding: 5px;
-    font-size: 0.7rem;
   }
 }
 header .logo {
@@ -101,8 +105,9 @@ header .header-top {
   justify-content: space-between;
 }
 header .header-top h1 {
-  width: 70%;
   margin: 0;
+  padding: 0 20px;
+  width: 100%;
   text-align: center;
   line-height: 1;
 }
@@ -149,7 +154,7 @@ header nav {
   display: block;
   border: none;
   border-radius: 5px;
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 @media (max-width: 768px) {
   header nav {
