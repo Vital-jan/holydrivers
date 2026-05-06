@@ -4,6 +4,7 @@ html {
   overflow-x: hidden;
   min-width: 275px;
   scroll-behavior: smooth;
+  font-size: 12px;
 }
 
 *,
@@ -67,6 +68,7 @@ header {
   width: 100%;
   z-index: 1000;
   background-color: #ffd700;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
   color: #111111;
   display: flex;
   position: fixed;
@@ -145,11 +147,15 @@ header nav {
   width: 100%;
   text-align: right;
   display: block;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
 }
 @media (max-width: 768px) {
   header nav {
     display: none;
     position: fixed;
+    border: 3px #111111 solid;
     top: 170px;
     right: -100%;
     flex-direction: column;
@@ -162,8 +168,7 @@ header nav {
 header nav.active {
   right: 0;
   display: flex;
-  border-radius: 5px;
-  border: 3px #111111 solid;
+  text-align: left;
 }
 header nav a {
   color: #111111;

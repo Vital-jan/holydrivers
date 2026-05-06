@@ -698,12 +698,21 @@
     overlay.classList.toggle("active");
   });
 
+  function closeMenu() {
+    burger.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+  }
+
   // закриття при кліку на пункт
   document.querySelectorAll("nav a").forEach((link) => {
     link.addEventListener("click", () => {
-      burger.classList.remove("active");
-      nav.classList.remove("active");
-      overlay.classList.remove("active");
+      closeMenu();
     });
+  });
+
+  // 🔥 при зміні розміру екрану
+  window.addEventListener("resize", () => {
+    closeMenu();
   });
 </script>
