@@ -97,10 +97,16 @@ header {
         background: $gray;
       }
       &::before {
-        content: "●";
-        vertical-align: middle;
+        content: "◆";
         opacity: 0.6;
         font-size: 0.8em;
+        color: $dark;
+        margin-right: 2px;
+        position: relative;
+        top: -2px;
+      }
+      &.active {
+        background-color: $nav-active;
       }
     }
   }

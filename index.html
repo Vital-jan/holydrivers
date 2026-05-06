@@ -652,3 +652,30 @@
   </body>
 </html>
 <script src="sendmail.js"></script>
+<script>
+  const sections = document.querySelectorAll("section[id]");
+  const links = document.querySelectorAll("nav a");
+
+  const headerOffset = 120; // 🔥 підстав свою висоту
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach((section) => {
+      const top = section.offsetTop - headerOffset;
+      const bottom = top + section.offsetHeight;
+
+      if (window.scrollY >= top && window.scrollY < bottom) {
+        current = section.id;
+      }
+    });
+
+    links.forEach((link) => {
+      link.classList.remove("active");
+
+      if (link.getAttribute("href") === "#" + current) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>

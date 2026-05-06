@@ -98,10 +98,16 @@ header nav a:hover {
   background: #f0f0f0;
 }
 header nav a::before {
-  content: "●";
-  vertical-align: middle;
+  content: "◆";
   opacity: 0.6;
   font-size: 0.8em;
+  color: #111111;
+  margin-right: 2px;
+  position: relative;
+  top: -2px;
+}
+header nav a.active {
+  background-color: #f3e48c;
 }
 header .home {
   display: flex;
