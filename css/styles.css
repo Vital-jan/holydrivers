@@ -3,6 +3,7 @@ html {
   width: 100%;
   overflow-x: hidden;
   min-width: 275px;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -19,6 +20,11 @@ body {
   background-color: #111111;
   color: #f0f0f0;
   line-height: 1.2;
+  caret-color: transparent;
+}
+
+input {
+  caret-color: auto;
 }
 
 section {
@@ -84,9 +90,49 @@ header .header-top h1 {
 header .header-top h1 span {
   font-size: 0.8em;
 }
+header .burger {
+  display: none;
+  flex-direction: column;
+  z-index: 1001;
+  gap: 4px;
+  margin-left: auto;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  header .burger {
+    display: flex;
+  }
+}
+header .burger a {
+  display: none;
+}
+header .burger span {
+  width: 25px;
+  height: 3px;
+  background: #111111;
+  transition: 0.3s;
+}
+header .burger.active a {
+  display: block;
+}
+header .burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+header .burger.active span:nth-child(2) {
+  opacity: 0;
+}
+header .burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
 header nav {
   width: 100%;
   text-align: right;
+  display: block;
+}
+@media (max-width: 768px) {
+  header nav {
+    display: none;
+  }
 }
 header nav a {
   color: #111111;

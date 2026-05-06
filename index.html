@@ -54,6 +54,11 @@
         <a href="#schedule">Графік</a>
         <a href="#contacts">Контакти</a>
       </nav>
+      <div class="burger" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </header>
 
     <section class="section" id="intro">
@@ -239,7 +244,7 @@
     </section>
 
     <section class="section">
-      <h2 class="section-title">🏁 Результат 🏁</h2>
+      <h2 class="section-title">Результат 🏁</h2>
       <p>
         Вже після першого заняття мої учні долають свої страхи, отримують
         впевненість та з задоволенням записуються на наступні заняття.
@@ -656,7 +661,9 @@
   const sections = document.querySelectorAll("section[id]");
   const links = document.querySelectorAll("nav a");
 
-  const headerOffset = 120; // 🔥 підстав свою висоту
+  // const headerOffset = 120; // 🔥 підстав свою висоту
+  const header = document.querySelector("header");
+  const headerOffset = header.getBoundingClientRect().height; // висота хедера
 
   window.addEventListener("scroll", () => {
     let current = "";
@@ -676,6 +683,22 @@
       if (link.getAttribute("href") === "#" + current) {
         link.classList.add("active");
       }
+    });
+  });
+
+  const burger = document.getElementById("burger");
+  const nav = document.getElementById("nav");
+
+  burger.addEventListener("click", () => {
+    burger.classList.toggle("active");
+    nav.classList.toggle("active");
+  });
+
+  // закриття при кліку на пункт
+  document.querySelectorAll("nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      burger.classList.remove("active");
+      nav.classList.remove("active");
     });
   });
 </script>
