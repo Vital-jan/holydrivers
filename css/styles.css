@@ -13,11 +13,16 @@ html {
 
 body {
   margin: 0;
+  padding-top: 170px;
   width: 100%;
   font-family: Arial, sans-serif;
   background-color: #111111;
   color: #f0f0f0;
   line-height: 1.2;
+}
+
+section {
+  scroll-margin-top: 170px;
 }
 
 a {
@@ -40,20 +45,20 @@ header {
   background-color: #ffd700;
   color: #111111;
   display: flex;
+  position: fixed;
+  top: 0;
+  flex-direction: column;
   padding: 20px;
   align-items: center;
   justify-content: space-between;
   gap: 1.3rem;
+  max-height: 170px;
 }
 @media (max-width: 530px) {
   header {
     font-size: 0.8rem;
     gap: 5px;
     padding: 5px;
-  }
-}
-@media (max-width: 530px) {
-  header {
     font-size: 0.7rem;
   }
 }
@@ -63,13 +68,34 @@ header .logo {
   max-width: 100px;
   height: auto;
 }
-header h1 {
-  margin: 0;
+header .header-top {
+  display: flex;
   width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+header .header-top h1 {
+  width: 70%;
+  margin: 0;
   text-align: center;
   line-height: 1;
 }
-header h1 span {
+header .header-top h1 span {
+  font-size: 0.8em;
+}
+header nav {
+  width: 100%;
+}
+header nav a {
+  color: #111111;
+}
+header nav a:hover {
+  text-decoration: underline;
+}
+header nav a::before {
+  content: "●";
+  vertical-align: middle;
+  opacity: 0.6;
   font-size: 0.8em;
 }
 header .home {

@@ -15,11 +15,16 @@ html {
 
 body {
   margin: 0;
+  padding-top: $header-height;
   width: 100%;
   font-family: Arial, sans-serif;
   background-color: $dark;
   color: $gray;
   line-height: 1.2;
+}
+
+section {
+  scroll-margin-top: $header-height;
 }
 
 a {
@@ -42,17 +47,19 @@ header {
   background-color: $primary;
   color: $dark;
   display: flex;
+  position: fixed;
+  top: 0;
+  flex-direction: column;
   padding: 20px;
   align-items: center;
   justify-content: space-between;
   gap: calc(1rem * $font-scale);
+  max-height: $header-height;
 
   @media (max-width: 530px) {
     font-size: 0.8rem;
     gap: 5px;
     padding: 5px;
-  }
-  @media (max-width: 530px) {
     font-size: 0.7rem;
   }
 
@@ -62,14 +69,34 @@ header {
     max-width: 100px;
     height: auto;
   }
-
-  h1 {
-    margin: 0;
+  .header-top {
+    display: flex;
     width: 100%;
-    text-align: center;
-    line-height: 1;
-    span {
-      font-size: 0.8em;
+    align-items: center;
+    justify-content: space-between;
+    h1 {
+      width: 70%;
+      margin: 0;
+      text-align: center;
+      line-height: 1;
+      span {
+        font-size: 0.8em;
+      }
+    }
+  }
+  nav {
+    width: 100%;
+    a {
+      color: $dark;
+      &:hover {
+        text-decoration: underline;
+      }
+      &::before {
+        content: "●";
+        vertical-align: middle;
+        opacity: 0.6;
+        font-size: 0.8em;
+      }
     }
   }
   .home {
