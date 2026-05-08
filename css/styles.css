@@ -122,7 +122,7 @@ header .burger {
   margin-left: auto;
   cursor: pointer;
 }
-@media (max-width: 768px) {
+@media (max-width: 920px) {
   header .burger {
     display: flex;
   }
@@ -156,7 +156,7 @@ header nav {
   border-radius: 5px;
   font-size: 1.4em;
 }
-@media (max-width: 768px) {
+@media (max-width: 920px) {
   header nav {
     display: none;
     position: fixed;

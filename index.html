@@ -20,7 +20,7 @@
     />
     <link rel="canonical" href="https://holydrivers.com.ua/" />
     <link rel="stylesheet" href="css/styles.css?v=3.5" />
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon.ico" />
   </head>
 
   <!-- Google tag (gtag.js) -->
@@ -49,7 +49,7 @@
         <a href="#programs">Для кого</a>
         <a href="#location">Локація</a>
         <a href="#price">Вартість</a>
-        <a href="#register" class="cta">Запис</a>
+        <a href="#register" class="cta">Тест-драйв</a>
         <a href="#reviews">Відгуки</a>
         <a href="#videos">Відео</a>
         <a href="#schedule">Графік</a>
@@ -192,15 +192,15 @@
     <section class="section" id="register">
       <h2 class="section-title">Ще вагаєтесь?</h2>
       <p>
-        - Запишіться на пробне заняття та переконайтесь самі, що стати водієм
-        може кожен. Що водити автомобіль зовсім не складно, не страшно, а
-        навпаки - цікаво та захоплююче.
+        - Запишіться на тест-драйв та переконайтесь самі, що стати водієм може
+        кожен. Що водити автомобіль зовсім не складно, не страшно, а навпаки -
+        цікаво та захоплююче.
       </p>
     </section>
 
     <section class="form-section">
       <form id="bookingForm">
-        <h2 class="section-title">✍️ Запис на водіння</h2>
+        <h2 class="section-title">✍️ Запис на тест драйв</h2>
         <label>
           Ваше ім'я:
           <input
@@ -711,8 +711,18 @@
     });
   });
 
-  // 🔥 при зміні розміру екрану
+  // 🔥 закриття при зміні розміру екрану
   window.addEventListener("resize", () => {
     closeMenu();
+  });
+
+  // 🔥 закриття по кліку за межами меню
+  overlay.addEventListener("click", closeMenu);
+
+  // 🔥 закриття Esc
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeMenu();
+    }
   });
 </script>
