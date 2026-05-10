@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 // ----- Далі твій проксі -----
 
-$baseUrl = "https://script.google.com/macros/s/AKfycbzBRGj3_y9AUKw2LK8fzBWH5Uw-cCifDqVvhoASv1fdnYDgB7gexaiD8qwgD5nJXDo5og/exec";
+$baseUrl = "hhttps://script.google.com/macros/s/AKfycbxtnnDflIk_Pw9bzVeVBKYWr414Ue0iIHXnJQARrvsP_4ZgivcXzpRXtwnmGh0Ob-BZBA/exec";
 
 // Проксі передає всі GET-параметри (user, mode, debug тощо)
 $query = http_build_query($_GET);
