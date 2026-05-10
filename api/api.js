@@ -12,6 +12,7 @@ const MONTH_NAMES = [
   "Листопад",
   "Грудень",
 ];
+
 function getTotalHoursByUser(userFullName) {
   // підрахунок загальної кількості годин
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -180,26 +181,18 @@ function doGet(e) {
     const lastRow = sh.getLastRow();
     if (lastRow < 2)
       return { fullName: "", maxHours: 0, start: null, finish: null };
-    const lastCol = sh.getLastColumn();
 
     // беремо тільки потрібні колонки A:J
-    const values = sh.getRange(1, 1, lastRow, lastCol).getValues(); // A..J
+    const values = sh.getRange(1, 1, lastRow, 10).getValues(); // A..J
     const header = values[0].map((v) =>
       String(v || "")
         .trim()
         .toLowerCase(),
     );
 
-    const idxUserId = header.findIndex("user_id"); // має бути 2
-    const idxMax = header.findIndex((h) => {
-      return (
-        String(h || "")
-          .toLowerCase()
-          .replace(/\s+/g, "") === "maxhours"
-      );
-    });
-
-    const idxStart = header.findIndex("початок");
+    const idxUserId = header.indexOf("user_id"); // має бути 2
+    const idxMax = header.indexOf("maxHours"); // має бути 9
+    const idxStart = header.indexOf("початок");
 
     const IDX_NAME = 0; // A = ПІБ
 
@@ -247,7 +240,7 @@ function doGet(e) {
           }
         }
 
-        const result = { fullName, maxHours, start, finish, idxMax };
+        const result = { fullName, maxHours, start, finish };
         cache.put(cacheKey, JSON.stringify(result), 300); // 5 хв
 
         return result;

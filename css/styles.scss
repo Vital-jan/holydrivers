@@ -7,9 +7,6 @@ html {
   min-width: 275px;
   scroll-behavior: smooth;
   font-size: 13.5px;
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
 }
 
 *,
@@ -19,6 +16,7 @@ html {
 }
 
 .overlay {
+  z-index: 1100;
   position: fixed;
   top: 0;
   left: 0;
@@ -28,7 +26,6 @@ html {
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
-  z-index: 1000;
   &.active {
     opacity: 1;
     visibility: visible;
@@ -71,7 +68,7 @@ h3 {
 
 header {
   width: 100%;
-  z-index: 1000;
+  z-index: 1200;
   background-color: $primary;
   border-bottom: 3px solid rgba(0, 0, 0, 0.2);
   color: $dark;
@@ -85,10 +82,14 @@ header {
   gap: calc(1rem * $font-scale);
   max-height: $header-height;
 
-  @media (max-width: 530px) {
-    font-size: 0.8rem;
+  @media (max-width: 768px) {
     gap: 5px;
     padding: 5px;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 530px) {
+    // font-size: 0.8rem;
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
   }
 
   .logo {
@@ -106,10 +107,11 @@ header {
       margin: 0;
       padding: 0 20px;
       width: 100%;
+      min-width: 0;
       text-align: center;
       line-height: 1;
-      span {
-        font-size: 0.8em;
+      @media (max-width: 530px) {
+        padding: 0 5px;
       }
     }
   }
@@ -117,7 +119,7 @@ header {
   .burger {
     display: none;
     flex-direction: column;
-    z-index: 1100;
+    z-index: 1200;
     gap: 4px;
     margin-left: auto;
     cursor: pointer;
@@ -152,27 +154,34 @@ header {
   }
 
   nav {
+    z-index: 1200;
     width: 100%;
     text-align: right;
     display: block;
     border: none;
     border-radius: 5px;
     font-size: 1.4em;
+
     @media (max-width: $nav-collapse-width) {
-      display: none;
-      position: fixed;
-      border: 3px $dark solid;
-      top: $header-height;
-      right: -100%;
-      flex-direction: column;
-      background: $primary;
+      position: absolute;
+      top: 100%;
+      right: 0;
+
       width: 260px;
       padding: 20px;
+
+      display: flex;
+      flex-direction: column;
+
+      background: $primary;
+      border: 3px $dark solid;
+
+      transform: translateX(100%);
       transition: 0.3s;
     }
+
     &.active {
-      right: 0;
-      display: flex;
+      transform: translateX(0);
       text-align: left;
     }
 
@@ -198,36 +207,11 @@ header {
       }
     }
   }
+
   .home {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
+    width: 10%;
     img {
       max-width: 30px;
-      min-width: 20px;
-      height: auto;
-    }
-    a {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      color: $dark;
-      text-decoration: none;
-      font-weight: bold;
-      gap: 6px;
-    }
-
-    span {
-      @media (max-width: 768px) {
-        display: none;
-      }
-    }
-  }
-  .home-schedule {
-    @media (max-width: 330px) {
-      display: none;
     }
   }
 }

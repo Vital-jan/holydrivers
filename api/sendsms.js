@@ -53,7 +53,7 @@ function transformAndSortSchedule() {
       if (phone.length === 12) {
         acc[nameText] = phone;
       } else {
-        console.log(`Невірний номер для '${name}': ${row[1]}`);
+        console.log(`Невірний номер для '${nameText}': ${row[1]}`);
       }
 
       return acc;
@@ -120,7 +120,7 @@ function transformAndSortSchedule() {
       const formattedDate = Utilities.formatDate(
         dateObj,
         Session.getScriptTimeZone(),
-        "dd.MM"
+        "dd.MM",
       );
 
       if (!uniqueRecords[name] || dateObj < uniqueRecords[name].dateObj) {
@@ -185,7 +185,7 @@ function transformAndSortSchedule() {
       try {
         const response = UrlFetchApp.fetch(
           "https://api.turbosms.ua/message/send.json",
-          options
+          options,
         );
         const code = JSON.parse(response.getContentText()).response_code;
         const status =
