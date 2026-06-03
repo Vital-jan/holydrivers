@@ -610,17 +610,23 @@ footer {
       }
     }
 
-    @media (max-width: 768px) {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding-top: 30px;
-
+    // span {
+    //   @media (max-width: 990px) {
+    //     display: none;
+    //   }
+    // }
+    @media (max-width: 1000px) {
+      span {
+        display: none;
+      }
       a {
-        flex-direction: row;
-        width: 100%;
         padding-right: 0;
       }
+    }
+    @media (max-width: 768px) {
+      display: flex;
+      align-items: flex-start;
+      padding-top: 30px;
     }
   }
 }
