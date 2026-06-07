@@ -1,26 +1,6 @@
 <!doctype html>
 <html lang="uk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      http-equiv="Cache-Control"
-      content="no-store, no-cache, must-revalidate"
-    />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-
-    <title>
-      Автоінструктор Київ (Теремки, Голосіїв) — уроки водіння АКПП | HolyDrivers
-    </title>
-    <meta
-      name="description"
-      content="Автоінструктор у Києві: Теремки, Голосіїв, ВДНГ. Уроки водіння на АКПП без криків і тиску — з нуля або після перерви. Запис онлайн."
-    />
-    <link rel="canonical" href="https://holydrivers.com.ua/" />
-    <link rel="stylesheet" href="css/styles.css?v=4.1" />
-    <link rel="icon" href="/favicon.ico" />
-  </head>
+  <?php include "head.php"?>
 
   <!-- Google tag (gtag.js) -->
   <script
@@ -39,29 +19,9 @@
 
   <body>
     <div class="overlay" id="overlay"></div>
-
-    <header>
-      <div class="header-top">
-        <img src="/img/logo.png" alt="Логотип HolyDrivers" class="logo" />
-        <h1>Уроки водіння з приватним автоінструктором</h1>
-      </div>
-      <nav class="nav" id="nav">
-        <a href="#intro">Про мене</a>
-        <a href="#programs">Для кого</a>
-        <a href="#location">Локація</a>
-        <a href="#price">Вартість</a>
-        <a href="#register" class="cta">Тест-драйв</a>
-        <a href="#reviews">Відгуки</a>
-        <a href="#videos">Відео</a>
-        <a href="/grafik">Графік</a>
-        <a href="#contacts">Контакти</a>
-      </nav>
-      <div class="burger" id="burger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </header>
+    <!-- header -->
+    <?php $page="home"; include "header.php"?>
+    <!-- header -->
 
     <section class="section" id="intro">
       <h2 class="section-title">Вітаю!</h2>
@@ -79,8 +39,8 @@
         моїх заняттях ви не почуєте криків та не відчуєте тиску
       </p>
       <p>
-        Ми працюємо в атмосфері взаємоповаги, довіри й підтримки, перетворюючи
-        кожне заняття на захопливу подорож 😌
+        ✨ Ми працюємо в атмосфері взаємоповаги, довіри й підтримки,
+        перетворюючи кожне заняття на захопливу подорож
       </p>
     </section>
 
@@ -95,36 +55,46 @@
         інформації.
       </p>
       <p>
-        Вже після першого заняття більшість моїх учнів долають свої страхи та
-        починають отримувати справжнє задоволення від водіння.
+        Вже після проходження тест-драйву мої учні долають страхи та записуються
+        на наступні заняття 😊
       </p>
       <p>
-        ‍Моя мета — не просто навчити вас кермувати, а зробити так, щоб ви
-        відчули впевненість і спокій за кермом 🚘✔️
+        ‍✔️ Моя мета — не просто навчити вас кермувати, а зробити так, щоб ви
+        відчули впевненість, спокій та задоволення за кермом
       </p>
       <p>
-        Для зручності учнів діє онлайн запис на заняття, персональний календар,
+        Для зручності учнів діє онлайн запис на заняття, персональний кабінет,
         SMS-нагадування, щоб ви ніколи не пропустили свій час 📅
       </p>
     </section>
 
     <section class="section" id="programs">
-      <h2 class="section-title">Напрямки навчання</h2>
-      <ul>
-        <li>
-          Відновлення навичок після перерви ✅ для тих, хто вже має водійське
-          посвідчення
-        </li>
-        <li>Уроки водіння для початківців з нуля</li>
-        <li>
-          Підготовка до складання практичного іспиту у сервісному центрі МВС 🚔
-        </li>
-        <li>
-          Не можете подолати страх водіння? Не вдається скласти іспит? Є
-          труднощі з паркуванням або була тривала перерва? Звертайтесь —
-          допоможу впевнено сісти за кермо.
-        </li>
-      </ul>
+      <h2 class="section-title">Напрямки навчання:</h2>
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="header">👉 Експрес-курс (відновлення)</div>
+
+          <div class="main">
+            <span>Повернути впевненість за 10 занять</span>
+            Для водіїв, які вже мають посвідчення та хочуть повернутись до
+            кермування після перерви
+          </div>
+
+          <div class="footer">✅ ПОСВІДЧЕННЯ Є</div>
+        </div>
+
+        <div class="program-card">
+          <div class="header">👉 Базовий курс (з нуля)</div>
+
+          <div class="main">
+            <span>Навчитись кермувати з самого початку</span>
+            Для тих, хто тільки починає керувати автомобілем та готується до
+            практичного іспиту
+          </div>
+
+          <div class="footer">ПІДГОТОВКА ДО ІСПИТУ 🚔</div>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="location">
@@ -218,15 +188,15 @@
     <section class="section" id="register">
       <h2 class="section-title">Ще вагаєтесь?</h2>
       <p>
-        - Запишіться на тест-драйв та переконайтесь самі, що стати водієм може
-        кожен. Що водити автомобіль зовсім не складно, не страшно, а навпаки -
-        цікаво та захоплююче.
+        - Запишіться на <spaan class="bold-text">тест-драйв</spaan> та
+        переконайтесь самі, що стати водієм може кожен. Що водити автомобіль
+        зовсім не складно, не страшно, а навпаки - цікаво та захоплююче.
       </p>
     </section>
 
     <section class="form-section">
       <form id="bookingForm">
-        <h2 class="section-title">✍️ Запис на тест драйв</h2>
+        <h2 class="section-title">✍️ Надіслати запит</h2>
         <label>
           Ваше ім'я:
           <input
@@ -260,7 +230,7 @@
           tabindex="-1"
           autocomplete="off"
         />
-        <button type="submit">Записатись</button>
+        <button type="submit">Надіслати</button>
       </form>
       <div id="successModal" class="modal">
         <div class="modal-content">
@@ -273,15 +243,11 @@
     <section class="section">
       <h2 class="section-title">Результат 🏁</h2>
       <p>
-        Вже після першого заняття мої учні долають свої страхи, отримують
-        впевненість та з задоволенням записуються на наступні заняття.
-      </p>
-      <p>
-        Наприкінці занять ви зможете впевнено керувати автомобілем на дорогах з
-        інтенсивним рухом, таких, як Кільцева дорога або центр міста. Спокійно
-        та розсудливо орієнтуватись у незнайомих місцях, на складних
-        перехрестях. Майстерно паркувати автомобіль. Дотримуватись ПДР,
-        запобігати створенню аварійних ситуацій.
+        Наприкінці занять ви зможете впевнено керувати автомобілем у великому
+        місті та за його межами. Спокійно та розсудливо орієнтуватись у
+        незнайомих місцях, на складних перехрестях, дорогах з інтенсивним рухом.
+        Майстерно паркувати автомобіль. Дотримуватись ПДР, запобігати створенню
+        аварійних ситуацій.
       </p>
       <p class="bold">
         Та головне - ви будете отримувати від водіння почуття задоволення та
@@ -614,62 +580,10 @@
       </p>
     </section>
 
-    <footer id="contacts">
-      <div class="contacts">
-        <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
-          <img src="/img/phone.png" alt="" />
-          <span class="phone"> +38 063 2209770</span>
-        </a>
-
-        <a
-          href="viber://chat?number=%2B380632209770"
-          title="Написати автоінструктору"
-          class="contacts-img"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/img/viber.png" alt="Написати автоінструктору" />
-          <span>Viber</span>
-        </a>
-        <a
-          href="https://t.me/holydrivers_ua"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Telegram канал автоінструктора"
-        >
-          <img
-            src="/img/Telegram_logo.png"
-            alt="Telegram Kanal HolyDrivers"
-            style="width: 45px; height: 45px"
-            alt="Telegram канал автоінструктора"
-          />
-          <span>Telegram</span>
-        </a>
-
-        <a
-          href="https://fb.com/holydrivers"
-          title="Facebook сторінка автоінструктора"
-          class="contacts-img"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/img/fb.png" alt="Facebook сторінка автоінструктора" />
-          <span>Facebook</span>
-        </a>
-        <a
-          href="https://youtube.com/@HolyDrivers"
-          title="Youtube канал автоінструктора"
-          class="contacts-img"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/img/youtube.png" alt="Youtube канал автоінструктора" />
-          <span>Youtube</span>
-        </a>
-      </div>
-    </footer>
+    <?php include "footer.php";?>
   </body>
 </html>
+
 <script src="sendmail.js"></script>
 <script>
   const sections = document.querySelectorAll("section[id]");

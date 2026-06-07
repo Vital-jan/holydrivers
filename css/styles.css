@@ -92,22 +92,26 @@ header {
     font-size: clamp(0.7rem, 2.5vw, 0.9rem);
   }
 }
-header .logo {
-  height: 117px;
-  width: 20%;
-  max-width: 100px;
-  height: auto;
-}
 header .header-top {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
 }
+header .header-top .logo {
+  width: 20%;
+  align-items: center;
+  flex-shrink: 0;
+}
+header .header-top .logo img {
+  max-width: 100px;
+  height: auto;
+  width: 100%;
+}
 header .header-top h1 {
   margin: 0;
   padding: 0 20px;
-  width: 100%;
+  width: 80%;
   min-width: 0;
   text-align: center;
   line-height: 1;
@@ -237,6 +241,74 @@ header .home img {
 @media (max-width: 768px) {
   .section {
     padding: 1.3rem 1.3rem;
+  }
+}
+.section .programs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 30px;
+  border: 2px solid #ffd700;
+  border-radius: 12px;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .section .programs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.section .program-card {
+  padding: 20px;
+  background: #111111;
+}
+.section .program-card:first-child {
+  border-right: 2px solid #ffd700;
+}
+@media (max-width: 768px) {
+  .section .program-card:first-child {
+    border-right: none;
+    border-bottom: 2px solid #ffd700;
+  }
+}
+.section .program-card .header {
+  color: #ffd700;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  min-height: 4rem;
+}
+@media (max-width: 768px) {
+  .section .program-card .header {
+    min-height: auto;
+  }
+}
+.section .program-card .main {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  text-align: left;
+  min-height: 14rem;
+}
+.section .program-card .main span {
+  display: block;
+  font-style: italic;
+  padding-bottom: 2rem;
+}
+@media (max-width: 768px) {
+  .section .program-card .main {
+    min-height: auto;
+  }
+}
+.section .program-card .footer {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffd700;
+  font-size: 1.2rem;
+  min-height: 5rem;
+}
+@media (max-width: 768px) {
+  .section .program-card .footer {
+    min-height: auto;
   }
 }
 .section button {

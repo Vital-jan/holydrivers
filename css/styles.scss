@@ -92,21 +92,26 @@ header {
     font-size: clamp(0.7rem, 2.5vw, 0.9rem);
   }
 
-  .logo {
-    height: calc(90px * $font-scale);
-    width: 20%;
-    max-width: 100px;
-    height: auto;
-  }
   .header-top {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    .logo {
+      // height: calc(90px * $font-scale);
+      width: 20%;
+      align-items: center;
+      flex-shrink: 0;
+      img {
+        max-width: 100px;
+        height: auto;
+        width: 100%;
+      }
+    }
     h1 {
       margin: 0;
       padding: 0 20px;
-      width: 100%;
+      width: 80%;
       min-width: 0;
       text-align: center;
       line-height: 1;
@@ -244,6 +249,72 @@ header {
   padding-right: 20%;
   @media (max-width: 768px) {
     padding: calc(1rem * $font-scale) calc(1rem * $font-scale);
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 30px;
+    border: 2px solid $primary;
+    border-radius: 12px;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .program-card {
+    padding: 20px;
+    background: $dark;
+
+    &:first-child {
+      border-right: 2px solid $primary;
+
+      @media (max-width: 768px) {
+        border-right: none;
+        border-bottom: 2px solid $primary;
+      }
+    }
+
+    .header {
+      color: $primary;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+      min-height: 4rem;
+      @media (max-width: 768px) {
+        min-height: auto;
+      }
+    }
+
+    .main {
+      font-size: 1.4rem;
+      line-height: 1.4;
+      text-align: left;
+      min-height: 14rem;
+      span {
+        display: block;
+        font-style: italic;
+        padding-bottom: 2rem;
+      }
+      @media (max-width: 768px) {
+        min-height: auto;
+      }
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: $primary;
+      font-size: 1.2rem;
+      min-height: 5rem;
+      @media (max-width: 768px) {
+        min-height: auto;
+      }
+    }
   }
 
   button {
@@ -610,11 +681,6 @@ footer {
       }
     }
 
-    // span {
-    //   @media (max-width: 990px) {
-    //     display: none;
-    //   }
-    // }
     @media (max-width: 1000px) {
       span {
         display: none;
