@@ -884,3 +884,47 @@ footer {
 .read-more__toggle:checked ~ .read-more__button::before {
   content: "Згорнути ▲";
 }
+
+.contacts-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(1rem * $font-scale);
+  font-weight: normal;
+  font-size: 1.5em;
+  padding-bottom: 40px;
+  color: $primary;
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding-right: 20px;
+    text-align: left;
+
+    &:hover,
+    &:focus {
+      // color: #222222;
+      text-decoration: underline;
+    }
+
+    &.contacts-img {
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+      }
+    }
+  }
+}
+.contacts-schedule {
+  font-size: 1.5em;
+  text-align: center;
+}

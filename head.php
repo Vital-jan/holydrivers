@@ -16,6 +16,6 @@
     content="Автоінструктор у Києві: Теремки, Голосіїв, ВДНГ. Уроки водіння на АКПП без криків і тиску — з нуля або після перерви. Запис онлайн."
   />
   <link rel="canonical" href="https://holydrivers.com.ua/" />
-  <link rel="stylesheet" href="css/styles.css?v=4.2" />
+  <link rel="stylesheet" href="/css/styles.css?v=4.2" />
   <link rel="icon" href="/favicon.ico" />
 </head>

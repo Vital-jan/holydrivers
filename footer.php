@@ -11,20 +11,19 @@
       class="contacts-img"
       target="_blank"
       rel="noopener noreferrer"
-    >
+      >
       <img src="/img/viber.png" alt="Написати автоінструктору" />
       <span>Viber</span>
     </a>
     <a
-      href="https://t.me/holydrivers_ua"
-      target="_blank"
+    href="https://t.me/holydrivers_ua"
+    target="_blank"
+    class="contacts-img"
       rel="noopener noreferrer"
       title="Telegram канал автоінструктора"
     >
       <img
         src="/img/Telegram_logo.png"
-        alt="Telegram Kanal HolyDrivers"
-        style="width: 45px; height: 45px"
         alt="Telegram канал автоінструктора"
       />
       <span>Telegram</span>

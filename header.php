@@ -22,9 +22,9 @@
     <a href="/#location">Локація</a>
     <a href="/#price">Вартість</a>
     <a href="/#register" class="cta">Тест-драйв</a>
-    <a href="/#program">Програма</a>
+    <a href="/program">Програма</a>
     <a href="/#reviews">Відгуки</a>
-    <a href="/#contacts">Контакти</a>
+    <a href="/contacts">Контакти</a>
   </nav>
   <div class="burger" id="burger">
     <span></span>

@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ https://holydrivers.com.ua/ [R=301,L]
+
+# HTTP → HTTPS та WWW → non-WWW
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.holydrivers\.com\.ua$ [NC]
+RewriteRule ^(.*)$ https://holydrivers.com.ua/$1 [R=301,L]

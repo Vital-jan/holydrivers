@@ -1,6 +1,27 @@
 <!doctype html>
 <html lang="uk">
-  <?php include "head.php"?>
+  <div class="overlay" id="overlay"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-store, no-cache, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>
+      Автоінструктор Київ (Теремки, Голосіїв) — уроки водіння АКПП | HolyDrivers
+    </title>
+    <meta
+      name="description"
+      content="Автоінструктор у Києві: Теремки, Голосіїв, ВДНГ. Уроки водіння на АКПП без криків і тиску — з нуля або після перерви. Запис онлайн."
+    />
+    <link rel="canonical" href="https://holydrivers.com.ua/" />
+    <link rel="stylesheet" href="css/styles.css?v=4.1" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
 
   <!-- Google tag (gtag.js) -->
   <script
@@ -18,10 +39,28 @@
   </script>
 
   <body>
-    <div class="overlay" id="overlay"></div>
-    <!-- header -->
-    <?php $page="home"; include "header.php"?>
-    <!-- header -->
+    <header>
+      <div class="header-top">
+        <img src="/img/logo.png" alt="Логотип HolyDrivers" class="logo" />
+        <h1>Уроки водіння з приватним автоінструктором</h1>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="#intro">Про мене</a>
+        <a href="#programs">Для кого</a>
+        <a href="#location">Локація</a>
+        <a href="#price">Вартість</a>
+        <a href="#register" class="cta">Тест-драйв</a>
+        <a href="#reviews">Відгуки</a>
+        <a href="#videos">Відео</a>
+        <a href="/grafik">Графік</a>
+        <a href="#contacts">Контакти</a>
+      </nav>
+      <div class="burger" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
 
     <section class="section" id="intro">
       <h2 class="section-title">Вітаю!</h2>
@@ -39,8 +78,8 @@
         моїх заняттях ви не почуєте криків та не відчуєте тиску
       </p>
       <p>
-        ✨ Ми працюємо в атмосфері взаємоповаги, довіри й підтримки,
-        перетворюючи кожне заняття на захопливу подорож
+        Ми працюємо в атмосфері взаємоповаги, довіри й підтримки, перетворюючи
+        кожне заняття на захопливу подорож 😌
       </p>
     </section>
 
@@ -55,46 +94,36 @@
         інформації.
       </p>
       <p>
-        Вже після проходження тест-драйву мої учні долають страхи та записуються
-        на наступні заняття 😊
+        Вже після першого заняття більшість моїх учнів долають свої страхи та
+        починають отримувати справжнє задоволення від водіння.
       </p>
       <p>
-        ‍✔️ Моя мета — не просто навчити вас кермувати, а зробити так, щоб ви
-        відчули впевненість, спокій та задоволення за кермом
+        ‍Моя мета — не просто навчити вас кермувати, а зробити так, щоб ви
+        відчули впевненість і спокій за кермом 🚘✔️
       </p>
       <p>
-        Для зручності учнів діє онлайн запис на заняття, персональний кабінет,
+        Для зручності учнів діє онлайн запис на заняття, персональний календар,
         SMS-нагадування, щоб ви ніколи не пропустили свій час 📅
       </p>
     </section>
 
     <section class="section" id="programs">
-      <h2 class="section-title">Напрямки навчання:</h2>
-      <div class="programs-grid">
-        <div class="program-card">
-          <div class="header">👉 Експрес-курс (відновлення)</div>
-
-          <div class="main">
-            <span>Повернути впевненість за 10 занять</span>
-            Для водіїв, які вже мають посвідчення та хочуть повернутись до
-            кермування після перерви
-          </div>
-
-          <div class="footer">✅ ПОСВІДЧЕННЯ Є</div>
-        </div>
-
-        <div class="program-card">
-          <div class="header">👉 Базовий курс (з нуля)</div>
-
-          <div class="main">
-            <span>Навчитись кермувати з самого початку</span>
-            Для тих, хто тільки починає керувати автомобілем та готується до
-            практичного іспиту
-          </div>
-
-          <div class="footer">ПІДГОТОВКА ДО ІСПИТУ 🚔</div>
-        </div>
-      </div>
+      <h2 class="section-title">Напрямки навчання</h2>
+      <ul>
+        <li>
+          Відновлення навичок після перерви ✅ для тих, хто вже має водійське
+          посвідчення
+        </li>
+        <li>Уроки водіння для початківців з нуля</li>
+        <li>
+          Підготовка до складання практичного іспиту у сервісному центрі МВС 🚔
+        </li>
+        <li>
+          Не можете подолати страх водіння? Не вдається скласти іспит? Є
+          труднощі з паркуванням або була тривала перерва? Звертайтесь —
+          допоможу впевнено сісти за кермо.
+        </li>
+      </ul>
     </section>
 
     <section class="section" id="location">
@@ -121,10 +150,8 @@
       <h2 class="section-title">💳 Вартість занять</h2>
       <ul>
         <li>Разове заняття: 1100 грн за годину</li>
-        <li>Тривалість заняття: 2 години</li>
         <li>
-          Оплата здійснюється перерахунком на картковий рахунок, IBAN або
-          готівкою
+          Оплата здійснюється перерахуванням на картковий рахунок або готівкою
         </li>
       </ul>
     </section>
@@ -190,15 +217,15 @@
     <section class="section" id="register">
       <h2 class="section-title">Ще вагаєтесь?</h2>
       <p>
-        - Запишіться на <spaan class="bold-text">тест-драйв</spaan> та
-        переконайтесь самі, що стати водієм може кожен. Що водити автомобіль
-        зовсім не складно, не страшно, а навпаки - цікаво та захоплююче.
+        - Запишіться на тест-драйв та переконайтесь самі, що стати водієм може
+        кожен. Що водити автомобіль зовсім не складно, не страшно, а навпаки -
+        цікаво та захоплююче.
       </p>
     </section>
 
     <section class="form-section">
       <form id="bookingForm">
-        <h2 class="section-title">✍️ Надіслати запит</h2>
+        <h2 class="section-title">✍️ Запис на тест драйв</h2>
         <label>
           Ваше ім'я:
           <input
@@ -232,7 +259,7 @@
           tabindex="-1"
           autocomplete="off"
         />
-        <button type="submit">Надіслати</button>
+        <button type="submit">Записатись</button>
       </form>
       <div id="successModal" class="modal">
         <div class="modal-content">
@@ -242,212 +269,37 @@
       </div>
     </section>
 
-    <section class="section" id="program">
-      <h2 class="section-title">🟡 Програма практичного навчання:</h2>
-      <p>
-        Заняття стартують на майданчику з обмеженим рухом, де закладається база
-        керування автомобілем. Далі навчання поступово переходить до складніших
-        маршрутів і реальних міських умов. Фінальна мета — впевнене та
-        самостійне водіння без підказок інструктора
-      </p>
-      <p>✨ Протягом усього курсу я також викладаю наступне:</p>
-      <ul>
-        <li>Основи контраварійної техніки</li>
-        <li>Особливості зимового керування авто ❄️</li>
-        <li>Елементи водійської етики та взаємної поваги на дорозі</li>
-        <li>
-          Вміння не створювати аварійних ситуацій та передбачати їх з боку інших
-          водіїв
-        </li>
-      </ul>
-      <p>
-        Під час кожного заняття ділюсь реальними кейсами та досвідом з
-        багаторічної практики.
-      </p>
-
-      <div class="read-more">
-        <input type="checkbox" class="read-more__toggle" id="read_more_1" />
-
-        <div class="read-more__content">
-          <table class="program-table">
-            <tbody>
-              <tr>
-                <td>
-                  <span> Заняття на території з обмеженим рухом: </span>
-                  <ul>
-                    <li>Посадка за кермом, налаштування крісла та дзеркал</li>
-                    <li>
-                      Органи керування: педалі, кермо, покажчики повороту,
-                      перемикання передач, стоянкове гальмо
-                    </li>
-                    <li>Правильне обертання рульового колеса</li>
-                    <li>Початок руху та зупинка</li>
-                    <li>Рух дорогою низької інтенсивності</li>
-                    <li>
-                      Дотримання інтервалу, дистанції, рядності руху, контроль
-                      габаритів
-                    </li>
-                    <li>
-                      Маневрування: повороти, розвороти у 1–2–3 прийоми, рух
-                      заднім ходом
-                    </li>
-                    <li>Об’їзд нерухомої перешкоди</li>
-                  </ul>
-                </td>
-                <td class="hours">2–4 год</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <span>🚦 Заняття у місті: </span>
-                  <ul>
-                    <li>
-                      Визначення безпечної швидкості, дистанції та інтервалу
-                    </li>
-                    <li>Проїзд регульованих перехресть</li>
-                    <li>Повороти праворуч і ліворуч</li>
-                    <li>Зміна смуги руху</li>
-                    <li>Об’їзд припаркованих авто</li>
-                  </ul>
-                </td>
-                <td class="hours">2–6 год</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <ul>
-                    <li>Проїзд перехресть з круговим рухом</li>
-                    <li>Розворот на перехресті та поза ним</li>
-                    <li>Зупинка у дозволених місцях</li>
-                  </ul>
-                </td>
-                <td class="hours">2–4 год</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <ul>
-                    <li>⚠️ Проїзд нерегульованих перехресть</li>
-                    <li>Визначення пріоритетності руху</li>
-                    <li>Рух по головній/другорядній дорозі</li>
-                    <li>Зміна напрямку головної дороги</li>
-                  </ul>
-                </td>
-                <td class="hours">2–4 год</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <ul>
-                    <li>Рух за межами міста</li>
-                    <li>Проїзд естакад</li>
-                    <li>
-                      Рух по дорогах з інтенсивним трафіком: зміна смуги руху,
-                      контроль сліпих зон, розвороти
-                    </li>
-                  </ul>
-                </td>
-                <td class="hours">2–4 год</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <span>🅿️ Паркування заднім ходом</span>
-                  <ul>
-                    <li>Різновиди паркування заднім ходом</li>
-                    <li>Виїзд з вузьких паркомісць</li>
-                    <li>Оцінка габаритів автомобіля</li>
-                    <li>Робота з дзеркалами при маневрах</li>
-                    <li>Корекція траєкторії під час руху назад</li>
-                    <li>Типові помилки та як їх уникнути</li>
-                  </ul>
-                </td>
-                <td class="hours">2–4 год</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <span>🅿️ Паралельне паркування</span>
-                  <ul>
-                    <li>Алгоритм виконання паралельного паркування</li>
-                    <li>Орієнтири для точного заїзду між авто</li>
-                    <li>
-                      Способи паркування в умовах затору або інтенсивного руху
-                    </li>
-                    <li>Виправлення типових помилок у паркуванні</li>
-                  </ul>
-                </td>
-                <td class="hours">2–4 год</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <span>🏁 Кінцевий етап</span>
-                  🚗🚗🚗🚗🚗
-                  <ul>
-                    <li>Рух у щільному міському трафіку</li>
-                    <li>Маршрут за вибором учня</li>
-                    <li>Використання GPS-навігації у реальних умовах</li>
-                    <li>Зміна смуги руху в потоці транспорту</li>
-                    <li>Взаємодія з іншими учасниками руху</li>
-                    <li>
-                      Самостійне прийняття рішень без підказок інструктора
-                    </li>
-                    <li>Формування впевненого стилю водіння у місті</li>
-                  </ul>
-                </td>
-                <td class="hours">2–4 год</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <span>🎯 Підготовка до іспиту</span>
-                  <ul>
-                    <li>Відпрацювання маршрутів сервісного центру МВС</li>
-                    <li>Формування стабільного виконання всіх маневрів</li>
-                    <li>Робота над типовими помилками кандидатів у водії</li>
-                    <li>Психологічна підготовка до іспиту без стресу</li>
-                    <li>Мок-тести (імітація реального практичного іспиту)</li>
-                  </ul>
-                </td>
-                <td class="hours">6–8 год</td>
-              </tr>
-            </tbody>
-          </table>
-          <p>
-            📌 Тривалість кожного етапу залежить від початкового рівня учня,
-            здатності до засвоєння навичок, інтенсивності занять, наявності
-            тривалих перерв між заняттями.
-          </p>
-          <p>
-            Для допуску до практичного іспиту необхідно пройти щонайменше 38
-            годин навчання.
-          </p>
-        </div>
-
-        <label
-          for="read_more_1"
-          data-open="Програма занять"
-          class="read-more__button"
-        ></label>
-      </div>
-    </section>
-
     <section class="section">
       <h2 class="section-title">Результат 🏁</h2>
       <p>
-        Наприкінці занять ви зможете впевнено керувати автомобілем у великому
-        місті та за його межами. Спокійно та розсудливо орієнтуватись у
-        незнайомих місцях та несподіваних ситуаціях, на складних перехрестях,
-        дорогах з інтенсивним рухом. Майстерно паркувати автомобіль.
-        Дотримуватись ПДР, запобігати створенню аварійних ситуацій.
+        Вже після першого заняття мої учні долають свої страхи, отримують
+        впевненість та з задоволенням записуються на наступні заняття.
+      </p>
+      <p>
+        Наприкінці занять ви зможете впевнено керувати автомобілем на дорогах з
+        інтенсивним рухом, таких, як Кільцева дорога або центр міста. Спокійно
+        та розсудливо орієнтуватись у незнайомих місцях, на складних
+        перехрестях. Майстерно паркувати автомобіль. Дотримуватись ПДР,
+        запобігати створенню аварійних ситуацій.
       </p>
       <p class="bold">
-        Та головне - ви будете отримувати від водіння відчуття задоволення та
+        Та головне - ви будете отримувати від водіння почуття задоволення та
         свободи!
       </p>
       <p class="bold">Мрії здійснюються!</p>
     </section>
+
+    <div class="image-section">
+      <img src="/img/lesson.jpeg" alt="Уроки водіння" class="image-banner" />
+    </div>
+
+    <!-- <div class="image-section">
+        <img
+          src="/img/cactus.png"
+          alt="Навчальний автомобіль"
+          class="image-banner"
+        />
+      </div> -->
 
     <section class="section">
       <h2 class="section-title">
@@ -455,7 +307,7 @@
       </h2>
 
       <div class="read-more">
-        <input type="checkbox" class="read-more__toggle" id="read_more_2" />
+        <input type="checkbox" class="read-more__toggle" id="read_more_1" />
 
         <div class="read-more__content">
           <ul>
@@ -467,7 +319,7 @@
             </li>
             <li>
               Перед іспитом ми складаємо <b>mock-tests</b>. Як саме це
-              відбувається - наразі залишиться таємницею 🔒 щоб це стало для вас
+              відбувається - наразі залишиться таємницею 🔒 Щоб це стало для вас
               несподіванкою та надало потрібний ефект
             </li>
           </ul>
@@ -492,14 +344,14 @@
         </div>
 
         <label
-          for="read_more_2"
+          for="read_more_1"
           data-open="Детальніше про це"
           class="read-more__button"
         ></label>
       </div>
     </section>
 
-    <!-- <section class="section">
+    <section class="section">
       <h2 class="section-title">Перші заняття</h2>
       <p>
         Навчання для початківців починається на закритій території, що значно
@@ -553,7 +405,7 @@
         ледь не весь Київ протягом 2-годинного заняття з правого берегу на лівий
         та назад.
       </p>
-    </section> -->
+    </section>
 
     <div class="image-section">
       <img
@@ -563,30 +415,8 @@
       />
     </div>
 
-    <section class="section" id="reviews">
-      <h2 class="section-title">Відгуки:</h2>
-      <ul>
-        <li>
-          Відгуки на
-          <a
-            href="https://www.instructor.in.ua/instructor/kolomiiec-vitaliy"
-            target="_blank"
-            >instructor.in.ua</a
-          >
-        </li>
-        <li>
-          Відгуки на
-          <a
-            href="https://www.google.com/maps/place/%D0%9F%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D0%BD%D0%B8%D0%B9+%D0%B0%D0%B2%D1%82%D0%BE%D1%96%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80/@50.3859919,30.4416377,14z/data=!4m8!3m7!1s0x67eaf7f916b365db:0x9268505342a3d5f0!8m2!3d50.3863466!4d30.465422!9m1!1b1!16s%2Fg%2F11yjpwy5gc!5m1!1e4?entry=ttu&g_ep=EgoyMDI2MDEyOC4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank"
-            >google maps</a
-          >
-        </li>
-      </ul>
-    </section>
-
-    <section class="reviews">
-      <h2 class="section-title">Мої випускники та випускниці:</h2>
+    <section class="reviews" id="reviews">
+      <h2 class="section-title">Відгуки</h2>
       <div class="reviews-wrapper">
         <div class="review">
           <img src="/img/review7.jpg" alt="Відгук 1" />
@@ -713,6 +543,20 @@
           </div>
         </div>
       </div>
+      <h2 class="section-title">
+        <a
+          href="https://www.instructor.in.ua/instructor/kolomiiec-vitaliy"
+          target="_blank"
+          >➡️ Незалежні відгуки на instructor.in.ua</a
+        >
+      </h2>
+      <h2 class="section-title">
+        <a
+          href="https://www.google.com/maps/place/%D0%9F%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D0%BD%D0%B8%D0%B9+%D0%B0%D0%B2%D1%82%D0%BE%D1%96%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80/@50.3859919,30.4416377,14z/data=!4m8!3m7!1s0x67eaf7f916b365db:0x9268505342a3d5f0!8m2!3d50.3863466!4d30.465422!9m1!1b1!16s%2Fg%2F11yjpwy5gc!5m1!1e4?entry=ttu&g_ep=EgoyMDI2MDEyOC4wIKXMDSoASAFQAw%3D%3D"
+          target="_blank"
+          >➡️ Незалежні відгуки на google maps</a
+        >
+      </h2>
     </section>
 
     <section class="reviews" id="videos">
@@ -757,10 +601,74 @@
       </div>
     </section>
 
-    <?php include "footer.php";?>
+    <section class="section" id="schedule">
+      <h2 class="section-title">Розклад занять</h2>
+      <p>
+        Вільні слоти інструктора
+        <a href="grafik">зазначено тут 📅</a> <br />
+        Обирайте зручний вам слот, у якому зазначено "Вільно", пишіть у вайбер.
+        Дочекайтесь, поки інструктор підтвердить ваш запис та приходьте на
+        заняття у зазначений день та час. За день до занять вам надійде SMS із
+        нагадуванням.
+      </p>
+    </section>
+
+    <footer id="contacts">
+      <div class="contacts">
+        <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
+          <img src="/img/phone.png" alt="" />
+          <span class="phone"> +38 063 2209770</span>
+        </a>
+
+        <a
+          href="viber://chat?number=%2B380632209770"
+          title="Написати автоінструктору"
+          class="contacts-img"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/img/viber.png" alt="Написати автоінструктору" />
+          <span>Viber</span>
+        </a>
+        <a
+          href="https://t.me/holydrivers_ua"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Telegram канал автоінструктора"
+        >
+          <img
+            src="/img/Telegram_logo.png"
+            alt="Telegram Kanal HolyDrivers"
+            style="width: 45px; height: 45px"
+            alt="Telegram канал автоінструктора"
+          />
+          <span>Telegram</span>
+        </a>
+
+        <a
+          href="https://fb.com/holydrivers"
+          title="Facebook сторінка автоінструктора"
+          class="contacts-img"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/img/fb.png" alt="Facebook сторінка автоінструктора" />
+          <span>Facebook</span>
+        </a>
+        <a
+          href="https://youtube.com/@HolyDrivers"
+          title="Youtube канал автоінструктора"
+          class="contacts-img"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/img/youtube.png" alt="Youtube канал автоінструктора" />
+          <span>Youtube</span>
+        </a>
+      </div>
+    </footer>
   </body>
 </html>
-
 <script src="sendmail.js"></script>
 <script>
   const sections = document.querySelectorAll("section[id]");
