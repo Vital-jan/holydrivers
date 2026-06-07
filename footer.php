@@ -51,4 +51,8 @@
       <span>Youtube</span>
     </a>
   </div>
+  <div>Вільні слоти інструктора зазначено тут:</div>
+  <div>
+    <a class="bold-text" href="grafik">графік занять 📅</a>
+  </div>
 </footer>
