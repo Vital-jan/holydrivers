@@ -227,6 +227,24 @@ header .home img {
   padding: 20px;
 }
 
+button {
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffd700;
+  color: #111111;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button a {
+  color: inherit;
+}
+button:hover {
+  background-color: rgb(216.75, 182.75, 0);
+}
+
 .section {
   scroll-margin-top: 170px;
   width: 100%;
@@ -349,8 +367,9 @@ header .home img {
     min-height: auto;
   }
 }
-.section button {
-  cursor: pointer;
+.section .program-card .footer span {
+  display: block;
+  margin-bottom: 20px;
 }
 .section ul {
   padding-left: 1.56rem;
@@ -571,7 +590,7 @@ header .home img {
   text-align: center;
 }
 .form-section form p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 .form-section form label {
   display: flex;
@@ -579,7 +598,8 @@ header .home img {
   font-size: 1.4rem;
   color: #f0f0f0;
 }
-.form-section form label input {
+.form-section form label input,
+.form-section form label select {
   padding: 0.7rem;
   border-radius: 10px;
   border: 1px solid #ffd700;
@@ -587,20 +607,6 @@ header .home img {
   font-size: 1rem;
   background-color: #222;
   color: #f0f0f0;
-}
-.form-section form button {
-  padding: 0.8rem;
-  border-radius: 10px;
-  border: none;
-  background-color: #ffd700;
-  color: #111111;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.form-section form button:hover {
-  background-color: rgb(216.75, 182.75, 0);
 }
 .form-section .modal {
   display: none;

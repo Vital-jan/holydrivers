@@ -237,6 +237,25 @@ header {
   padding: 20px;
 }
 
+button {
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: none;
+  background-color: $primary;
+  color: $dark;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  a {
+    color: inherit;
+  }
+
+  &:hover {
+    background-color: color.scale($primary, $lightness: -15%);
+  }
+}
+
 .section {
   scroll-margin-top: $header-height;
   width: 100%;
@@ -351,11 +370,11 @@ header {
       @media (max-width: 768px) {
         min-height: auto;
       }
+      span {
+        display: block;
+        margin-bottom: 20px;
+      }
     }
-  }
-
-  button {
-    cursor: pointer;
   }
 
   ul {
@@ -587,7 +606,7 @@ header {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     text-align: center;
     p {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
     }
     label {
       display: flex;
@@ -595,7 +614,8 @@ header {
       font-size: 1.4rem;
       color: $gray;
 
-      input {
+      input,
+      select {
         padding: 0.7rem;
         border-radius: 10px;
         border: 1px solid $primary;
@@ -603,22 +623,6 @@ header {
         font-size: 1rem;
         background-color: #222;
         color: $gray;
-      }
-    }
-
-    button {
-      padding: 0.8rem;
-      border-radius: 10px;
-      border: none;
-      background-color: $primary;
-      color: $dark;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-
-      &:hover {
-        background-color: color.scale($primary, $lightness: -15%);
       }
     }
   }

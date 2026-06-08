@@ -37,6 +37,7 @@ $_SESSION['last_submit_time'][$ip] = time();
 // Дані
 $name = trim($_POST['name'] ?? '');
 $phone = trim($_POST['phone'] ?? '');
+$course = trim($_POST['course'] ?? '');
 
 // Валідація імені
 if (!preg_match("/^[А-Яа-яA-Za-zЇїІіЄєҐґ'’\- ]{2,50}$/u", $name)) {
@@ -55,7 +56,7 @@ if (!preg_match("/^(?=(?:.*\d){10,})[0-9\s\-\(\)\+]+$/", $phone)) {
 // Лист
 $to = "vitaljan@gmail.com";
 $subject = "Новий клієнт Holydrivers";
-$message = "Ім'я: $name\nТелефон: $phone";
+$message = "Ім'я: $name\nТелефон: $phone\nКурс:$course";
 $headers = "From: admin@holydrivers.com.ua\r\nReply-To: admin@holydrivers.com.ua\r\n";
 
 // Відправка

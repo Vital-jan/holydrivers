@@ -69,7 +69,12 @@
             кермування після перерви
           </div>
 
-          <div class="footer">✅ ПОСВІДЧЕННЯ Є</div>
+          <div class="footer">
+            <span>✅ ПОСВІДЧЕННЯ Є</span>
+            <button type="submit" id="signup_express">
+              <a href="/#register_form">🔥 Записатись</a>
+            </button>
+          </div>
         </div>
 
         <div class="program-card">
@@ -81,7 +86,12 @@
             практичного іспиту
           </div>
 
-          <div class="footer">ПІДГОТОВКА ДО ІСПИТУ 🚔</div>
+          <div class="footer">
+            <span>ПІДГОТОВКА ДО ІСПИТУ 🚔</span>
+            <button type="submit" id="signup_base">
+              <a href="/#register_form">🔥 Записатись</a>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -208,7 +218,7 @@
       </p>
     </section>
 
-    <section class="form-section">
+    <section class="form-section" id="register_form">
       <form id="bookingForm">
         <h2 class="section-title">✍️ Запишіться на тест-драйв:</h2>
         <p>
@@ -249,6 +259,20 @@
           tabindex="-1"
           autocomplete="off"
         />
+        <label>
+          Оберіть напрямок навчання:
+          <select
+            name="course"
+            required
+            id="select_course"
+            oninvalid="this.setCustomValidity('Оберіть напрямок навчання')"
+            onchange="this.setCustomValidity('')"
+          >
+            <option value="">-- Оберіть варіант --</option>
+            <option value="express">Експрес-курс (права вже є)</option>
+            <option value="basic">Базовий курс (отримани права)</option>
+          </select>
+        </label>
         <button type="submit">🔥 Отримати перше заняття</button>
         <p>Я зв'яжусь з Вами одразу після закінчення поточних занять</p>
       </form>
@@ -851,6 +875,19 @@
           closeMenu();
         }
       });
+
+      // вибір типу курсу для запису на тест-драйв
+      const course = document.getElementById("select_course");
+
+      document.getElementById("signup_base").onclick = () => {
+        course.selectedIndex = 2;
+        course.setCustomValidity("");
+      };
+
+      document.getElementById("signup_express").onclick = () => {
+        course.selectedIndex = 1;
+        course.setCustomValidity("");
+      };
     </script>
   </body>
 </html>
