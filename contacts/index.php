@@ -13,7 +13,7 @@
       <div class="contacts-page">
         <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
           <img src="/img/phone.png" alt="" />
-          <span class="phone"> +38 063 2209770</span>
+          <span class="phone" itemprop="telephone"> +38 063 2209770</span>
         </a>
 
         <a
@@ -62,9 +62,16 @@
         </a>
       </div>
       <div class="contacts-schedule">
+        <div>
+          <div>Автоінструктор Віталій</div>
+          <div>+380632209770</div>
+          <div>Київ, Теремки</div>
+        </div>
+        <div>&nbsp;</div>
+
         <div>Вільні слоти інструктора зазначено тут:</div>
         <div>
-          <a class="bold-text" href="grafik">графік занять 📅</a>
+          <a class="bold-text" href="/grafik">графік занять 📅</a>
         </div>
       </div>
     </section>

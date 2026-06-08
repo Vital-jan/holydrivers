@@ -240,6 +240,47 @@ header .home img {
     padding: 1.3rem 1.3rem;
   }
 }
+.section .callme {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  font-size: 1.5em;
+}
+@media (max-width: 768px) {
+  .section .callme {
+    padding-left: 30px;
+  }
+}
+.section .callme a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 30px;
+}
+.section .callme img {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.section .callme img.call-btn {
+  animation: pulse 0.9s infinite;
+  width: 150px;
+  height: 150px;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .section .programs-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -272,7 +313,7 @@ header .home img {
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
-  min-height: 4rem;
+  min-height: 6rem;
 }
 @media (max-width: 768px) {
   .section .program-card .header {
@@ -283,7 +324,7 @@ header .home img {
   font-size: 1.4rem;
   line-height: 1.4;
   text-align: left;
-  min-height: 14rem;
+  min-height: 20rem;
 }
 .section .program-card .main span {
   display: block;
@@ -529,10 +570,13 @@ header .home img {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   text-align: center;
 }
+.form-section form p {
+  font-size: 1.2rem;
+}
 .form-section form label {
   display: flex;
   flex-direction: column;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #f0f0f0;
 }
 .form-section form label input {
@@ -804,7 +848,7 @@ footer .contacts a.contacts-img img {
 
 /* розкритий стан */
 .read-more__toggle:checked ~ .read-more__content {
-  max-height: 3000px;
+  max-height: 10000px;
   opacity: 1;
   transform: translateY(0);
 }

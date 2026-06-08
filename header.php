@@ -18,7 +18,7 @@
   <?php if ($page==="home"): ?>
   <nav class="nav" id="nav">
     <a href="/#intro">Про мене</a>
-    <a href="/#programs">Для кого</a>
+    <a href="/#training-programs">Для кого</a>
     <a href="/#location">Локація</a>
     <a href="/#price">Вартість</a>
     <a href="/#register" class="cta">Тест-драйв</a>
@@ -33,3 +33,4 @@
   </div>
   <?php endif;?>
 </header>
+

@@ -1,8 +1,8 @@
 <footer id="contacts">
-  <div class="contacts">
+  <div class="contacts" itemscope itemtype="https://schema.org/LocalBusiness">
     <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
-      <img src="/img/phone.png" alt="" />
-      <span class="phone"> +38 063 2209770</span>
+      <img src="/img/phone.png" alt="Подзвонити автоінструктору" />
+      <span itemprop="telephone" class="phone"> +38 063 2209770</span>
     </a>
 
     <a
@@ -11,21 +11,18 @@
       class="contacts-img"
       target="_blank"
       rel="noopener noreferrer"
-      >
+    >
       <img src="/img/viber.png" alt="Написати автоінструктору" />
       <span>Viber</span>
     </a>
     <a
-    href="https://t.me/holydrivers_ua"
-    target="_blank"
-    class="contacts-img"
+      href="https://t.me/holydrivers_ua"
+      target="_blank"
+      class="contacts-img"
       rel="noopener noreferrer"
       title="Telegram канал автоінструктора"
     >
-      <img
-        src="/img/Telegram_logo.png"
-        alt="Telegram канал автоінструктора"
-      />
+      <img src="/img/Telegram_logo.png" alt="Telegram канал автоінструктора" />
       <span>Telegram</span>
     </a>
 
@@ -50,8 +47,14 @@
       <span>Youtube</span>
     </a>
   </div>
+  <div>
+    <div>Автоінструктор Віталій</div>
+    <div>+380632209770</div>
+    <div>Київ, Теремки</div>
+  </div>
+  <div>&nbsp;</div>
   <div>Вільні слоти інструктора зазначено тут:</div>
   <div>
-    <a class="bold-text" href="grafik">графік занять 📅</a>
+    <a class="bold-text" href="/grafik">графік занять 📅</a>
   </div>
 </footer>

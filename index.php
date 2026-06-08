@@ -2,21 +2,6 @@
 <html lang="uk">
   <?php include "head.php"?>
 
-  <!-- Google tag (gtag.js) -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-N7Y08PKZ4P"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "G-N7Y08PKZ4P");
-  </script>
-
   <body>
     <div class="overlay" id="overlay"></div>
     <!-- header -->
@@ -45,7 +30,11 @@
     </section>
 
     <div class="image-section">
-      <img src="/img/vital.jpg" alt="Автоінструктор" class="image-banner" />
+      <img
+        src="/img/vital.jpg"
+        alt="Автоінструктор Київ Теремки, Голосіїв"
+        class="image-banner"
+      />
     </div>
 
     <section class="section">
@@ -68,7 +57,7 @@
       </p>
     </section>
 
-    <section class="section" id="programs">
+    <section class="section" id="training-programs">
       <h2 class="section-title">Напрямки навчання:</h2>
       <div class="programs-grid">
         <div class="program-card">
@@ -115,6 +104,29 @@
           географію
         </li>
       </ul>
+    </section>
+
+    <section class="section">
+      <div class="callme">
+        <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
+          <img
+            class="call-btn"
+            src="/img/call.png"
+            alt="Подзвонити автоінструктору"
+          />
+          <span class="phone"> Подзвонити зараз</span>
+        </a>
+        <a
+          href="viber://chat?number=%2B380632209770"
+          title="Написати автоінструктору"
+          class="contacts-img"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/img/viber.png" alt="Написати автоінструктору" />
+          <span>Написати автоінструктору</span>
+        </a>
+      </div>
     </section>
 
     <section class="section" id="price">
@@ -190,7 +202,7 @@
     <section class="section" id="register">
       <h2 class="section-title">Ще вагаєтесь?</h2>
       <p>
-        - Запишіться на <spaan class="bold-text">тест-драйв</spaan> та
+        - Запишіться на <span class="bold-text">тест-драйв</span> та
         переконайтесь самі, що стати водієм може кожен. Що водити автомобіль
         зовсім не складно, не страшно, а навпаки - цікаво та захоплююче.
       </p>
@@ -198,7 +210,11 @@
 
     <section class="form-section">
       <form id="bookingForm">
-        <h2 class="section-title">✍️ Надіслати запит</h2>
+        <h2 class="section-title">✍️ Запишіться на тест-драйв:</h2>
+        <p>
+          Тест-драйв - це пробний урок без стресу. Почніть водити вже цього
+          тижня!
+        </p>
         <label>
           Ваше ім'я:
           <input
@@ -215,6 +231,7 @@
             type="tel"
             id="phone"
             name="phone"
+            placeholder="+380XXXXXXXXX"
             required
             pattern="(?=(?:.*\d){10,})[0-9\s\-\(\)\+]+"
             oninvalid="
@@ -232,7 +249,8 @@
           tabindex="-1"
           autocomplete="off"
         />
-        <button type="submit">Надіслати</button>
+        <button type="submit">🔥 Отримати перше заняття</button>
+        <p>Я зв'яжусь з Вами одразу після закінчення поточних занять</p>
       </form>
       <div id="successModal" class="modal">
         <div class="modal-content">
@@ -446,7 +464,13 @@
         Та головне - ви будете отримувати від водіння відчуття задоволення та
         свободи!
       </p>
-      <p class="bold">Мрії здійснюються!</p>
+      <p class="bold">
+        І одного дня ви просто сядете за кермо і поїдете туди, куди захочете
+      </p>
+      <p class="bold">
+        Ваше водійське посвідчення стане не просто документом, а справжньою
+        свободою пересування
+      </p>
     </section>
 
     <section class="section">
@@ -758,75 +782,75 @@
     </section>
 
     <?php include "footer.php";?>
+
+    <script src="sendmail.js"></script>
+    <script>
+      const sections = document.querySelectorAll("section[id]");
+      const links = document.querySelectorAll("nav a");
+
+      const overlay = document.getElementById("overlay");
+
+      // const headerOffset = 120; // 🔥 підстав свою висоту
+      const header = document.querySelector("header");
+      const headerOffset = header.getBoundingClientRect().height; // висота хедера
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+
+        sections.forEach((section) => {
+          const top = section.offsetTop - headerOffset;
+          const bottom = top + section.offsetHeight;
+
+          if (window.scrollY >= top && window.scrollY < bottom) {
+            current = section.id;
+          }
+        });
+
+        links.forEach((link) => {
+          link.classList.remove("active");
+
+          if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      const burger = document.getElementById("burger");
+      const nav = document.getElementById("nav");
+
+      burger.addEventListener("click", () => {
+        burger.classList.toggle("active");
+        nav.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+
+      function closeMenu() {
+        burger.classList.remove("active");
+        nav.classList.remove("active");
+        overlay.classList.remove("active");
+      }
+
+      // закриття при кліку на пункт
+      document.querySelectorAll("nav a").forEach((link) => {
+        link.addEventListener("click", () => {
+          closeMenu();
+        });
+      });
+
+      // 🔥 закриття при зміні розміру екрану
+      window.addEventListener("resize", () => {
+        closeMenu();
+      });
+
+      // 🔥 закриття по кліку за межами меню
+      overlay.addEventListener("click", closeMenu);
+
+      // 🔥 закриття Esc
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeMenu();
+        }
+      });
+    </script>
   </body>
 </html>
-
-<script src="sendmail.js"></script>
-<script>
-  const sections = document.querySelectorAll("section[id]");
-  const links = document.querySelectorAll("nav a");
-
-  const overlay = document.getElementById("overlay");
-
-  // const headerOffset = 120; // 🔥 підстав свою висоту
-  const header = document.querySelector("header");
-  const headerOffset = header.getBoundingClientRect().height; // висота хедера
-
-  window.addEventListener("scroll", () => {
-    let current = "";
-
-    sections.forEach((section) => {
-      const top = section.offsetTop - headerOffset;
-      const bottom = top + section.offsetHeight;
-
-      if (window.scrollY >= top && window.scrollY < bottom) {
-        current = section.id;
-      }
-    });
-
-    links.forEach((link) => {
-      link.classList.remove("active");
-
-      if (link.getAttribute("href") === "#" + current) {
-        link.classList.add("active");
-      }
-    });
-  });
-
-  const burger = document.getElementById("burger");
-  const nav = document.getElementById("nav");
-
-  burger.addEventListener("click", () => {
-    burger.classList.toggle("active");
-    nav.classList.toggle("active");
-    overlay.classList.toggle("active");
-  });
-
-  function closeMenu() {
-    burger.classList.remove("active");
-    nav.classList.remove("active");
-    overlay.classList.remove("active");
-  }
-
-  // закриття при кліку на пункт
-  document.querySelectorAll("nav a").forEach((link) => {
-    link.addEventListener("click", () => {
-      closeMenu();
-    });
-  });
-
-  // 🔥 закриття при зміні розміру екрану
-  window.addEventListener("resize", () => {
-    closeMenu();
-  });
-
-  // 🔥 закриття по кліку за межами меню
-  overlay.addEventListener("click", closeMenu);
-
-  // 🔥 закриття Esc
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeMenu();
-    }
-  });
-</script>
