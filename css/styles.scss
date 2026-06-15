@@ -60,6 +60,7 @@ h3 {
   font-weight: bold;
   background-color: $gray;
   color: $dark;
+  border-radius: 3px;
 }
 
 header {
@@ -588,7 +589,6 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
 
   h2 {
     width: 100%;
@@ -601,7 +601,6 @@ button {
     width: 100%;
     max-width: 400px;
     background-color: $dark;
-    padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     text-align: center;
@@ -973,4 +972,190 @@ footer {
 .contacts-schedule {
   font-size: 1.5em;
   text-align: center;
+  div {
+    padding: 5px;
+  }
+}
+
+.review-card {
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: $gray;
+  color: $dark;
+  border-left: 4px solid $primary;
+  margin-bottom: 10px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  &__avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: $primary;
+    color: $dark;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__stars {
+    margin-top: 0.2rem;
+    color: darken($primary, 12%);
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  &__text {
+    margin: 0 0 1rem;
+    line-height: 1.6;
+  }
+
+  &__footer {
+    a {
+      color: $dark;
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: $primary;
+      text-underline-offset: 4px;
+
+      &:hover {
+        color: darken($primary, 20%);
+      }
+    }
+  }
+}
+
+.review-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+  color: $primary;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 220px;
+    padding: 0.9rem 1.5rem;
+
+    border: 2px solid $primary;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+
+    background: transparent;
+    transition: 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.lessons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.lesson-card {
+  border: 1px solid $primary;
+  border-radius: 12px;
+  background: $dark;
+  overflow: hidden;
+  transition: 0.25s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($primary, 0.25);
+  }
+
+  &__link {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1.3rem;
+    color: $gray;
+    text-decoration: none;
+  }
+
+  &__thumb {
+    position: relative;
+    min-height: 140px;
+    background: #222;
+
+    img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__play {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba($dark, 0.75);
+    color: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+  }
+
+  &__content {
+    padding: 1rem 1rem 1rem 0;
+  }
+
+  &__type {
+    color: $primary;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    color: $primary;
+    margin: 0 0 0.6rem;
+    font-size: 1.6rem;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 768px) {
+    &__link {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    &__content {
+      padding: 1rem;
+    }
+
+    &__thumb {
+      min-height: 180px;
+    }
+  }
 }

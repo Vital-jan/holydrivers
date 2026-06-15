@@ -3,7 +3,7 @@
     <a href="/" class="logo" title="Головна сторінка">
       <img src="/img/logo.png" alt="Головна сторінка" />
     </a>
-    <h1>Уроки водіння з приватним автоінструктором</h1>
+    <h1><?php echo $h1;?></h1>
     <?php if ($page!="home"):?>
     <div class="home">
       <a href="/">
@@ -22,9 +22,9 @@
     <a href="/#location">Локація</a>
     <a href="/#price">Вартість</a>
     <a href="/#register" class="cta">Тест-драйв</a>
-    <a href="/program">Програма</a>
-    <a href="/#reviews">Відгуки</a>
-    <a href="/contacts">Контакти</a>
+    <a href="/program/">Програма</a>
+    <a href="/reviews/">Відгуки</a>
+    <a href="/contacts/">Контакти</a>
   </nav>
   <div class="burger" id="burger">
     <span></span>

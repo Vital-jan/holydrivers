@@ -1,9 +1,13 @@
 <!doctype html>
 <html lang="uk">
-  <?php $page="page"; include "../head.php";?>
+  <?php $page = "grafik"; $title = " Графік занять автоінструктора |
+  HolyDrivers"; $description = "Графік занять автоінструктора | HolyDrivers";
+  $canonical = "https://holydrivers.com.ua/grafik/"; $robots="noindex,follow";
+  include "../head.php"?>
 
   <body>
-    <?php $page="page"; include "../header.php"; ?>
+    <?php $page="page"; $h1="Графік занять автоінструктора в Києві"; include
+    "../header.php"; ?>
     <section id="userBar" class="section" style="display: none">
       <span id="userLabel"></span>
       <div id="period_finish" style="display: none"></div>

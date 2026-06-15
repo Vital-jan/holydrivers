@@ -49,12 +49,16 @@
   </div>
   <div>
     <div>Автоінструктор Віталій</div>
-    <div>+380632209770</div>
-    <div>Київ, Теремки</div>
+    <div>
+      <a href="tel:+380632209770" title="Подзвонити автоінструктору">
+        <span itemprop="telephone" class="phone"> +38 063 2209770</span>
+      </a>
+    </div>
+    <div>Київ, Голосіїв</div>
   </div>
   <div>&nbsp;</div>
   <div>Вільні слоти інструктора зазначено тут:</div>
   <div>
-    <a class="bold-text" href="/grafik">графік занять 📅</a>
+    <a class="bold-text" href="/grafik/">графік занять 📅</a>
   </div>
 </footer>

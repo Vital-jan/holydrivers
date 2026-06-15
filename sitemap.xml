@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://holydrivers.com.ua/</loc>
     <priority>1.0</priority>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-06-14</lastmod>
   </url>
+
+  <url>
+    <loc>https://holydrivers.com.ua/reviews/</loc>
+    <priority>0.9</priority>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+
+  <url>
+    <loc>https://holydrivers.com.ua/program/</loc>
+    <priority>0.8</priority>
+    <lastmod>2026-06-13</lastmod>
+  </url>
+
+  <url>
+    <loc>https://holydrivers.com.ua/contacts/</loc>
+    <priority>0.7</priority>
+    <lastmod>2026-06-13</lastmod>
+  </url>
+
 </urlset>
