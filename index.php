@@ -57,10 +57,6 @@
         ‍✔️ Моя мета — не просто навчити вас кермувати, а зробити так, щоб ви
         відчули впевненість, спокій та задоволення за кермом
       </p>
-      <p>
-        Для зручності учнів діє онлайн запис на заняття, персональний кабінет,
-        SMS-нагадування, щоб ви ніколи не пропустили свій час 📅
-      </p>
     </section>
 
     <section class="section" id="training-programs">
@@ -99,6 +95,24 @@
             </button>
           </div>
         </div>
+
+        <div class="program-card">
+          <div class="header">✨ Майстер-клас</div>
+
+          <div class="main">
+            <span>На вашому авто (механіка, автомат)</span>
+
+            Для водіїв, які їздять самостійно, але прагнуть підвищити свій
+            рівень
+          </div>
+
+          <div class="footer">
+            <span>✅ ДОСВІД ВОДІННЯ Є</span>
+            <button type="submit" id="signup_masterclass">
+              <a href="/#register_form">🔥 Записатись</a>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -111,22 +125,23 @@
         </li>
         <li>
           Заняття зазвичай розпочинаються та завершуються біля станцій метро
-          «Іподром» або «Виставковий центр» (ВДНГ). За домовленістю місце
-          зустрічі може бути призначене
+          «Іподром» або «Виставковий центр» (ВДНГ).
+        </li>
+        <li>
+          За домовленістю місце зустрічі може бути призначене
           <span class="bold-text">індивідуально</span>
         </li>
         <li>
-          Перші уроки водіння для початківців проводимо на території ВДНГ або в
-          мікрорайоні Жуляни на дорогах з обмеженим рухом. Поступово розширюємо
-          географію - Теремки, Деміївка, Голосіїв, Солом'янка, Печерськ,
-          Феофанія, Чабани, Гатне.
+          Як приватний автоінструктор у Києві, я підбираю маршрути відповідно до
+          рівня підготовки учня. Перші уроки водіння для початківців проводимо
+          на територіях з обмеженим рухом.
         </li>
         <li>
-          Як приватний автоінструктор у Києві, я підбираю маршрути відповідно до
-          рівня підготовки учня. Під час одного двогодинного заняття ми можемо
-          проїхати через кілька районів міста, відпрацьовуючи навички керування
-          автомобілем у реальних дорожніх умовах.
+          Надалі уроки водіння проходять у реальних дорожніх умовах різних
+          районів Києва — від спокійних вулиць до складних транспортних
+          розв'язок і жвавих магістралей.
         </li>
+        <li>Маршрути підбираються відповідно до рівня підготовки учня.</li>
       </ul>
     </section>
 
@@ -284,6 +299,7 @@
             <option value="">-- Оберіть варіант --</option>
             <option value="express">Експрес-курс (права вже є)</option>
             <option value="basic">Базовий курс (отримати права)</option>
+            <option value="masterclass">Майстер-клас (на вашому авто)</option>
           </select>
         </label>
         <button type="submit">🔥 Отримати перше заняття</button>
@@ -299,18 +315,10 @@
 
     <section class="section" id="program">
       <?php include "program/program_intro.php";?>
-      <div class="read-more">
-        <input type="checkbox" class="read-more__toggle" id="read_more_1" />
-
-        <div class="read-more__content">
-          <?php include "program/program.php";?>
-        </div>
-
-        <label
-          for="read_more_1"
-          data-open="Програма занять"
-          class="read-more__button"
-        ></label>
+      <div class="button-center">
+        <button type="submit" id="signup_express">
+          <a href="program/">🕒 Програма погодинно ➜</a>
+        </button>
       </div>
     </section>
 
@@ -334,6 +342,11 @@
         Ваше водійське посвідчення стане не просто документом, а справжньою
         свободою пересування
       </p>
+      <div class="button-center">
+        <button type="submit" id="signup_express">
+          <a href="/#register">🔥 Записатись</a>
+        </button>
+      </div>
     </section>
 
     <section class="section">
@@ -395,25 +408,8 @@
     </div>
 
     <section class="section" id="reviews">
-      <h2 class="section-title">⭐ 5.0 · Відгуки у Google Maps:</h2>
+      <h2 class="section-title">⭐ 5.0 · Відгуки учнів</h2>
 
-      <div class="read-more">
-        <!-- ОБОВʼЯЗКОВО ЗМІНИТИ ID: -->
-        <input type="checkbox" class="read-more__toggle" id="read_more_3" />
-        <!-- ****************************************** -->
-
-        <div class="read-more__content">
-          <?php include "reviews/reviews.php";?>
-        </div>
-
-        <!-- ОБОВʼЯЗКОВО ЗМІНИТИ ID: -->
-        <!-- ****************************************** -->
-        <label
-          for="read_more_3"
-          data-open="Дивитись відгуки"
-          class="read-more__button"
-        ></label>
-      </div>
       <div class="review-actions">
         <a
           href="https://maps.app.goo.gl/TfcniZ7A4mXYm5MZA"
@@ -679,13 +675,18 @@
       // вибір типу курсу для запису на тест-драйв
       const course = document.getElementById("select_course");
 
+      document.getElementById("signup_express").onclick = () => {
+        course.selectedIndex = 1;
+        course.setCustomValidity("");
+      };
+
       document.getElementById("signup_base").onclick = () => {
         course.selectedIndex = 2;
         course.setCustomValidity("");
       };
 
-      document.getElementById("signup_express").onclick = () => {
-        course.selectedIndex = 1;
+      document.getElementById("signup_masterclass").onclick = () => {
+        course.selectedIndex = 3;
         course.setCustomValidity("");
       };
     </script>

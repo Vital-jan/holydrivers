@@ -1,21 +1,44 @@
 <!doctype html>
 <html lang="uk">
-  <?php include "../head.php"?>
+  <?php
+  $page = ".......";
+  ?>
+
+  <?php
+  $title = ".......";
+  ?>
+
+  <?php
+  $description = "...............................";
+  ?>
+
+  <?php
+  $canonical = "https://holydrivers.com.ua/........";
+  ?>
+
+  <?php
+  $robots = "index,follow";
+  ?>
+
+  <?php
+  include "../head.php";
+  ?>
 
   <body>
-    <div class="overlay" id="overlay"></div>
-    <!-- header -->
-    <?php $page="pagename"; include "../header.php"?>
-    <!-- header -->
+    <?php
+    $h1 = "Навчальні матеріали для водіїв";
+    ?>
 
-    <section class="section" id="intro">
-      <h2 class="section-title">Вітаю!</h2>
+    <?php
+    include "../header.php";
+    ?>
 
-      <p>
-        Мене звати Віталій, я атестований автоінструктор та ветеран ЗСУ. Маю
-        міцні нерви, спокійний характер і вмію знаходити підхід до кожного учня
-      </p>
+
+    <section class="section ">
     </section>
-    <?php include "../footer.php";?>
+
+    <?php
+    include "../footer.php";
+    ?>
   </body>
 </html>
