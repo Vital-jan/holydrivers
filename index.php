@@ -407,8 +407,44 @@
       />
     </div>
 
-    <section class="section" id="reviews">
+    <section class="reviews">
       <h2 class="section-title">⭐ 5.0 · Відгуки учнів</h2>
+      <?php include "reviews/reviews_list.php";?>
+
+      <div class="reviews-wrapper">
+        <?php foreach ($reviews as $review):?>
+
+        <div class="review-card home">
+          <div class="review-card__header">
+            <div class="review-card__avatar">
+              <?php echo mb_substr($review['name'], 0, 1); ?>
+            </div>
+
+            <div>
+              <div class="review-card__name">
+                <?php echo $review['name']; ?>
+              </div>
+              <div class="review-card__stars">★★★★★</div>
+            </div>
+          </div>
+
+          <blockquote class="review-card__text">
+            <?php echo $review['text']; ?>...
+          </blockquote>
+
+          <div class="review-card__footer">
+            <a
+              href="<?php echo $review['link']?>"
+              target="_blank"
+              rel="noopener"
+            >
+              Читати повністю
+            </a>
+          </div>
+        </div>
+
+        <?php endforeach; ?>
+      </div>
 
       <div class="review-actions">
         <a
@@ -429,7 +465,7 @@
       </div>
     </section>
 
-    <section class="reviews">
+    <!-- <section class="reviews">
       <h2 class="section-title">Мої випускники та випускниці:</h2>
       <div class="reviews-wrapper">
         <div class="review">
@@ -557,7 +593,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section class="reviews" id="videos">
       <h2 class="section-title">Відео</h2>

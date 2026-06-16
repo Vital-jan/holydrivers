@@ -304,17 +304,12 @@ button:hover {
   }
 }
 .section .programs-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   margin-top: 30px;
   border: 2px solid #ffd700;
   border-radius: 12px;
   overflow: hidden;
-}
-@media (max-width: 768px) {
-  .section .programs-grid {
-    grid-template-columns: 1fr;
-  }
 }
 .section .program-card {
   padding: 20px;
@@ -335,7 +330,6 @@ button:hover {
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
-  min-height: 6rem;
 }
 @media (max-width: 768px) {
   .section .program-card .header {
@@ -346,7 +340,6 @@ button:hover {
   font-size: 1.4rem;
   line-height: 1.4;
   text-align: left;
-  min-height: 20rem;
 }
 .section .program-card .main span {
   display: block;
@@ -461,7 +454,6 @@ button:hover {
 }
 /* Відгуки */
 .reviews {
-  padding: 2.6rem 1.3rem;
   max-width: 1000px;
   margin: auto;
   background-color: #111111;
@@ -533,9 +525,9 @@ button:hover {
 }
 
 .review-text {
+  display: flex;
   background-color: #111111;
   padding: 1rem;
-  display: flex;
   align-items: flex-start;
   overflow-y: auto;
   max-height: 260px;
@@ -940,6 +932,9 @@ footer .contacts a.contacts-img img {
   color: #111111;
   border-left: 4px solid #ffd700;
   margin-bottom: 10px;
+}
+.review-card.home {
+  flex: 0 0 600px;
 }
 .review-card__header {
   display: flex;

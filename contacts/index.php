@@ -78,10 +78,10 @@
         </div>
         <div>&nbsp;</div>
 
-        <div>Вільні слоти інструктора зазначено тут:</div>
+        <!-- <div>Вільні слоти інструктора зазначено тут:</div>
         <div>
           <a class="bold-text" href="/grafik/">графік занять 📅</a>
-        </div>
+        </div> -->
       </div>
     </section>
   </body>

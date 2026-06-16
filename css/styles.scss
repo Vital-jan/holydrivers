@@ -264,6 +264,7 @@ button {
   padding: calc(1rem * $font-scale) calc(1rem * $font-scale);
   padding-left: 20%;
   padding-right: 20%;
+
   @media (max-width: 768px) {
     padding: calc(1rem * $font-scale) calc(1rem * $font-scale);
   }
@@ -312,15 +313,14 @@ button {
     }
   }
   .programs-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     margin-top: 30px;
     border: 2px solid $primary;
     border-radius: 12px;
     overflow: hidden;
 
     @media (max-width: 768px) {
-      grid-template-columns: 1fr;
     }
   }
 
@@ -343,7 +343,6 @@ button {
       font-weight: bold;
       margin-bottom: 20px;
       text-align: center;
-      min-height: 6rem;
       @media (max-width: 768px) {
         min-height: auto;
       }
@@ -353,7 +352,6 @@ button {
       font-size: 1.4rem;
       line-height: 1.4;
       text-align: left;
-      min-height: 20rem;
       span {
         display: block;
         font-style: italic;
@@ -474,7 +472,7 @@ button {
 
 /* Відгуки */
 .reviews {
-  padding: calc(2rem * $font-scale) calc(1rem * $font-scale);
+  // padding: calc(2rem * $font-scale) calc(1rem * $font-scale);
   max-width: 1000px;
   margin: auto;
   background-color: $dark;
@@ -547,9 +545,9 @@ button {
 }
 
 .review-text {
+  display: flex;
   background-color: $dark;
   padding: 1rem;
-  display: flex;
   align-items: flex-start;
   overflow-y: auto;
   max-height: 260px;
@@ -984,6 +982,10 @@ footer {
   color: $dark;
   border-left: 4px solid $primary;
   margin-bottom: 10px;
+
+  &.home {
+    flex: 0 0 600px;
+  }
 
   &__header {
     display: flex;
