@@ -13,7 +13,7 @@
   <meta name="description" content="<?php echo $description;?>" />
   <meta name="robots" content="<?php echo $robots;?>" />
   <link rel="canonical" href="<?php echo $canonical;?>" />
-  <link rel="stylesheet" href="/css/styles.css?v=4.7" />
+  <link rel="stylesheet" href="/css/styles.css?v=5.1" />
   <link rel="icon" href="/favicon.ico" />
   <!-- Google tag (gtag.js) -->
   <script
@@ -28,6 +28,7 @@
     gtag("js", new Date());
 
     gtag("config", "G-N7Y08PKZ4P");
+    gtag("config", "AW-17507774985");
   </script>
 
   <script type="application/ld+json">

@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../svitnavkolo"
+		},
+		{
+			"path": "../igy6"
+		},
+		{
+			"path": "../11ty"
+		},
+		{
+			"path": "../hd_studio"
+		},
+		{
+			"path": "../airhockey"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501,
+		"liveServer.settings.multiRootWorkspaceName": "airhockey"
+	}
+}
