@@ -8,12 +8,12 @@
 
   <body>
     <!-- header -->
-    <?php $page="contacts"; $h1="Контакти автоінструктора"; include
+    <?php $page="contacts"; $h1="Контакти автоінструктора в Києві"; include
     "../header.php"?>
     <!-- header -->
 
     <section class="section" id="intro">
-      <h2 class="section-title">Контакти автоінструктора в Києві:</h2>
+      <!-- <h2 class="section-title">Контакти автоінструктора в Києві:</h2> -->
 
       <div class="contacts-page">
         <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
@@ -84,7 +84,7 @@
               <span itemprop="telephone" class="phone"> +38 063 2209770</span>
             </a>
           </div>
-          <div>Київ, Голосіїв</div>
+          <div>Київ | Голосіїв | Теремки</div>
         </div>
         <div>&nbsp;</div>
 

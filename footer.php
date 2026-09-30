@@ -54,7 +54,7 @@
       rel="noopener noreferrer"
     >
       <img src="/img/tiktok_logo.png" alt="Tiktok канал автоінструктора в Києві" />
-      <span>Youtube</span>
+      <span>Tiktok</span>
     </a>
   </div>
   <div>
@@ -64,7 +64,7 @@
         <span itemprop="telephone" class="phone"> +38 063 2209770</span>
       </a>
     </div>
-    <div>Київ, Голосіїв, Теремки</div>
+    <div>Київ | Голосіїв | Теремки</div>
   </div>
   <div>&nbsp;</div>
   <!-- <div>Вільні слоти інструктора зазначено тут:</div>
