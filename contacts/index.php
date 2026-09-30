@@ -65,6 +65,16 @@
           <img src="/img/youtube.png" alt="Youtube канал автоінструктора" />
           <span>Youtube</span>
         </a>
+        <a
+          href="https://www.tiktok.com/@holydrivers"
+          title="Tiktok канал автоінструктора"
+          class="contacts-img"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/img/tiktok_logo.png" alt="Tiktok канал автоінструктора" />
+          <span>Tiktok</span>
+        </a>
       </div>
       <div class="contacts-schedule">
         <div>
