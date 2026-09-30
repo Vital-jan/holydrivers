@@ -71,8 +71,7 @@
     </h3>
     <section class="section">
       <h2 class="section-title">
-        Щоб отримувати актуальну інформацію першими 🔔 підпишіться на
-        telegram-канал автоінструктора:
+        🔔 Не забудьте підписатись:
       </h2>
       <p>
         <a
@@ -84,10 +83,52 @@
         >
           <img
             src="/img/Telegram_logo.png"
-            alt="Telegram Kanal автоінструктора"
+            alt="Telegram Kanal автоінструктора в Києві"
             style="width: 36px; height: 36px"
           />
-          <span>навчальні матеріали та корисна інформація для водіїв</span>
+          <span>Ваш автоінструктор у Telegram</span>
+        </a>
+        <a
+          href="https://fb.com/holydrivers"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="display: inline-flex; align-items: center; gap: 6px"
+          title="Facebook сторінка автоінструктора"
+        >
+          <img
+            src="/img/fb.png"
+            alt="Facebook сторінка автоінструктора в Києві"
+            style="width: 36px; height: 36px"
+          />
+          <span>Ваш автоінструктор на Facebook</span>
+        </a>
+        <a
+          href="https://youtube.com/@HolyDrivers"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="display: inline-flex; align-items: center; gap: 6px"
+          title="Youtube канал автоінструктора"
+        >
+          <img
+            src="/img/youtube.png"
+            alt="Youtube канал автоінструктора в Києві"
+            style="width: 36px; height: 36px"
+          />
+          <span>Ваш автоінструктор на Youtube</span>
+        </a>
+        <a
+          href="https://www.tiktok.com/@holydrivers"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="display: inline-flex; align-items: center; gap: 6px"
+          title="Tiktok канал автоінструктора"
+        >
+          <img
+            src="/img/tiktok_logo.png"
+            alt="Tiktok канал автоінструктора в Києві"
+            style="width: 36px; height: 36px"
+          />
+          <span>Ваш автоінструктор на Tiktok</span>
         </a>
       </p>
     </section>

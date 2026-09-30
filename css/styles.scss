@@ -453,7 +453,6 @@ button {
   margin-top: 40px;
   display: flex;
   justify-content: center;
-  max-width: 100%;
 
   .image-banner {
     width: 60%;
@@ -705,7 +704,8 @@ button {
   }
   tr:nth-child(4) td,
   tr:nth-child(6) td,
-  tr:nth-child(8) td {
+  tr:nth-child(8) td,
+  tr:nth-child(10) td {
     height: 10px !important;
     max-height: 10px;
     line-height: 10px;

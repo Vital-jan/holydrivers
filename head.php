@@ -13,7 +13,7 @@
   <meta name="description" content="<?php echo $description;?>" />
   <meta name="robots" content="<?php echo $robots;?>" />
   <link rel="canonical" href="<?php echo $canonical;?>" />
-  <link rel="stylesheet" href="/css/styles.css?v=5.1" />
+  <link rel="stylesheet" href="/css/styles.css?v=5.4" />
   <link rel="icon" href="/favicon.ico" />
   <!-- Google tag (gtag.js) -->
   <script

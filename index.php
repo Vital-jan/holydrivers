@@ -25,7 +25,7 @@
         Навчання проводжу на автомобілі з
         <span class="bold-text">автоматичною коробкою передач</span>
       </p>
-      <p>
+      <!-- <p>
         Веду
         <a
           href="https://www.youtube.com/@HolyDrivers/shorts"
@@ -44,11 +44,15 @@
         >
         канали, де розбираю практичні ситуації на дорозі, помилки водіїв і
         особливості підготовки до іспиту.
-      </p>
+      </p> -->
     </section>
 
     <section class="image-section">
-      <img class="image-banner" src="/img/slogan_transparent.png" alt="" />
+      <img
+        class="image-banner"
+        src="/img/slogan_transparent.png"
+        alt="HolyDrivers — більше, ніж водіння!"
+      />
     </section>
 
     <section class="section">
@@ -60,12 +64,19 @@
         ✨ Ми працюємо в атмосфері взаємоповаги, довіри й підтримки,
         перетворюючи кожне заняття на захопливу подорож
       </p>
+
+      <p>
+        Ось що про це говорять учні:
+        <a href="/reviews">
+          <span class="bold-text"> ⭐ Читати відгуки </span>
+        </a>
+      </p>
     </section>
 
     <div class="image-section">
       <img
         src="/img/vital.jpg"
-        alt="Автоінструктор Київ Теремки, Голосіїв"
+        alt="Приватний автоінструктор у Києві — Теремки, Голосіїв"
         class="image-banner"
       />
     </div>
@@ -151,8 +162,9 @@
           <span class="bold-text">автоматичною коробкою передач</span> (АКПП).
         </li>
         <li>
-          Заняття зазвичай розпочинаються та завершуються біля станцій метро
-          «Іподром» або «Виставковий центр» (ВДНГ).
+          Заняття зазвичай розпочинаються та завершуються в районі Теремки
+          (Голосіїв) біля станцій метро «Іподром» або «Виставковий центр»
+          (ВДНГ).
         </li>
         <li>
           За домовленістю місце зустрічі може бути призначене
@@ -245,25 +257,33 @@
             href="https://t.me/holydrivers_ua"
             target="_blank"
             rel="noopener noreferrer"
-            title="Telegram канал автоінструктора"
-            >Telegram канал </a
+            title="Telegram"
+            >Telegram канал</a
+          >,
+          <a
+            href="https://fb.com/holydrivers"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Facebook"
+            >Facebook сторінка</a
           >,
           <a
             href="https://youtube.com/@HolyDrivers"
             target="_blank"
             rel="noopener noreferrer"
-            title="Youtube канал автоінструктора"
-            >Youtube канал ▶️</a
+            title="Youtube"
+            >Youtube</a
           >
           та
           <a
-            href="https://fb.com/holydrivers"
+            href="https://www.tiktok.com/@holydrivers"
             target="_blank"
             rel="noopener noreferrer"
-            title="Facebook сторінка автоінструктора"
-            >Facebook сторінка</a
+            title="Tiktok"
+            >Tiktok</a
           >
-          з навчальними матеріалами та корисною інформацію для водіїв
+
+          канали з навчальними матеріалами та корисною інформацію для водіїв
         </li>
       </ul>
     </section>
@@ -432,7 +452,7 @@
     <div class="image-section">
       <img
         src="/img/city-driving.png"
-        alt="Підготовка до іспиту"
+        alt="Підготовка до практичного іспиту з водіння з приватним автоінструктором у Києві"
         class="image-banner"
       />
     </div>

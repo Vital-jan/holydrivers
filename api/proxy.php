@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 // ----- Далі твій проксі -----
 
-$baseUrl = "hhttps://script.google.com/macros/s/AKfycbxtnnDflIk_Pw9bzVeVBKYWr414Ue0iIHXnJQARrvsP_4ZgivcXzpRXtwnmGh0Ob-BZBA/exec";
+$baseUrl = "https://script.google.com/macros/s/AKfycbyljenmUjIPQYNck0Qv-VmBrhohpj5MUtvzOcK8hcxi7rs8SE5lUcKNz3dZMPIj9uPXXg/exec";
 
 // Проксі передає всі GET-параметри (user, mode, debug тощо)
 $query = http_build_query($_GET);
@@ -37,7 +37,7 @@ if (function_exists('curl_init')) {
         CURLOPT_URL            => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_TIMEOUT        => 10,
+        CURLOPT_TIMEOUT        => 30,
     ]);
 
     $response = curl_exec($ch);

@@ -439,7 +439,6 @@ button:hover {
   margin-top: 40px;
   display: flex;
   justify-content: center;
-  max-width: 100%;
 }
 .image-section .image-banner {
   width: 60%;
@@ -679,7 +678,8 @@ button:hover {
 }
 .schedule tr:nth-child(4) td,
 .schedule tr:nth-child(6) td,
-.schedule tr:nth-child(8) td {
+.schedule tr:nth-child(8) td,
+.schedule tr:nth-child(10) td {
   height: 10px !important;
   max-height: 10px;
   line-height: 10px;
