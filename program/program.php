@@ -23,7 +23,7 @@
                 <li>Об’їзд нерухомої перешкоди</li>
               </ul>
             </td>
-            <td class="hours">2–4 год</td>
+            <td class="hours">4–6 год</td>
           </tr>
 
           <tr>
