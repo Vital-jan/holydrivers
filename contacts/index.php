@@ -17,7 +17,7 @@
 
       <div class="contacts-page">
         <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
-          <img src="/img/phone.png" alt="" />
+          <img src="/img/phone.webp" alt="" />
           <span class="phone" itemprop="telephone"> +38 063 2209770</span>
         </a>
 
@@ -28,7 +28,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src="/img/viber.png" alt="Написати автоінструктору" />
+          <img src="/img/viber.webp" alt="Написати автоінструктору" />
           <span>Viber</span>
         </a>
         <a
@@ -39,7 +39,7 @@
           title="Telegram канал автоінструктора"
         >
           <img
-            src="/img/Telegram_logo.png"
+            src="/img/Telegram_logo.webp"
             alt="Telegram канал автоінструктора"
           />
           <span>Telegram</span>
@@ -52,7 +52,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src="/img/fb.png" alt="Facebook сторінка автоінструктора" />
+          <img src="/img/fb.webp" alt="Facebook сторінка автоінструктора" />
           <span>Facebook</span>
         </a>
         <a
@@ -62,7 +62,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src="/img/youtube.png" alt="Youtube канал автоінструктора" />
+          <img src="/img/youtube.webp" alt="Youtube канал автоінструктора" />
           <span>Youtube</span>
         </a>
         <a
@@ -72,7 +72,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src="/img/tiktok_logo.png" alt="Tiktok канал автоінструктора" />
+          <img src="/img/tiktok_logo.webp" alt="Tiktok канал автоінструктора" />
           <span>Tiktok</span>
         </a>
       </div>
@@ -88,10 +88,6 @@
         </div>
         <div>&nbsp;</div>
 
-        <!-- <div>Вільні слоти інструктора зазначено тут:</div>
-        <div>
-          <a class="bold-text" href="/grafik/">графік занять 📅</a>
-        </div> -->
       </div>
     </section>
   </body>

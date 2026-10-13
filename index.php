@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="uk">
   <?php $page = "home"; $title = "Автоінструктор Київ (Теремки, Голосіїв) —
-  уроки водіння АКПП | HolyDrivers"; $description = "Автоінструктор у Києві:
-  Теремки, Голосіїв, ВДНГ. Уроки водіння на АКПП без криків і тиску — з нуля або
-  після перерви. Запис онлайн"; $canonical = "https://holydrivers.com.ua/";
+  більше, ніж водіння!"; $description = "Автоінструктор у Києві: Теремки,
+  Голосіїв, ВДНГ. Уроки водіння на АКПП без криків і тиску — з нуля або після
+  перерви. Запис онлайн"; $canonical = "https://holydrivers.com.ua/";
   $robots="index,follow"; include "head.php"?>
 
   <body>
@@ -29,9 +29,12 @@
 
     <div class="image-section">
       <img
-        src="/img/vital.jpg"
+        src="/img/vital.webp"
         alt="Приватний автоінструктор у Києві — Теремки, Голосіїв"
+        width="960"
+        height="767"
         class="image-banner"
+        fetchpriority="high"
       />
     </div>
 
@@ -55,8 +58,10 @@
     <section class="image-section">
       <img
         class="image-banner condensed"
-        src="/img/slogan_transparent.png"
+        src="/img/slogan_transparent.webp"
         alt="Автоінструктор в Києві"
+        loading="lazy"
+        decoding="async"
       />
     </section>
 
@@ -80,7 +85,7 @@
           controls
           preload="none"
           playsinline
-          poster="/img/monster.png"
+          poster="/img/monster.webp"
           width="720"
           height="1280"
         >
@@ -216,8 +221,10 @@
         <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
           <img
             class="call-btn"
-            src="/img/call.png"
+            src="/img/call.webp"
             alt="Подзвонити автоінструктору"
+            loading="lazy"
+            decoding="async"
           />
           <span class="phone"> Подзвонити зараз</span>
         </a>
@@ -449,9 +456,11 @@
 
     <div class="image-section">
       <img
-        src="/img/city-driving.png"
+        src="/img/city-driving.webp"
         alt="Підготовка до практичного іспиту з водіння з приватним автоінструктором у Києві"
         class="image-banner"
+        loading="lazy"
+        decoding="async"
       />
     </div>
 

@@ -82,7 +82,7 @@
           title="Телеграм канал автоінструктора"
         >
           <img
-            src="/img/Telegram_logo.png"
+            src="/img/Telegram_logo.webp"
             alt="Telegram Kanal автоінструктора в Києві"
             style="width: 36px; height: 36px"
           />
@@ -96,7 +96,7 @@
           title="Facebook сторінка автоінструктора"
         >
           <img
-            src="/img/fb.png"
+            src="/img/fb.webp"
             alt="Facebook сторінка автоінструктора в Києві"
             style="width: 36px; height: 36px"
           />
@@ -110,7 +110,7 @@
           title="Youtube канал автоінструктора"
         >
           <img
-            src="/img/youtube.png"
+            src="/img/youtube.webp"
             alt="Youtube канал автоінструктора в Києві"
             style="width: 36px; height: 36px"
           />
@@ -124,7 +124,7 @@
           title="Tiktok канал автоінструктора"
         >
           <img
-            src="/img/tiktok_logo.png"
+            src="/img/tiktok_logo.webp"
             alt="Tiktok канал автоінструктора в Києві"
             style="width: 36px; height: 36px"
           />

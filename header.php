@@ -1,14 +1,14 @@
 <header>
   <div class="header-top">
     <a href="javascript:history.back()" class="logo" title="Головна сторінка">
-      <img src="/img/logo.png" alt="Головна сторінка" />
+      <img src="/img/logo.webp" alt="Головна сторінка" />
     </a>
     <h1><?php echo $h1;?></h1>
     <?php if ($page!="home"):?>
     <div class="home">
       <a href="javascript:history.back()">
         <img
-          src="/img/home.png"
+          src="/img/home.webp"
           alt="На головну сторінку приватний автоінсруктор теремки"
         />
       </a>

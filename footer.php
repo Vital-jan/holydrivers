@@ -1,7 +1,7 @@
 <footer id="contacts">
   <div class="contacts" itemscope itemtype="https://schema.org/LocalBusiness">
     <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
-      <img src="/img/phone.png" alt="Подзвонити автоінструктору" />
+      <img src="/img/phone.webp" alt="Подзвонити автоінструктору" />
       <span itemprop="telephone" class="phone"> +38 063 2209770</span>
     </a>
 
@@ -12,7 +12,7 @@
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="/img/viber.png" alt="Написати автоінструктору в Києві" />
+      <img src="/img/viber.webp" alt="Написати автоінструктору в Києві" />
       <span>Viber</span>
     </a>
     <a
@@ -22,7 +22,7 @@
       rel="noopener noreferrer"
       title="Автоінструктор в Києві на Telegram"
     >
-      <img src="/img/Telegram_logo.png" alt="Telegram канал автоінструктора в Києві" />
+      <img src="/img/Telegram_logo.webp" alt="Telegram канал автоінструктора в Києві" />
       <span>Telegram</span>
     </a>
 
@@ -33,7 +33,7 @@
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="/img/fb.png" alt="Facebook сторінка автоінструктора в Києві" />
+      <img src="/img/fb.webp" alt="Facebook сторінка автоінструктора в Києві" />
       <span>Facebook</span>
     </a>
     <a
@@ -43,7 +43,7 @@
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="/img/youtube.png" alt="Youtube канал автоінструктора в Києві" />
+      <img src="/img/youtube.webp" alt="Youtube канал автоінструктора в Києві" />
       <span>Youtube</span>
     </a>
     <a
@@ -53,7 +53,7 @@
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="/img/tiktok_logo.png" alt="Tiktok канал автоінструктора в Києві" />
+      <img src="/img/tiktok_logo.webp" alt="Tiktok канал автоінструктора в Києві" />
       <span>Tiktok</span>
     </a>
   </div>
