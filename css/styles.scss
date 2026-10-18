@@ -348,14 +348,28 @@ button {
       }
     }
 
+    .description {
+      font-weight: bold;
+      background-color: $gray;
+      color: $dark;
+      border-radius: 3px;
+      padding: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
     .main {
       font-size: 1.4rem;
       line-height: 1.4;
       text-align: left;
+      color: $primary;
       span {
         display: block;
         font-style: italic;
         padding-bottom: 2rem;
+      }
+      ul li {
+        font-size: inherit;
       }
       @media (max-width: 768px) {
         min-height: auto;

@@ -336,15 +336,28 @@ button:hover {
     min-height: auto;
   }
 }
+.section .program-card .description {
+  font-weight: bold;
+  background-color: #f0f0f0;
+  color: #111111;
+  border-radius: 3px;
+  padding: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
 .section .program-card .main {
   font-size: 1.4rem;
   line-height: 1.4;
   text-align: left;
+  color: #ffd700;
 }
 .section .program-card .main span {
   display: block;
   font-style: italic;
   padding-bottom: 2rem;
+}
+.section .program-card .main ul li {
+  font-size: inherit;
 }
 @media (max-width: 768px) {
   .section .program-card .main {

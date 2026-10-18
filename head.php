@@ -67,7 +67,8 @@ window.addEventListener("load", function () {
       "sameAs": [
         "https://t.me/holydrivers_ua",
         "https://youtube.com/@HolyDrivers",
-        "https://fb.com/holydrivers"
+        "https://fb.com/holydrivers",
+        "https://www.tiktok.com/@holydrivers"
       ]
     }
   </script>
