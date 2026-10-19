@@ -777,7 +777,7 @@ footer {
     justify-content: center;
     gap: calc(1rem * $font-scale);
     font-weight: normal;
-    padding-bottom: 40px;
+    padding-top: 40px;
     a {
       color: $dark;
       text-decoration: none;
@@ -1261,6 +1261,18 @@ footer {
     gap: 20px;
     width: 100%;
     color: $primary;
+    span:first-child {
+      flex: 1;
+    }
+
+    .slogan-img {
+      flex-shrink: 0;
+      width: 30%;
+
+      img {
+        width: 100%;
+      }
+    }
   }
 
   @media (max-width: 768px) {

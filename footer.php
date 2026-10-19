@@ -1,20 +1,26 @@
 <footer id="contacts">
-  <div class="contacts" itemscope itemtype="https://schema.org/LocalBusiness">
-    <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
-      <img src="/img/phone.webp" alt="Подзвонити автоінструктору" />
-      <span itemprop="telephone" class="phone"> +38 063 2209770</span>
-    </a>
+  <div>
+    <div class="contacts" itemscope itemtype="https://schema.org/LocalBusiness">
+      <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
+        <img src="/img/phone.webp" alt="Подзвонити автоінструктору" />
+        <span itemprop="telephone" class="phone"> +38 063 2209770</span>
+      </a>
 
-    <a
-      href="viber://chat?number=%2B380632209770"
-      title="Написати автоінструктору"
-      class="contacts-img"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img src="/img/viber.webp" alt="Написати автоінструктору в Києві" />
-      <span>Viber</span>
-    </a>
+      <a
+        href="viber://chat?number=%2B380632209770"
+        title="Написати автоінструктору"
+        class="contacts-img"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src="/img/viber.webp" alt="Написати автоінструктору в Києві" />
+        <span>Viber</span>
+      </a>
+    </div>
+    <div>Київ | Голосіїв | Теремки</div>
+  </div>
+
+  <div class="contacts" itemscope itemtype="https://schema.org/LocalBusiness">
     <a
       href="https://t.me/holydrivers_ua"
       target="_blank"
@@ -22,7 +28,10 @@
       rel="noopener noreferrer"
       title="Автоінструктор в Києві на Telegram"
     >
-      <img src="/img/Telegram_logo.webp" alt="Telegram канал автоінструктора в Києві" />
+      <img
+        src="/img/Telegram_logo.webp"
+        alt="Telegram канал автоінструктора в Києві"
+      />
       <span>Telegram</span>
     </a>
 
@@ -43,7 +52,10 @@
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="/img/youtube.webp" alt="Youtube канал автоінструктора в Києві" />
+      <img
+        src="/img/youtube.webp"
+        alt="Youtube канал автоінструктора в Києві"
+      />
       <span>Youtube</span>
     </a>
     <a
@@ -53,22 +65,11 @@
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="/img/tiktok_logo.webp" alt="Tiktok канал автоінструктора в Києві" />
+      <img
+        src="/img/tiktok_logo.webp"
+        alt="Tiktok канал автоінструктора в Києві"
+      />
       <span>Tiktok</span>
     </a>
   </div>
-  <div>
-    <div>Автоінструктор Віталій</div>
-    <div>
-      <a href="tel:+380632209770" title="Подзвонити автоінструктору">
-        <span itemprop="telephone" class="phone"> +38 063 2209770</span>
-      </a>
-    </div>
-    <div>Київ | Голосіїв | Теремки</div>
-  </div>
-  <div>&nbsp;</div>
-  <!-- <div>Вільні слоти інструктора зазначено тут:</div>
-  <div>
-    <a class="bold-text" href="/grafik/">графік занять 📅</a>
-  </div> -->
 </footer>

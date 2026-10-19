@@ -753,7 +753,7 @@ footer .contacts {
   justify-content: center;
   gap: 1.3rem;
   font-weight: normal;
-  padding-bottom: 40px;
+  padding-top: 40px;
 }
 footer .contacts a {
   color: #111111;
@@ -1180,6 +1180,16 @@ footer .contacts a.contacts-img img {
   gap: 20px;
   width: 100%;
   color: #ffd700;
+}
+.hero-section .section-title span:first-child {
+  flex: 1;
+}
+.hero-section .section-title .slogan-img {
+  flex-shrink: 0;
+  width: 30%;
+}
+.hero-section .section-title .slogan-img img {
+  width: 100%;
 }
 @media (max-width: 768px) {
   .hero-section {

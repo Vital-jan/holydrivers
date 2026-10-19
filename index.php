@@ -36,7 +36,7 @@
             <button type="submit" id="signup_base">
               <a href="/#register_form">🔥 Записатись</a>
             </button>
-            <button type="submit" id="signup_base">
+            <button type="submit">
               <a href="/program">📋Програма</a>
             </button>
           </div>
@@ -54,7 +54,7 @@
             <button type="submit" id="signup_express">
               <a href="/#register_form">🔥 Записатись</a>
             </button>
-            <button type="submit" id="signup_base">
+            <button type="submit">
               <a href="/program">📋Програма</a>
             </button>
           </div>
@@ -451,6 +451,8 @@
         class="image-banner"
         loading="lazy"
         decoding="async"
+        width: 720px
+        height: 926px
       />
     </div>
 
@@ -577,7 +579,15 @@
       // });
 
       // вибір типу курсу для запису на тест-драйв
+
       const course = document.getElementById("select_course");
+      const selectedCourse = new URLSearchParams(window.location.search).get(
+        "course",
+      );
+
+      if (selectedCourse === "2") {
+        course.selectedIndex = 2;
+      }
 
       document.getElementById("signup_express").onclick = () => {
         course.selectedIndex = 1;
