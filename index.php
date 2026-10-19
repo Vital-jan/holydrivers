@@ -7,19 +7,14 @@
   $robots="index,follow"; include "head.php"?>
 
   <body>
-    <div class="overlay" id="overlay"></div>
     <!-- header -->
     <?php $page="home"; $h1="Автоінструктор у Києві — уроки водіння на АКПП";
-    $h2="Вітаю!"; $intro=<<<HTML
+    $h2="Вітаю!"; $intro="
     <p>
       Мене звати Віталій, я атестований автоінструктор та ветеран ЗСУ. Маю міцні
       нерви, спокійний характер і вмію знаходити підхід до кожного учня
     </p>
-    <p>
-      Навчання проводжу на автомобілі з
-      <span class="bold-text">автоматичною коробкою передач</span>
-    </p>
-    HTML; include "header.php";?>
+    "; include "header.php";?>
     <!-- header -->
 
     <section class="section" id="training-programs">
@@ -553,74 +548,33 @@
 
     <?php include "footer.php";?>
 
-    <script src="sendmail.js"></script>
+    <script src="/js/sendmail.js"></script>
     <script>
-      const sections = document.querySelectorAll("section[id]");
-      const links = document.querySelectorAll("nav a");
+      //підсвічування елементів меню://
+      // const sections = document.querySelectorAll("section[id]");
+      // const header = document.querySelector("header");
+      // const headerOffset = header.getBoundingClientRect().height; // висота хедера
 
-      const overlay = document.getElementById("overlay");
+      // window.addEventListener("scroll", () => {
+      //   let current = "";
 
-      // const headerOffset = 120; // 🔥 підстав свою висоту
-      const header = document.querySelector("header");
-      const headerOffset = header.getBoundingClientRect().height; // висота хедера
+      //   sections.forEach((section) => {
+      //     const top = section.offsetTop - headerOffset;
+      //     const bottom = top + section.offsetHeight;
 
-      window.addEventListener("scroll", () => {
-        let current = "";
+      //     if (window.scrollY >= top && window.scrollY < bottom) {
+      //       current = section.id;
+      //     }
+      //   });
 
-        sections.forEach((section) => {
-          const top = section.offsetTop - headerOffset;
-          const bottom = top + section.offsetHeight;
+      //   links.forEach((link) => {
+      //     link.classList.remove("active");
 
-          if (window.scrollY >= top && window.scrollY < bottom) {
-            current = section.id;
-          }
-        });
-
-        links.forEach((link) => {
-          link.classList.remove("active");
-
-          if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active");
-          }
-        });
-      });
-
-      const burger = document.getElementById("burger");
-      const nav = document.getElementById("nav");
-
-      burger.addEventListener("click", () => {
-        burger.classList.toggle("active");
-        nav.classList.toggle("active");
-        overlay.classList.toggle("active");
-      });
-
-      function closeMenu() {
-        burger.classList.remove("active");
-        nav.classList.remove("active");
-        overlay.classList.remove("active");
-      }
-
-      // закриття при кліку на пункт
-      document.querySelectorAll("nav a").forEach((link) => {
-        link.addEventListener("click", () => {
-          closeMenu();
-        });
-      });
-
-      // 🔥 закриття при зміні розміру екрану
-      window.addEventListener("resize", () => {
-        closeMenu();
-      });
-
-      // 🔥 закриття по кліку за межами меню
-      overlay.addEventListener("click", closeMenu);
-
-      // 🔥 закриття Esc
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          closeMenu();
-        }
-      });
+      //     if (link.getAttribute("href") === "/#" + current) {
+      //       link.classList.add("active");
+      //     }
+      //   });
+      // });
 
       // вибір типу курсу для запису на тест-драйв
       const course = document.getElementById("select_course");

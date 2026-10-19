@@ -1,10 +1,15 @@
+<script src="/js/nav.js" defer></script>
+
+<div class="overlay" id="overlay"></div>
+
 <header>
   <div class="header-top">
-    <a href="javascript:history.back()" class="logo" title="Головна сторінка">
+    <!-- <a href="javascript:history.back()" class="logo" title="Головна сторінка"> -->
+    <a href="/" class="logo" title="Головна сторінка">
       <img src="/img/logo.webp" alt="Головна сторінка" />
     </a>
     <h1><?php echo $h1;?></h1>
-    <?php if ($page!="home"):?>
+    <!-- <?php if ($page!="home"):?>
     <div class="home">
       <a href="javascript:history.back()">
         <img
@@ -13,9 +18,9 @@
         />
       </a>
     </div>
-    <?php endif;?>
+    <?php endif;?> -->
   </div>
-  <?php if ($page==="home"): ?>
+  <?php if (0===0): ?>
   <nav class="nav" id="nav">
     <a href="/#intro">Про мене</a>
     <a href="/#training-programs">Для кого</a>
@@ -40,4 +45,5 @@
       <img src="/img/slogan_transparent.webp" alt="" />
     </div>
   </h2>
+  <?php echo $intro; ?>
 </section>

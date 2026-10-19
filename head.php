@@ -11,32 +11,33 @@
   <link rel="icon" href="/favicon.ico" />
   <!-- Google tag (gtag.js) -->
 
-<!-- Google Analytics + Google Ads: відкладене завантаження -->
-<script>
-  window.dataLayer = window.dataLayer || [];
+  <!-- Google Analytics + Google Ads: відкладене завантаження -->
 
-  function gtag() {
-    dataLayer.push(arguments);
-  }
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  function loadGoogleTags() {
-    if (window.googleTagsLoaded) return;
-    window.googleTagsLoaded = true;
+    function gtag() {
+      dataLayer.push(arguments);
+    }
 
-    const script = document.createElement("script");
-    script.src =
-      "https://www.googletagmanager.com/gtag/js?id=G-N7Y08PKZ4P";
-    script.async = true;
-    document.head.appendChild(script);
+    function loadGoogleTags() {
+      if (window.googleTagsLoaded) return;
+      window.googleTagsLoaded = true;
 
-    gtag("js", new Date());
-    gtag("config", "G-N7Y08PKZ4P");
-    gtag("config", "AW-17507774985");
-  }
+      const script = document.createElement("script");
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-N7Y08PKZ4P";
+      script.async = true;
+      document.head.appendChild(script);
 
-window.addEventListener("load", function () {
-  setTimeout(loadGoogleTags, 5000);
-});</script>
+      gtag("js", new Date());
+      gtag("config", "G-N7Y08PKZ4P");
+      gtag("config", "AW-17507774985");
+    }
+
+    window.addEventListener("load", function () {
+      setTimeout(loadGoogleTags, 5000);
+    });
+  </script>
 
   <script type="application/ld+json">
     {
