@@ -8,13 +8,17 @@
 
   <body>
     <!-- header -->
-    <?php $page="contacts"; $h1="Контакти автоінструктора в Києві"; include
-    "../header.php"?>
+    <?php $page="contacts"; $h1="Контакти автоінструктора в Києві";
+    $h2="Зв`язатись з автоінструктором"; include "../header.php"?>
     <!-- header -->
 
     <section class="section" id="intro">
       <!-- <h2 class="section-title">Контакти автоінструктора в Києві:</h2> -->
-
+      <p>
+        Зв'яжіться з автоінструктором зручним способом або скористайтесь
+        <a href="/#register">формою запису</a>. Також не забудьте приєднатись до
+        моїх youtube, telegram, tiktok та facebook за посиланнями нижче)
+      </p>
       <div class="contacts-page">
         <a href="tel:+380632209770" title="Подзвонити" class="contacts-img">
           <img src="/img/phone.webp" alt="" />
@@ -87,7 +91,6 @@
           <div>Київ | Голосіїв | Теремки</div>
         </div>
         <div>&nbsp;</div>
-
       </div>
     </section>
   </body>

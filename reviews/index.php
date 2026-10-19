@@ -9,12 +9,12 @@
   <body>
     <div class="overlay" id="overlay"></div>
     <!-- header -->
-    <?php $page="reviews"; $h1="Відгуки учнів про автоінструктора"; include
-    "../header.php";?>
+    <?php $page="reviews"; $h1="Відгуки учнів про автоінструктора";
+    $h2="⭐ · Відгуки у Google Maps:";
+    include "../header.php";?>
     <!-- header -->
 
     <section class="section" id="reviews">
-      <h2 class="section-title">⭐ 5.0 · Відгуки у Google Maps:</h2>
       <div class="review-actions">
         <a
           href="https://maps.app.goo.gl/TfcniZ7A4mXYm5MZA"
@@ -26,6 +26,16 @@
 
       </div>
       <?php include "reviews.php";?>
+      <div class="review-actions">
+        <a
+          href="https://g.page/r/CfDVo0JTUGiSEAE/review"
+          target="_blank"
+          rel="noopener"
+        >
+          ⭐ Залишити відгук
+        </a>
+
+      </div>
     </section>
     <?php include "../footer.php";?>
   </body>

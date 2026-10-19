@@ -33,3 +33,11 @@
   </div>
   <?php endif;?>
 </header>
+<section class="section hero-section" id="intro">
+  <h2 class="section-title">
+    <span><?php echo $h2;?></span>
+    <div class="slogan-img">
+      <img src="/img/slogan_transparent.webp" alt="" />
+    </div>
+  </h2>
+</section>

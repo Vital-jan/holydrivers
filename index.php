@@ -10,26 +10,17 @@
     <div class="overlay" id="overlay"></div>
     <!-- header -->
     <?php $page="home"; $h1="Автоінструктор у Києві — уроки водіння на АКПП";
-    include "header.php";?>
+    $h2="Вітаю!"; $intro=<<<HTML
+    <p>
+      Мене звати Віталій, я атестований автоінструктор та ветеран ЗСУ. Маю міцні
+      нерви, спокійний характер і вмію знаходити підхід до кожного учня
+    </p>
+    <p>
+      Навчання проводжу на автомобілі з
+      <span class="bold-text">автоматичною коробкою передач</span>
+    </p>
+    HTML; include "header.php";?>
     <!-- header -->
-
-    <section class="section hero-section" id="intro">
-      <h2 class="section-title">
-        <span>Вітаю!</span>
-        <div class="slogan-img">
-          <img src="/img/slogan_transparent.webp" alt="" />
-        </div>
-      </h2>
-
-      <p>
-        Мене звати Віталій, я атестований автоінструктор та ветеран ЗСУ. Маю
-        міцні нерви, спокійний характер і вмію знаходити підхід до кожного учня
-      </p>
-      <p>
-        Навчання проводжу на автомобілі з
-        <span class="bold-text">автоматичною коробкою передач</span>
-      </p>
-    </section>
 
     <section class="section" id="training-programs">
       <h2 class="section-title">Напрямки навчання:</h2>
