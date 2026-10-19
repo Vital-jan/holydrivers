@@ -32,13 +32,18 @@ html {
 
 body {
   margin: 0;
-  padding-top: 170px;
+  padding-top: 0;
   width: 100%;
   font-family: Arial, sans-serif;
   background-color: #111111;
   color: #f0f0f0;
   line-height: 1.2;
   caret-color: transparent;
+}
+@media (max-width: 768px) {
+  body {
+    padding-top: 0;
+  }
 }
 
 input {
@@ -68,14 +73,14 @@ header {
   border-bottom: 3px solid rgba(0, 0, 0, 0.2);
   color: #111111;
   display: flex;
-  position: fixed;
+  position: sticky;
   top: 0;
   flex-direction: column;
   padding: 20px;
   align-items: center;
   justify-content: space-between;
   gap: 1.3rem;
-  max-height: 170px;
+  max-height: none;
 }
 @media (max-width: 768px) {
   header {
@@ -172,12 +177,18 @@ header nav {
     flex-direction: column;
     background: #ffd700;
     border: 3px #111111 solid;
-    transform: translateX(100%);
-    transition: 0.3s;
+    transform: none;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, visibility 0.3s;
   }
 }
 header nav.active {
-  transform: translateX(0);
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
   text-align: left;
 }
 header nav a {
@@ -220,8 +231,15 @@ header .home img {
 .section-title {
   width: 100%;
   color: #ffd700;
-  margin-bottom: 0.65rem;
+  margin-bottom: 50px;
+  margin-top: 50px;
   font-size: 2em;
+}
+@media (max-width: 768px) {
+  .section-title {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
 }
 
 .list {
@@ -238,6 +256,7 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
+  margin: 5px;
 }
 button a {
   color: inherit;
@@ -247,16 +266,21 @@ button:hover {
 }
 
 .section {
-  scroll-margin-top: 170px;
+  scroll-margin-top: 250px;
   width: 100%;
   margin: 0 auto;
-  padding: 1.3rem 1.3rem;
   padding-left: 20%;
   padding-right: 20%;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 @media (max-width: 768px) {
   .section {
-    padding: 1.3rem 1.3rem;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    scroll-margin-top: 200px;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 }
 .section .button-center {
@@ -389,8 +413,15 @@ button:hover {
   font-size: 1.5em;
 }
 .section p {
-  margin-bottom: 1.3rem;
+  margin-bottom: 15px;
+  margin-top: 15px;
   font-size: 1.5em;
+}
+@media (max-width: 768px) {
+  .section p {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
 }
 
 .program-table {
@@ -449,6 +480,7 @@ button:hover {
 
 .image-section {
   display: flex;
+  width: 100%;
   justify-content: center;
 }
 .image-section .image-banner {
@@ -456,10 +488,6 @@ button:hover {
   height: auto;
   display: block;
   max-width: 100%;
-}
-.image-section .image-banner.condensed {
-  width: 60%;
-  height: auto;
 }
 
 @media (max-width: 768px) {
@@ -1132,4 +1160,44 @@ footer .contacts a.contacts-img img {
   -o-object-fit: contain;
      object-fit: contain;
   border-radius: 10px;
+}
+
+.hero-section {
+  position: relative;
+  background: linear-gradient(rgba(17, 17, 17, 0.55), rgba(17, 17, 17, 0.85)), url("/img/hero.webp") center center/cover no-repeat;
+  color: #f0f0f0;
+  min-height: 400px;
+  padding: 0 30px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.hero-section .section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  color: #ffd700;
+}
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 0;
+    max-height: 400px;
+    background-position: center, 70% center;
+  }
+}
+
+.slogan-img {
+  position: static;
+  display: block;
+  margin-left: auto;
+  width: 30%;
+  flex-shrink: 0;
+}
+.slogan-img img {
+  display: block;
+  width: 100%;
+  height: auto;
 }/*# sourceMappingURL=styles.css.map */

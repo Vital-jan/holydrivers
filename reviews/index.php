@@ -24,13 +24,6 @@
           ⭐ Усі відгуки Google
         </a>
 
-        <a
-          href="https://search.google.com/local/writereview?placeid=ChIJ22WzFvn36mcR8NWjQlNQaJI"
-          target="_blank"
-          rel="noopener"
-        >
-          ✍️ Написати відгук
-        </a>
       </div>
       <?php include "reviews.php";?>
     </section>

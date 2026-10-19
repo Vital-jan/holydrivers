@@ -34,13 +34,16 @@ html {
 
 body {
   margin: 0;
-  padding-top: $header-height;
+  padding-top: 0;
   width: 100%;
   font-family: Arial, sans-serif;
   background-color: $dark;
   color: $gray;
   line-height: 1.2;
   caret-color: transparent;
+  @media (max-width: 768px) {
+    padding-top: 0;
+  }
 }
 
 input {
@@ -70,14 +73,14 @@ header {
   border-bottom: 3px solid rgba(0, 0, 0, 0.2);
   color: $dark;
   display: flex;
-  position: fixed;
+  position: sticky;
   top: 0;
   flex-direction: column;
   padding: 20px;
   align-items: center;
   justify-content: space-between;
   gap: calc(1rem * $font-scale);
-  max-height: $header-height;
+  max-height: none;
 
   @media (max-width: 768px) {
     gap: 5px;
@@ -178,12 +181,20 @@ header {
       background: $primary;
       border: 3px $dark solid;
 
-      transform: translateX(100%);
-      transition: 0.3s;
+      transform: none;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity 0.3s,
+        visibility 0.3s;
     }
 
     &.active {
-      transform: translateX(0);
+      transform: none;
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
       text-align: left;
     }
 
@@ -230,8 +241,13 @@ header {
 .section-title {
   width: 100%;
   color: $primary;
-  margin-bottom: calc(0.5rem * $font-scale);
+  margin-bottom: 50px;
+  margin-top: 50px;
   font-size: 2em;
+  @media (max-width: 768px) {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
 }
 
 .list {
@@ -248,6 +264,7 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
+  margin: 5px;
   a {
     color: inherit;
   }
@@ -261,12 +278,17 @@ button {
   scroll-margin-top: $header-height;
   width: 100%;
   margin: 0 auto;
-  padding: calc(1rem * $font-scale) calc(1rem * $font-scale);
   padding-left: 20%;
   padding-right: 20%;
+  margin-bottom: 15px;
+  margin-top: 15px;
 
   @media (max-width: 768px) {
-    padding: calc(1rem * $font-scale) calc(1rem * $font-scale);
+    margin-bottom: 5px;
+    margin-top: 5px;
+    scroll-margin-top: $header-height-small;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   .button-center {
     text-align: center;
@@ -403,8 +425,13 @@ button {
   }
 
   p {
-    margin-bottom: calc(1rem * $font-scale);
+    margin-bottom: 15px;
+    margin-top: 15px;
     font-size: 1.5em;
+    @media (max-width: 768px) {
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
   }
 }
 
@@ -463,9 +490,8 @@ button {
 }
 
 .image-section {
-  // margin: calc(1rem * $font-scale) 0;
-  // margin-top: 40px;
   display: flex;
+  width: 100%;
   justify-content: center;
 
   .image-banner {
@@ -473,10 +499,6 @@ button {
     height: auto;
     display: block;
     max-width: 100%;
-    &.condensed {
-      width: 60%;
-      height: auto;
-    }
   }
 }
 
@@ -1214,5 +1236,53 @@ footer {
     aspect-ratio: 9 / 16;
     object-fit: contain;
     border-radius: 10px;
+  }
+}
+
+.hero-section {
+  position: relative;
+  background:
+    linear-gradient(rgba($dark, 0.55), rgba($dark, 0.85)),
+    url("/img/hero.webp") center center / cover no-repeat;
+
+  color: $gray;
+  min-height: 400px;
+  padding: 0 30px;
+  margin-top: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    color: $primary;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 0;
+    max-height: 400px;
+
+    background-position:
+      center,
+      70% center;
+  }
+}
+
+.slogan-img {
+  position: static;
+  display: block;
+  margin-left: auto;
+  width: 30%;
+  flex-shrink: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 }
