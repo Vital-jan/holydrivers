@@ -291,6 +291,7 @@ button:hover {
   text-align: center;
   align-items: center;
   gap: 30px;
+  margin: 50px 30px;
   flex-wrap: wrap;
   font-size: 1.5em;
 }

@@ -28,6 +28,16 @@
       >Відгуки</a
     >
     <a
+      href="/pdr/"
+      class="<?php echo ($page === 'pdr') ? 'active' : ''; ?>"
+      >ПДР</a
+    >
+    <a
+      href="/autoschool/"
+      class="<?php echo ($page === 'autoschool') ? 'active' : ''; ?>"
+      >Автошкола</a
+    >
+    <a
       href="/contacts/"
       class="<?php echo ($page === 'contacts') ? 'active' : ''; ?>"
       >Контакти</a
