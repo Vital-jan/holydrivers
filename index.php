@@ -9,13 +9,66 @@
   <body>
     <!-- header -->
     <?php $page="home"; $h1="Автоінструктор у Києві — уроки водіння на АКПП";
-    $h2="Вітаю!"; $intro="
+    $h2="Приватний автоінструктор у Києві"; $intro="
     <p>
-      Мене звати Віталій, я атестований автоінструктор та ветеран ЗСУ. Маю міцні
-      нерви, спокійний характер і вмію знаходити підхід до кожного учня
+      <strong
+        >Навчання водінню на автоматичній коробці передач (АКПП) — з нуля до
+        впевненого керування</strong
+      >
     </p>
     "; include "header.php";?>
     <!-- header -->
+
+    <section class="section">
+      <ul class="intro">
+        <li>
+          ✨ Хочете навчитись водінню з нуля та отримати посвідчення водія?
+        </li>
+        <li>
+          👉 Вже маєте посвідчення, але хочете відновити навички після перерви?
+        </li>
+        <li>🎓 Потрібна додаткова підготовка до практичного іспиту?</li>
+      </ul>
+      <p>✅ Тоді вам точно до мене!</p>
+      <p>
+        Мене звати Віталій, я атестований приватний автоінструктор та ветеран
+        ЗСУ. Маю міцні нерви, спокійний характер і вмію знаходити підхід до
+        кожного учня.
+      </p>
+      <ul>
+        <li>Не кричу</li>
+        <li>Не кваплю</li>
+        <li>Не сварю за помилки</li>
+      </ul>
+      <p>Навчаю терпляче, зрозуміло та без зайвого стресу.</p>
+      <p>Пояснюю стільки разів, скільки потрібно.</p>
+    </section>
+
+    <section class="image-section">
+      <img
+        src="/img/vital.webp"
+        alt="Приватний автоінструктор у Києві — Теремки, Голосіїв"
+        width="960"
+        height="767"
+        class="image-banner"
+        fetchpriority="high"
+      />
+    </section>
+
+    <section class="section">
+      <p>
+        ✨ Ми працюємо в атмосфері взаємоповаги, довіри й підтримки,
+        перетворюючи кожне заняття на захопливу подорож.
+      </p>
+      <p>
+        Ось що про це говорять учні:
+        <a class="button" href="/reviews"> Читайте відгуки </a>
+      </p>
+      <p>
+        Як саме відбуваються наші заняття:
+        <a class="button" href="#videos">Дивіться відео ▶️</a>
+      </p>
+    </section>
 
     <section class="section" id="training-programs">
       <h2 class="section-title">Напрямки навчання:</h2>
@@ -33,12 +86,10 @@
           </div>
 
           <div class="footer">
-            <button type="submit" id="signup_base">
-              <a href="/#register_form">🔥 Записатись</a>
-            </button>
-            <button type="submit">
-              <a href="/program">📋Програма</a>
-            </button>
+            <a class="button" id="signup_base" href="/#register_form"
+              >🔥 Записатись</a
+            >
+            <a class="button" href="/program">📋Програма</a>
           </div>
         </div>
 
@@ -51,12 +102,10 @@
           </div>
 
           <div class="footer">
-            <button type="submit" id="signup_express">
-              <a href="/#register_form">🔥 Записатись</a>
-            </button>
-            <button type="submit">
-              <a href="/program">📋Програма</a>
-            </button>
+            <a class="button" id="signup_express" href="/#register_form"
+              >🔥 Записатись</a
+            >
+            <a class="button" href="/program">📋Програма</a>
           </div>
         </div>
 
@@ -75,47 +124,13 @@
           </div>
 
           <div class="footer">
-            <button type="submit" id="signup_masterclass">
-              <a href="/#register_form">🔥 Записатись</a>
-            </button>
-            <button type="submit" id="signup_masterclass">
-              <a href="/#exam"> 🎓Докладніше про іспит</a>
-            </button>
+            <a class="button" id="signup_masterclass" href="/#register_form"
+              >🔥 Записатись</a
+            >
+            <a class="button" href="/#exam"> 🎓Докладніше про іспит</a>
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="image-section">
-      <img
-        src="/img/vital.webp"
-        alt="Приватний автоінструктор у Києві — Теремки, Голосіїв"
-        width="960"
-        height="767"
-        class="image-banner"
-        fetchpriority="high"
-      />
-    </section>
-
-    <section class="section">
-      <p>
-        Я добре розумію, що навчання водінню може викликати хвилювання — тому на
-        моїх заняттях ви не почуєте криків та не відчуєте тиску
-      </p>
-      <p>
-        ✨ Ми працюємо в атмосфері взаємоповаги, довіри й підтримки,
-        перетворюючи кожне заняття на захопливу подорож
-      </p>
-      <p>
-        Ось що про це говорять учні:
-        <a href="/reviews">
-          <span class="bold-text"> ⭐ Читати відгуки </span>
-        </a>
-      </p>
-      <p>
-        Як саме відбуваються наші заняття дивіться
-        <a href="#videos">на відео ▶️</a>
-      </p>
     </section>
 
     <section class="section" id="location">
@@ -162,9 +177,7 @@
         </li>
       </ul>
       <div class="button-center">
-        <button type="submit" id="signup_express">
-          <a href="/#register">🔥 Записатись</a>
-        </button>
+        <a class="button" href="/#register">🔥 Записатись</a>
       </div>
     </section>
 
@@ -362,85 +375,12 @@
           </select>
         </label>
         <button type="submit">🔥 Отримати перше заняття</button>
-        <p>
-          <sup
-            >* Я не завжди можу відповісти негайно, оскільки вдень проводжу
-            заняття. Та обов'язково відповім, щойно матиму можливість</sup
-          >
-        </p>
       </form>
       <div id="successModal" class="modal">
         <div class="modal-content">
           <p>Результат надсилання форми</p>
           <button id="closeModal">Ок</button>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="program">
-      <?php include "program/program_intro.php";?>
-      <div class="button-center">
-        <button type="submit" id="signup_express">
-          <a href="program/">🕒 Програма погодинно ➜</a>
-        </button>
-      </div>
-    </section>
-
-    <section class="section" id="exam">
-      <h2 class="section-title">
-        🏆 Чому більшість моїх клієнтів складають іспит з першої спроби?
-      </h2>
-
-      <div class="read-more">
-        <input type="checkbox" class="read-more__toggle" id="read_more_2" />
-
-        <div class="read-more__content">
-          <ul>
-            <li>Передусім, я вірю в вас та ваші таланти</li>
-            <li>З'ясовуємо, що найбільше заважає саме вам</li>
-            <li>
-              Зупиняємось на кожному етапі та детально опрацьовуємо кожен кейс,
-              допоки не досягнемо успіху
-            </li>
-            <li>
-              Проходимо не лише технічну, а й психологічну підготовку, оскільки
-              саме стрес часто є найбільшим ворогом. Стрес на іспиті виникає
-              незалежно від наших бажань. Ми не можемо повністю його позбутись.
-              Але можемо навчитись діяти впевненіше та мінімізувати його вплив.
-            </li>
-            <li>Перед іспитом ми складаємо <b>mock-tests</b>.</li>
-          </ul>
-          <p><b>Що ж таке mock-tests?</b></p>
-          <p>
-            mock tests — це пробні іспити з водіння, які відтворюють реальні
-            умови іспиту, але без ризику "провалу"
-          </p>
-
-          <ul>
-            <li>режим exam (без підказок)</li>
-            <li>маршрут, як на іспиті</li>
-            <li>імітація команд екзаменатора</li>
-            <li>оцінка типових помилок</li>
-            <li>звикання працювати під впливом стресу</li>
-          </ul>
-          <p><b>Для чого це потрібно?</b></p>
-          <p>
-            Потрібно це не для того, щоб автоінструктор зробив якісь висновки
-            про ваше водіння. Потрібно це саме для вас:
-          </p>
-          <ul>
-            <li>знімає стрес (“я вже це робила”)</li>
-            <li>показує реальні слабкі місця</li>
-            <li>підвищує шанс здати з першого разу</li>
-          </ul>
-          <p>Зрештою, іспит перестає бути для вас чимось надзвичайним</p>
-        </div>
-
-        <label
-          for="read_more_2"
-          data-open="Детальніше про це"
-          class="read-more__button"
-        ></label>
       </div>
     </section>
 
@@ -451,8 +391,8 @@
         class="image-banner"
         loading="lazy"
         decoding="async"
-        width: 720px
-        height: 926px
+        width="720"
+        height="926"
       />
     </div>
 

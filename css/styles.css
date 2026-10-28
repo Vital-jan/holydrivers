@@ -246,7 +246,9 @@ header .home img {
   padding: 20px;
 }
 
-button {
+button,
+.button {
+  display: inline-block;
   padding: 0.8rem;
   border-radius: 10px;
   border: none;
@@ -258,10 +260,12 @@ button {
   transition: 0.3s;
   margin: 5px;
 }
-button a {
+button a,
+.button a {
   color: inherit;
 }
-button:hover {
+button:hover,
+.button:hover {
   background-color: rgb(216.75, 182.75, 0);
 }
 
@@ -413,16 +417,14 @@ button:hover {
   margin-bottom: 0.52rem;
   font-size: 1.5em;
 }
-.section p {
-  margin-bottom: 15px;
-  margin-top: 15px;
-  font-size: 1.5em;
+.section ul.intro {
+  list-style: none;
+  padding-left: 0;
 }
-@media (max-width: 768px) {
-  .section p {
-    margin-bottom: 5px;
-    margin-top: 5px;
-  }
+.section p {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 1.5em;
 }
 
 .program-table {

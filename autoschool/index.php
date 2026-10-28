@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="uk">
-  <?php $page = "contacts"; $title = "Зареєструватись в автошколі в Києві |
+  <?php $page = "autoschool"; $title = "Зареєструватись в автошколі в Києві |
   HolyDrivers"; $description = "Отримання посвідчення водія | Реєстрація у
   автошколі | Підготовка до практичного іспиту"; $canonical =
   "https://holydrivers.com.ua/autoschool/"; $robots="index,follow"; include
@@ -9,7 +9,9 @@
   <body>
     <!-- header -->
     <?php $page="autoschool"; $h1="Отримання посвідчення водія"; $h2="З нуля до
-    практичного іспиту"; include "../header.php"?>
+    практичного іспиту"; $intro="
+    <p>Для тих, хто планує отримати посвідчення водія</p>
+    ";include "../header.php"?>
     <!-- header -->
     <section class="section">
       <h2 class="section-title">Шлях до отримання посвідчення водія</h2>

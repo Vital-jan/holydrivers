@@ -10,7 +10,7 @@
     <div class="overlay" id="overlay"></div>
     <!-- header -->
     <?php $page="home"; $h1="Програма занять автоінструктора"; $page="program"; $h2="Програма
-    практичного навчання"; include "../header.php";?>
+    практичного навчання"; $intro="<p>Програма занять погодинно</p>"; include "../header.php";?>
     <!-- header -->
 
     <section class="section" id="program">

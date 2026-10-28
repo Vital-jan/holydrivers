@@ -254,7 +254,9 @@ header {
   padding: 20px;
 }
 
-button {
+button,
+.button {
+  display: inline-block;
   padding: 0.8rem;
   border-radius: 10px;
   border: none;
@@ -423,16 +425,20 @@ button {
       margin-bottom: calc(0.4rem * $font-scale);
       font-size: 1.5em;
     }
+    &.intro {
+      list-style: none;
+      padding-left: 0;
+    }
   }
 
   p {
-    margin-bottom: 15px;
-    margin-top: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
     font-size: 1.5em;
-    @media (max-width: 768px) {
-      margin-bottom: 5px;
-      margin-top: 5px;
-    }
+    // @media (max-width: 768px) {
+    //   margin-bottom: 5px;
+    //   margin-top: 5px;
+    // }
   }
 }
 

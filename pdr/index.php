@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="uk">
-  <?php $page = "reviews"; $title = " Підготовка до теоретичного іспиту з ПДР";
+  <?php $page = "pdr"; $title = " Підготовка до теоретичного іспиту з ПДР";
   $description = "Як підготуватись до іспиту з теорії ПДР. Покрокова
   інструкція"; $canonical = "https://holydrivers.com.ua/pdr/";
   $robots="index,follow"; include "../head.php"?>
@@ -9,7 +9,9 @@
     <div class="overlay" id="overlay"></div>
     <!-- header -->
     <?php $page="pdr"; $h1="Підготовка до теоретичного іспиту з ПДР"; $h2="Як
-    підготуватись до іспиту з теорії ПДР"; include "../header.php";?>
+    підготуватись до іспиту з теорії ПДР"; $intro="
+    <p>Для тих, хто готується до теоретичного іспиту з ПДР</p>
+    ";include "../header.php";?>
     <!-- header -->
 
     <section class="section">
@@ -24,7 +26,7 @@
         📚 Самостійне вивчення теорії. Покрокова інструкція.
       </h2>
       <p>
-        ✅ Один з таких ресурсів, який я рекомендую - це
+        ✅ Один з онлайн ресурсів для вивчення ПДР, який я рекомендую - це
         <a href="https://green-way.com.ua" target="_blank" rel="noopener"
           >Green way</a
         >

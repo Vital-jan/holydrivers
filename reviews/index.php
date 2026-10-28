@@ -10,7 +10,7 @@
     <div class="overlay" id="overlay"></div>
     <!-- header -->
     <?php $page="reviews"; $h1="Відгуки учнів про автоінструктора";
-    $h2="⭐ · Відгуки у Google Maps:";
+    $h2="Відгуки у Google Maps"; $intro="<p>Відгуки учнів про наші заняття</p>";
     include "../header.php";?>
     <!-- header -->
 

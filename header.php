@@ -16,16 +16,21 @@
     <a href="/#training-programs">Для кого</a>
     <a href="/#location">Локація</a>
     <a href="/#price">Вартість</a>
-    <a href="/#register" class="cta">Тест-драйв</a>
+    <a
+      href="/reviews/"
+      class="<?php echo ($page === 'reviews') ? 'active' : ''; ?>"
+      >Відгуки</a
+    >
     <a
       href="/program/"
       class="<?php echo ($page === 'program') ? 'active' : ''; ?>"
       >Програма</a
     >
+    <a href="/#register" class="cta">Тест-драйв</a>
     <a
-      href="/reviews/"
-      class="<?php echo ($page === 'reviews') ? 'active' : ''; ?>"
-      >Відгуки</a
+      href="/autoschool/"
+      class="<?php echo ($page === 'autoschool') ? 'active' : ''; ?>"
+      >Автошкола</a
     >
     <a
       href="/pdr/"
@@ -33,9 +38,9 @@
       >ПДР</a
     >
     <a
-      href="/autoschool/"
-      class="<?php echo ($page === 'autoschool') ? 'active' : ''; ?>"
-      >Автошкола</a
+      href="/exam/"
+      class="<?php echo ($page === 'exam') ? 'active' : ''; ?>"
+      >Іспит</a
     >
     <a
       href="/contacts/"
