@@ -525,8 +525,14 @@
         "course",
       );
 
+      if (selectedCourse === "1") {
+        course.selectedIndex = 1;
+      }
       if (selectedCourse === "2") {
         course.selectedIndex = 2;
+      }
+      if (selectedCourse === "3") {
+        course.selectedIndex = 3;
       }
 
       document.getElementById("signup_express").onclick = () => {

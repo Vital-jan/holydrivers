@@ -61,7 +61,7 @@
         <p>Зрештою, іспит перестає бути для вас чимось надзвичайним</p>
       </div>
       <div class="button-center">
-        <a class="button" href="/#register">🔥 Записатись</a>
+        <a class="button" href="/?course=3#register">🔥 Записатись</a>
       </div>
     </section>
 

@@ -141,16 +141,11 @@
       <p>Чи варто чекати?</p>
       <p>Почніть водіння вже завтра:</p>
       <p>&nbsp;</p>
-      <button type="submit">
         <!-- передаємо параметр 2 для форми вибору курсу: -->
-        <a href="/?course=2#register">🔥 Записатись</a>
-      </button>
+        <a class="button" href="/?course=2#register">🔥 Записатись</a>
       <p>&nbsp;</p>
       <p>Ознайомитись з послугами автоінструктора докладніше:</p>
-      <button type="submit">
-        <!-- передаємо параметр 2 для форми вибору курсу: -->
-        <a href="/">🏠 На головну</a>
-      </button>
+        <a class="button" href="/">🏠 На головну</a>
     </section>
 
     <?php include "../footer.php";?>
