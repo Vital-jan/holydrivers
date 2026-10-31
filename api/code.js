@@ -1,5 +1,5 @@
 function transformAndSortSchedule() {
-  const TURBOSMS_TOKEN = ""; // заміни своїм
+  const TURBOSMS_TOKEN = "e6a9933e234707b213dbd754521ec9bd73dfb45e"; // заміни своїм
   const TURBOSMS_SENDER = "Holydrivers"; // підключений відправник у TurboSMS
   const TESTMODE = false; // true = всі SMS йдуть тільки на myPhone
   const myPhone = "+380632209770"; // тестовий номер для відладки

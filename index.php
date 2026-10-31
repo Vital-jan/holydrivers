@@ -230,7 +230,7 @@
             rel="noopener noreferrer"
             title="Youtube"
             >Youtube</a
-          >
+          > та <a href="/lessons">Уроки водіння онлайн</a> на цьому сайті
         </li>
       </ul>
     </section>

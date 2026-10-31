@@ -8,7 +8,11 @@
   "index,follow"; include "../head.php"; ?>
 
   <body>
-    <?php $h1 = "Навчальні матеріали для водіїв"; include "../header.php";
+    <?php $h1 = "Уроки водіння онлайн";
+    $h2="Навчальні матеріали для водіїв";
+    $intro="<p>Статті та відео як для
+  початківців, так і для досвідчених водіїв.</p>";
+  include "../header.php";
     include "lessons.php"; ?>
 
     <section class="section lessons-list">

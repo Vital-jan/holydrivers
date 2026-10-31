@@ -278,13 +278,19 @@ button:hover,
   margin-bottom: 15px;
   margin-top: 15px;
 }
+@media (max-width: 1024px) {
+  .section {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
 @media (max-width: 768px) {
   .section {
     margin-bottom: 5px;
     margin-top: 5px;
     scroll-margin-top: 200px;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
   }
 }
 .section .button-center {
@@ -491,6 +497,9 @@ button:hover,
   height: auto;
   display: block;
   max-width: 100%;
+}
+.image-section .condensed {
+  width: 60%;
 }
 
 @media (max-width: 768px) {
@@ -1075,8 +1084,8 @@ footer .contacts a.contacts-img img {
 }
 .lesson-card__thumb {
   position: relative;
-  flex: 0 0 20%;
-  max-width: 20%;
+  flex: 0 0 30%;
+  max-width: 30%;
   min-width: 80px;
   background: #222;
 }
@@ -1084,6 +1093,7 @@ footer .contacts a.contacts-img img {
   width: 100%;
   height: 100%;
   min-height: 120px;
+  max-height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
   display: block;
@@ -1122,12 +1132,15 @@ footer .contacts a.contacts-img img {
   line-height: 1.3;
 }
 @media (max-width: 768px) {
+  .lesson-card {
+    max-height: 9em;
+  }
   .lesson-card__link {
     gap: 0.8rem;
   }
   .lesson-card__thumb {
-    flex-basis: 20%;
-    max-width: 20%;
+    flex-basis: 30%;
+    max-width: 30%;
     min-width: 70px;
   }
   .lesson-card__thumb img {
@@ -1141,6 +1154,7 @@ footer .contacts a.contacts-img img {
   }
   .lesson-card__desc {
     font-size: 1rem;
+    display: none;
   }
 }
 
@@ -1153,8 +1167,10 @@ footer .contacts a.contacts-img img {
   border: 1px solid #ffd700;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
-.video-card video {
+.video-card video,
+.video-card iframe {
   display: block;
   width: 340px;
   max-width: 100%;
@@ -1163,6 +1179,20 @@ footer .contacts a.contacts-img img {
   -o-object-fit: contain;
      object-fit: contain;
   border-radius: 10px;
+  border: 0;
+}
+@media (max-width: 768px) {
+  .video-card {
+    width: 100%;
+    max-width: none;
+    margin: 15px 0;
+    padding: 8px;
+  }
+  .video-card video,
+  .video-card iframe {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 .hero-section {

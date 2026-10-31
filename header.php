@@ -28,6 +28,11 @@
     >
     <a href="/#register" class="cta">Тест-драйв</a>
     <a
+      href="/lessons/"
+      class="<?php echo ($page === 'lessons') ? 'active' : ''; ?>"
+      >Уроки</a
+    >
+    <a
       href="/autoschool/"
       class="<?php echo ($page === 'autoschool') ? 'active' : ''; ?>"
       >Автошкола</a
@@ -65,5 +70,4 @@
   </h2>
 
   <?php echo $intro ?? ''; ?>
-</section>  
 </section>

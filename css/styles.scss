@@ -285,12 +285,16 @@ button,
   margin-bottom: 15px;
   margin-top: 15px;
 
+  @media (max-width: 1024px) {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
   @media (max-width: 768px) {
     margin-bottom: 5px;
     margin-top: 5px;
     scroll-margin-top: $header-height-small;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
   }
   .button-center {
     text-align: center;
@@ -506,6 +510,9 @@ button,
     height: auto;
     display: block;
     max-width: 100%;
+  }
+  .condensed {
+    width: 60%;
   }
 }
 
@@ -1143,8 +1150,8 @@ footer {
 
   &__thumb {
     position: relative;
-    flex: 0 0 20%;
-    max-width: 20%;
+    flex: 0 0 30%;
+    max-width: 30%;
     min-width: 80px;
     background: #222;
 
@@ -1152,6 +1159,7 @@ footer {
       width: 100%;
       height: 100%;
       min-height: 120px;
+      max-height: 200px;
       object-fit: cover;
       display: block;
     }
@@ -1196,13 +1204,15 @@ footer {
   }
 
   @media (max-width: 768px) {
+    max-height: 9em;
+
     &__link {
       gap: 0.8rem;
     }
 
     &__thumb {
-      flex-basis: 20%;
-      max-width: 20%;
+      flex-basis: 30%;
+      max-width: 30%;
       min-width: 70px;
 
       img {
@@ -1220,6 +1230,7 @@ footer {
 
     &__desc {
       font-size: 1rem;
+      display: none;
     }
   }
 }
@@ -1234,8 +1245,10 @@ footer {
   border-radius: 16px;
   // background: #fff;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 
-  video {
+  video,
+  iframe {
     display: block;
     width: 340px;
     max-width: 100%;
@@ -1243,6 +1256,20 @@ footer {
     aspect-ratio: 9 / 16;
     object-fit: contain;
     border-radius: 10px;
+    border: 0;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: none;
+    margin: 15px 0;
+    padding: 8px;
+
+    video,
+    iframe {
+      width: 100%;
+      max-width: none;
+    }
   }
 }
 

@@ -12,9 +12,9 @@ const MONTH_NAMES = [
   "Листопад",
   "Грудень",
 ];
-
 function getTotalHoursByUser(userFullName) {
   // підрахунок загальної кількості годин
+  if (!userFullName) return 0;
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sh = ss.getSheetByName("Заняття");
   if (!sh) throw new Error('Аркуш "Заняття" не знайдено');
@@ -24,10 +24,7 @@ function getTotalHoursByUser(userFullName) {
   const HEADER_ROWS = 1;
 
   // останній заповнений рядок саме по колонці ПІБ
-  const lastRow = sh
-    .getRange(sh.getMaxRows(), COL_NAME)
-    .getNextDataCell(SpreadsheetApp.Direction.UP)
-    .getRow();
+  const lastRow = sh.getLastRow();
 
   if (lastRow <= HEADER_ROWS) return 0;
 
@@ -144,12 +141,13 @@ function doGet(e) {
   // ---- Далі – звичайний режим getdata ----
 
   function fmt(val) {
+    if (val == null) return "";
     if (val instanceof Date) {
       const d = String(val.getDate()).padStart(2, "0");
       const m = String(val.getMonth() + 1).padStart(2, "0");
       return `${d}.${m}`;
     }
-    return val;
+    return String(val);
   }
 
   function norm(s) {
@@ -181,18 +179,37 @@ function doGet(e) {
     const lastRow = sh.getLastRow();
     if (lastRow < 2)
       return { fullName: "", maxHours: 0, start: null, finish: null };
+    const lastCol = sh.getLastColumn();
 
     // беремо тільки потрібні колонки A:J
-    const values = sh.getRange(1, 1, lastRow, 10).getValues(); // A..J
+    const values = sh.getRange(1, 1, lastRow, lastCol).getValues(); // A..J
     const header = values[0].map((v) =>
       String(v || "")
         .trim()
         .toLowerCase(),
     );
 
-    const idxUserId = header.indexOf("user_id"); // має бути 2
-    const idxMax = header.indexOf("maxHours"); // має бути 9
-    const idxStart = header.indexOf("початок");
+    const idxUserId = header.findIndex((h) => {
+      return (
+        String(h || "")
+          .toLowerCase()
+          .replace(/\s+/g, "") === "user_id"
+      );
+    });
+    const idxMax = header.findIndex((h) => {
+      return (
+        String(h || "")
+          .toLowerCase()
+          .replace(/\s+/g, "") === "maxhours"
+      );
+    });
+    const idxStart = header.findIndex((h) => {
+      return (
+        String(h || "")
+          .toLowerCase()
+          .replace(/\s+/g, "") === "початок"
+      );
+    });
 
     const IDX_NAME = 0; // A = ПІБ
 
@@ -240,7 +257,7 @@ function doGet(e) {
           }
         }
 
-        const result = { fullName, maxHours, start, finish };
+        const result = { fullName, maxHours, start, finish, idxMax };
         cache.put(cacheKey, JSON.stringify(result), 300); // 5 хв
 
         return result;
